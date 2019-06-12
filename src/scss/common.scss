@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Chihaya Gothic';
+  font-style: normal;
+  src: local('ChihayaGothic'), url('../fonts/chihaya_gothic.otf') format('opentype');
+}
+
+body {
+  scroll-behavior: smooth;
+  background: url('../img/nzws_theme_background.png');
+  padding-top: 30px;
+  font-family: 'Chihaya Gothic';
+}
+
+.bg-box {
+  background: rgba(0, 0, 0, .4);
+}
+
+img {
+  max-width: 100%;
+}
