@@ -45,7 +45,7 @@
 <script>
   let connection;
 
-  function connect() {
+  window.connect = () => {
     const url = document.getElementById('ws-url').value;
 
     connection = new WebSocket('wss://' + url);
@@ -65,22 +65,22 @@
       log('An error occurred...');
       disconnect();
     };
-  }
+  };
 
-  function send() {
+  window.send = () => {
     const data = document.getElementById('ws-send');
 
     connection.send(data.value);
     log(`Sent: ${data.value}`);
 
     data.value = '';
-  }
+  };
 
-  function disconnect() {
+  window.disconnect = () => {
     connection.close();
-  }
+  };
 
-  function log(text) {
+  window.log = text => {
     const log = document.getElementById('ws-logs');
 
     const now = new Date();
@@ -89,7 +89,7 @@
     log.textContent += `[${date}] ${text}\n`;
 
     log.scrollTop = log.scrollHeight;
-  }
+  };
 
   function timeWrapper(time) {
     return time < 10 ? '0' + time : time;
