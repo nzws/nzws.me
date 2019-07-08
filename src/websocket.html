@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>nzws.me - ねじわさみ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="scss/index.scss" rel="stylesheet">
+  <script src="js/index.js" async defer></script>
+</head>
+<body class="page__websocket">
+<div class="container">
+  <div class="shadow p-3 mt-2 mb-5 bg-box text-white rounded" id="not-connected">
+    <label for="ws-url" class="h3">Try WebSocket ＞w＜</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">wss://</span>
+      </div>
+      <input type="text" class="form-control" id="ws-url" value="nzws.me">
+    </div>
+    <button class="btn btn-success btn-block mt-3" onclick="connect()">Connect</button>
+  </div>
+
+  <div id="connected" class="d-none">
+    <div class="shadow p-3 mt-2 mb-5 bg-box text-white rounded">
+      <label for="ws-send" class="h3">Send a message</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="ws-send">
+      </div>
+      <button class="btn btn-primary btn-block mt-3" onclick="send()">Send</button>
+    </div>
+
+    <div class="shadow p-3 mt-2 mb-5 bg-box text-white rounded">
+      <label for="ws-logs" class="h3">Logs</label>
+      <div class="input-group mb-3">
+        <textarea class="form-control" id="ws-logs" readonly rows="20" wrap="off"></textarea>
+      </div>
+      <button class="btn btn-danger btn-block mt-3" onclick="disconnect()">Disconnect</button>
+    </div>
+  </div>
+
+  <p class="text-center">
+    <a href="/">nzws.me ホーム</a>
+  </p>
+</div>
+
+<script>
+  let connection;
+
+  function connect() {
+    const url = document.getElementById('ws-url').value;
+
+    connection = new WebSocket('wss://' + url);
+    document.getElementById('connected').classList.remove('d-none');
+    document.getElementById('not-connected').classList.add('d-none');
+    log('Connecting...');
+
+    connection.onopen = () => {
+      log(`Connected to ${url}`);
+    };
+
+    connection.onclose = () => log('Connection was closed');
+
+    connection.onmessage = data => log(`Received: ${data.data}`);
+
+    connection.onerror = () => {
+      log('An error occurred...');
+      disconnect();
+    };
+  }
+
+  function send() {
+    const data = document.getElementById('ws-send');
+
+    connection.send(data.value);
+    log(`Sent: ${data.value}`);
+
+    data.value = '';
+  }
+
+  function disconnect() {
+    connection.close();
+  }
+
+  function log(text) {
+    const log = document.getElementById('ws-logs');
+
+    const now = new Date();
+    const date = `${timeWrapper(now.getHours())}:${timeWrapper(now.getMinutes())}:${timeWrapper(now.getSeconds())}`;
+
+    log.textContent += `[${date}] ${text}\n`;
+
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function timeWrapper(time) {
+    return time < 10 ? '0' + time : time;
+  }
+</script>
+</body>
+</html>
