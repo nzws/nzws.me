@@ -84,8 +84,8 @@ Thank you!
     case 'pwd':
       return '/';
     case 'random':
-      const min = parseInt(args[1] || 0);
-      const max = parseInt(args[2] || 100);
+      const min = parseInt(args[1]) || 0;
+      const max = parseInt(args[2]) || 100;
 
       if (min > max) {
         return 'ERROR: min が max を超えています！';
