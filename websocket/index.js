@@ -58,7 +58,7 @@ I'm 👨, 👨‍💻, 👨‍🎓
 🏠: Nagoya, Japan
 
 Social accounts:
-Twitter: @neziri_wasabi
+Twitter: @nzws_me
 Mastodon: @nzws@don.nzws.me
 GitHub: @yuzulabo
 E-mail: i@nzws.me
