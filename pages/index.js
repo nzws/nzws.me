@@ -93,7 +93,7 @@ const Index = () => {
       </div>
 
       <div className="mb-4">
-        <b>🙇 Thank you for donating</b>
+        <b>🙇 Thank you for supporting</b>
         <ul>
           {donors.map((name, key) => (
             <li key={key}>{name} さん</li>
