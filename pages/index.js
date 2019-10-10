@@ -1,7 +1,7 @@
 import React from 'react';
 import '../scss/index.scss';
 
-import Meta from '../components/header/meta';
+import Meta from '../components/meta';
 import ExternalLink from '../components/link';
 import donors from '../donors';
 
@@ -19,8 +19,32 @@ const Index = () => {
         <div className="mt-2 text-muted">高校生, エンジニア見習いのアホ</div>
       </div>
 
-      <div className="mt-2 mb-2">
-        <b>Accounts</b>
+      <div className="mb-4">
+        <b>🙋‍ Profile</b>
+        <ul>
+          <li>
+            Pronouns: <b>he/him</b>
+          </li>
+          <li>
+            Location: <b>Nagoya, Japan</b>
+          </li>
+          <li>
+            Favorite languages:
+            <b className="ml-1">
+              JavaScript (node, react, hyperapp, etc) and PHP
+            </b>
+          </li>
+          <li>
+            Owned devices:
+            <b className="ml-1">
+              HTC X2-HT, iPhone 6s, Macbook Air, Windows PC, Linux Server
+            </b>
+          </li>
+        </ul>
+      </div>
+
+      <div className="mb-4">
+        <b>🙍‍ Accounts</b>
         <ul className="accounts">
           <li>
             ActivityPub:
@@ -48,8 +72,8 @@ const Index = () => {
         </ul>
       </div>
 
-      <div className="mt-2 mb-2">
-        <b>Donate</b>
+      <div className="mb-4">
+        <b>💕 Donate</b>
         <ul>
           <li>
             Kyash: <a href="kyash://qr/u/3407272513115463336">nzws</a>
@@ -66,7 +90,10 @@ const Index = () => {
             </ExternalLink>
           </li>
         </ul>
-        Thank you for donating🙇
+      </div>
+
+      <div className="mb-4">
+        <b>🙇 Thank you for donating</b>
         <ul>
           {donors.map((name, key) => (
             <li key={key}>{name} さん</li>
