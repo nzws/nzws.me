@@ -16,9 +16,7 @@
     "format:md": "prettier --write --ignore-path .gitignore \"**/*.md\"",
     "format:json": "prettier --write --ignore-path .gitignore \"**/*.json\"",
     "format": "npm-run-all format:* -s",
-    "build:shuffle": "node script/shuffle.js",
-    "build:next": "next build",
-    "build": "npm-run-all build:*",
+    "build": "next build",
     "dev": "next",
     "start": "next start"
   },
