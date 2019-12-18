@@ -47,7 +47,7 @@ const Index = () => {
         <b>🙍‍ Accounts</b>
         <ul className="accounts">
           <li>
-            ActivityPub:
+            ActivityPub(Mastodon):
             <ExternalLink href="https://don.nzws.me/@nzws">
               nzws@don.nzws.me
             </ExternalLink>
@@ -88,6 +88,17 @@ const Index = () => {
             <ExternalLink href="http://amzn.asia/cjmzTWf">
               ほしいも
             </ExternalLink>
+          </li>
+          <li>
+            Stellar🌠:
+            <b className="ml-1">nzws*keybase.io</b>
+            <small className="ml-1 text-muted">
+              (GC74VR4V3QAYYRYLVS2444HSHDUMDGORMC6KQBWQNS5E5NDAGUQL2HPM)
+            </small>
+          </li>
+          <li>
+            Bitcoin:
+            <b className="ml-1">1P2xtPpz2gKcS3WkVBxumsaNWmk9oWC74t</b>
           </li>
         </ul>
       </div>
