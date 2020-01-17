@@ -1,0 +1,42 @@
+name: Node CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 13.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Restore deps from actions cache
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install deps
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Run audit
+        run: yarn audit
+
+      - name: Build files
+        run: yarn build
+
+      - name: Run linter
+        run: yarn lint
+
+        env:
+          CI: true

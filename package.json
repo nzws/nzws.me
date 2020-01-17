@@ -27,8 +27,8 @@
     "eslint-plugin-react": "^7.16.0",
     "npm-run-all": "~4",
     "prettier": "~1",
-    "stylelint": "~11",
-    "stylelint-config-prettier": "~6.0.0",
+    "stylelint": "~13.0.0",
+    "stylelint-config-prettier": "~8.0.1",
     "stylelint-config-standard": "~19",
     "stylelint-scss": "~3"
   },

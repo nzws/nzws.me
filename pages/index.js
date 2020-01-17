@@ -48,26 +48,30 @@ const Index = () => {
         <ul className="accounts">
           <li>
             ActivityPub(Mastodon):
-            <ExternalLink href="https://don.nzws.me/@nzws">
+            <ExternalLink href="https://don.nzws.me/@nzws" rel="me">
               nzws@don.nzws.me
             </ExternalLink>
           </li>
           <li>
             Twitter:
-            <ExternalLink href="https://twitter.com/nzws_me">
+            <ExternalLink href="https://twitter.com/nzws_me" rel="me">
               @nzws_me
             </ExternalLink>
           </li>
           <li>
             GitHub:
-            <ExternalLink href="https://github.com/nzws">@nzws</ExternalLink>
+            <ExternalLink href="https://github.com/nzws" rel="me">
+              @nzws
+            </ExternalLink>
           </li>
           <li>
             Keybase:
-            <ExternalLink href="https://keybase.io/nzws">@nzws</ExternalLink>
+            <ExternalLink href="https://keybase.io/nzws" rel="me">
+              @nzws
+            </ExternalLink>
           </li>
           <li>
-            E-mail: <code>i@$&#123;location.hostname&#125;</code>
+            E-mail: <code>hello+me@$&#123;location.hostname&#125;</code>
           </li>
         </ul>
       </div>
