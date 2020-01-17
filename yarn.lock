@@ -6518,10 +6518,10 @@ react@^16.10.2:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-reactstrap@^8.0.1:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-8.3.2.tgz#d6f42bc736904513a2762bbef97ac36874dfa209"
-  integrity sha512-nVs5sdYZZMgS51yOxPFerdjmtlK9uSlDIiUV4X5GVz+r3nSVluRxDVCkEq0Ctt5Khxqo12aNu3U7x7QiOFx5Sg==
+reactstrap@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-8.4.0.tgz#318961ae8150ec1790fec5ee2f81816c9e32d7a1"
+  integrity sha512-hKH/+jnmPp+v1AZweFd58VI2z8KCQbLG+tcReQ/4ddIsJ5tWiBm5EbxD7RZxwlTSjPCqA5bHCwybdCuqUSoHcQ==
   dependencies:
     "@babel/runtime" "^7.2.0"
     classnames "^2.2.3"
