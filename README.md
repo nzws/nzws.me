@@ -1,1 +1,1 @@
-# @nzws/website
+# nzws.me

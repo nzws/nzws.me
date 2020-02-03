@@ -1,20 +1,19 @@
 {
-  "name": "@nzws/website",
+  "name": "nzws.me",
   "description": "nzws.me",
   "repository": "https://github.com/nzws/nzws.me.git",
   "author": "nzws <github@nzws.me>",
   "license": "MPL-2.0",
   "private": true,
+  "engines": {
+    "node": "12.x || 13.x"
+  },
   "scripts": {
-    "lint:js": "eslint --ignore-path .gitignore \"**/*.js\" && prettier --check --ignore-path .gitignore \"**/*.js\"",
-    "lint:css": "stylelint --ignore-path .gitignore **/*.scss && prettier --check --ignore-path .gitignore \"**/*.scss\"",
-    "lint:md": "prettier --check --ignore-path .gitignore \"**/*.md\"",
-    "lint:json": "prettier --check --ignore-path .gitignore \"**/*.json\"",
+    "lint:prettier": "pretty-quick --check",
+    "lint:js": "eslint --ignore-path .gitignore \"**/*.js\"",
     "lint": "npm-run-all lint:* -s",
-    "format:js": "prettier --write --ignore-path .gitignore \"**/*.js\"",
-    "format:css": "stylelint --fix --ignore-path .gitignore **/*.scss && prettier --write --ignore-path .gitignore \"**/*.scss\"",
-    "format:md": "prettier --write --ignore-path .gitignore \"**/*.md\"",
-    "format:json": "prettier --write --ignore-path .gitignore \"**/*.json\"",
+    "format:prettier": "pretty-quick",
+    "format:js": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
     "format": "npm-run-all format:* -s",
     "build": "next build",
     "dev": "next",
@@ -24,24 +23,21 @@
     "@yuzulabo/eslint-config": "~1",
     "@yuzulabo/prettier-config": "~1",
     "babel-eslint": "^10.0.3",
+    "babel-plugin-styled-components": "^1.10.7",
     "eslint": "~6",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react": "^7.18.3",
     "npm-run-all": "~4",
     "prettier": "~1",
-    "stylelint": "~13.0.0",
-    "stylelint-config-prettier": "~8.0.1",
-    "stylelint-config-standard": "~19",
-    "stylelint-scss": "~3"
+    "pretty-quick": "^2.0.1"
   },
   "dependencies": {
-    "@zeit/next-sass": "^1.0.1",
-    "bootstrap": "^4.3.1",
     "next": "^9.2.1",
-    "node-sass": "^4.12.0",
+    "polished": "^3.4.4",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "reactstrap": "^8.4.1"
+    "styled-components": "^5.0.0",
+    "styled-normalize": "^8.0.7"
   },
   "prettier": "@yuzulabo/prettier-config"
 }

@@ -13,10 +13,7 @@ const ExternalLink = props => {
 
 ExternalLink.propTypes = {
   href: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  children: PropTypes.node
 };
 
 export default ExternalLink;
