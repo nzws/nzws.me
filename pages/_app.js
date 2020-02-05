@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
 import Meta from '../components/meta';
+import typeKit from '../components/typekit';
 
 const bgBase = '#332624';
 const textBase = '#fff';
@@ -22,12 +23,12 @@ const GlobalStyle = createGlobalStyle({
     height: '100%'
   },
   body: {
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif',
-    fontSize: '1.2rem',
+    fontFamily: 'kan415typos-std, sans-serif',
+    fontSize: '1rem',
     lineHeight: '1.5',
-    fontWeight: 200,
-    color: props => props.theme.text,
+    fontWeight: 400,
+    fontStyle: 'normal',
+    color: ({ theme: { text } }) => text,
     background: ({ theme: { background } }) =>
       `${background} url('/static/bg.png')`
   },
@@ -35,7 +36,7 @@ const GlobalStyle = createGlobalStyle({
     fontWeight: 600
   },
   a: {
-    color: props => props.theme.linkBase,
+    color: ({ theme: { linkBase } }) => linkBase,
     textDecoration: 'none',
     fontWeight: 400
   },
@@ -50,6 +51,8 @@ const GlobalStyle = createGlobalStyle({
 });
 
 const App = ({ Component, pageProps }) => {
+  useEffect(typeKit, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Meta />
