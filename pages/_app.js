@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { Normalize } from 'styled-normalize';
+
+import 'ress/dist/ress.min.css';
 
 import Meta from '../components/meta';
 import typeKit from '../components/typekit';
 
 const bgBase = '#332624';
 const textBase = '#fff';
-const linkBase = '#036eec';
+const linkBase = '#0372ff';
 const theme = {
   bgBase,
   textBase,
@@ -33,12 +34,18 @@ const GlobalStyle = createGlobalStyle({
       `${background} url('/static/bg.png')`
   },
   b: {
-    fontWeight: 600
+    textDecoration: 'underline',
+    fontWeight: 400,
+    fontSize: '1.1rem',
+    marginRight: '2px'
   },
   a: {
     color: ({ theme: { linkBase } }) => linkBase,
     textDecoration: 'none',
-    fontWeight: 400
+    fontWeight: 400,
+    ':hover': {
+      textDecoration: 'underline'
+    }
   },
   'h1, h2, h3': {
     fontWeight: 300,
@@ -56,7 +63,6 @@ const App = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
       <Meta />
-      <Normalize />
       <GlobalStyle />
       <Component {...pageProps} />
     </ThemeProvider>

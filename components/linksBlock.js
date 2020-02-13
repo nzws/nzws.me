@@ -16,10 +16,16 @@ const Block = styled.div({
   }
 });
 
+const Title = styled.div({
+  marginBottom: '10px'
+});
+
 const LinksBlock = ({ title, children }) => (
   <Block>
-    <b>{title}</b>
-    <ul>{children}</ul>
+    <Title>
+      <b>{title}</b>
+    </Title>
+    {children}
   </Block>
 );
 

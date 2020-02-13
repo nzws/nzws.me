@@ -36,8 +36,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "styled-components": "^5.0.1",
-    "styled-normalize": "^8.0.7"
+    "ress": "^2.0.4",
+    "styled-components": "^5.0.1"
   },
   "prettier": "@yuzulabo/prettier-config"
 }
