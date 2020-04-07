@@ -37,7 +37,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "ress": "^2.0.4",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.1.0"
   },
   "prettier": "@yuzulabo/prettier-config"
 }
