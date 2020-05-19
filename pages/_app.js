@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 import 'ress/dist/ress.min.css';
 
 import Meta from '../components/meta';
-import typeKit from '../components/typekit';
 
-const bgBase = '#332624';
-const textBase = '#fff';
+const bgBase = '#191110';
+const textBase = '#e3e3e3';
 const linkBase = '#0372ff';
 const theme = {
   bgBase,
@@ -24,18 +23,17 @@ const GlobalStyle = createGlobalStyle({
     height: '100%'
   },
   body: {
-    fontFamily: 'kan415typos-std, sans-serif',
+    fontFamily: "'M PLUS Rounded 1c', sans-serif",
     fontSize: '1rem',
     lineHeight: '1.5',
     fontWeight: 400,
     fontStyle: 'normal',
     color: ({ theme: { text } }) => text,
-    background: ({ theme: { background } }) =>
-      `${background} url('/static/bg.png')`
+    background: ({ theme: { background } }) => background
   },
   b: {
     textDecoration: 'underline',
-    fontWeight: 400,
+    fontWeight: 600,
     fontSize: '1.1rem',
     marginRight: '2px'
   },
@@ -48,7 +46,7 @@ const GlobalStyle = createGlobalStyle({
     }
   },
   'h1, h2, h3': {
-    fontWeight: 300,
+    fontWeight: 600,
     margin: '10px 0'
   },
   '*, *:after, *:before': {
@@ -58,8 +56,6 @@ const GlobalStyle = createGlobalStyle({
 });
 
 const App = ({ Component, pageProps }) => {
-  useEffect(typeKit, []);
-
   return (
     <ThemeProvider theme={theme}>
       <Meta />

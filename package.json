@@ -6,28 +6,28 @@
   "license": "MPL-2.0",
   "private": true,
   "engines": {
-    "node": "12.x || 13.x"
+    "node": "12.x || 13.x || 14.x"
   },
   "scripts": {
-    "lint:prettier": "pretty-quick --check",
-    "lint:js": "eslint --ignore-path .gitignore \"**/*.js\"",
+    "lint:prettier": "prettier --check --ignore-path .gitignore .",
+    "lint:js": "eslint --cache --ignore-path .gitignore \"**/*.js\"",
     "lint": "npm-run-all lint:* -s",
-    "format:prettier": "pretty-quick",
-    "format:js": "eslint --ignore-path .gitignore --fix \"**/*.js\"",
+    "format:prettier": "prettier --write --ignore-path .gitignore .",
+    "format:js": "eslint --cache --ignore-path .gitignore --fix \"**/*.js\"",
     "format": "npm-run-all format:* -s",
     "build": "next build",
     "dev": "next",
     "start": "next start"
   },
   "devDependencies": {
+    "@nzws/prettier-config": "~1",
     "@yuzulabo/eslint-config": "~1",
-    "@yuzulabo/prettier-config": "~1",
-    "babel-eslint": "^10.1.0",
+    "babel-eslint": "^10.0.3",
     "babel-plugin-styled-components": "^1.10.7",
-    "eslint": "~6",
-    "eslint-plugin-react": "^7.20.0",
+    "eslint": "~7.0.0",
+    "eslint-plugin-react": "^7.18.3",
     "npm-run-all": "~4",
-    "prettier": "~1",
+    "prettier": "~2.0.5",
     "pretty-quick": "^2.0.1"
   },
   "dependencies": {
@@ -39,5 +39,5 @@
     "ress": "^2.0.4",
     "styled-components": "^5.1.0"
   },
-  "prettier": "@yuzulabo/prettier-config"
+  "prettier": "@nzws/prettier-config"
 }
