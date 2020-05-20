@@ -235,7 +235,7 @@ const BlogPost = ({ data }) => {
         </a>
         <ExternalLink
           href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-            data.title
+            data.title + ' - Blog - nzws.me (ねじわさみ)'
           )}&url=${encodeURIComponent(
             'https://nzws.me/blog/' + data.id
           )}&via=nzws_me&related=nzws_me`}

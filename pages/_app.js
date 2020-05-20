@@ -6,6 +6,7 @@ import Router from 'next/router';
 import * as gtag from '../lib/gtag';
 
 import 'ress/dist/ress.min.css';
+import { lighten } from 'polished';
 
 const bgBase = '#191110';
 const textBase = '#e3e3e3';
@@ -47,11 +48,23 @@ const GlobalStyle = createGlobalStyle({
   },
   '*, *:after, *:before': {
     boxSizing: 'border-box',
-    transition: '200ms ease'
+    transition: '200ms ease',
+    outline: 0,
+    scrollbarColor: ({ theme: { background } }) =>
+      `${lighten(0.1, background)} ${background}`,
+    scrollbarWidth: 'thin'
   },
   '.icon': {
     position: 'relative',
     top: '3px'
+  },
+  '::-webkit-scrollbar': {
+    width: '5px',
+    height: '5px'
+  },
+  '::-webkit-scrollbar-thumb': {
+    background: ({ theme: { background } }) => lighten(0.1, background),
+    border: 'none'
   }
 });
 
