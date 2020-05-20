@@ -20,7 +20,8 @@ import { Twitter } from '@icons-pack/react-simple-icons';
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
 import useScript from '../../components/use-script';
-import MovedComponent from '../../components/moved-component';
+import MovedComponent from '../../components/blog/moved-component';
+import About from '../../components/blog/about';
 
 const processor = unified()
   .use(parse)
@@ -110,6 +111,9 @@ const Container = styled.div`
 
 const Nav = styled.div`
   margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 
   a {
     color: ${({ theme: { text } }) => text};
@@ -179,6 +183,8 @@ const BlogPost = ({ data }) => {
       </Head>
 
       <Nav>
+        <About />
+
         <Link href="/">
           <a>nzws.me</a>
         </Link>

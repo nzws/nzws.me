@@ -9,7 +9,8 @@ import { ChevronLeft, ChevronRight } from 'react-feather';
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
-import MovedComponent from '../../components/moved-component';
+import MovedComponent from '../../components/blog/moved-component';
+import About from '../../components/blog/about';
 
 const dateOptions = {
   weekday: 'long',
@@ -109,6 +110,8 @@ const Blog = ({ data, nextPageId, prevPageId }) => {
   return (
     <Container>
       <Nav>
+        <About />
+
         <Link href="/">
           <a>nzws.me</a>
         </Link>
