@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Head from 'next/head';
 
 import 'ress/dist/ress.min.css';
 
-import Meta from '../components/meta';
-import typeKit from '../components/typekit';
-
-const bgBase = '#332624';
-const textBase = '#fff';
-const linkBase = '#0372ff';
+const bgBase = '#191110';
+const textBase = '#e3e3e3';
+const linkBase = '#2986ff';
 const theme = {
   bgBase,
   textBase,
@@ -19,23 +17,17 @@ const theme = {
 };
 
 const GlobalStyle = createGlobalStyle({
-  'html, body': {
-    width: '100%',
-    height: '100%'
-  },
   body: {
-    fontFamily: 'kan415typos-std, sans-serif',
+    fontFamily: "'M PLUS Rounded 1c', sans-serif",
     fontSize: '1rem',
     lineHeight: '1.5',
     fontWeight: 400,
     fontStyle: 'normal',
     color: ({ theme: { text } }) => text,
-    background: ({ theme: { background } }) =>
-      `${background} url('/static/bg.png')`
+    background: ({ theme: { background } }) => background
   },
   b: {
-    textDecoration: 'underline',
-    fontWeight: 400,
+    fontWeight: 600,
     fontSize: '1.1rem',
     marginRight: '2px'
   },
@@ -48,21 +40,42 @@ const GlobalStyle = createGlobalStyle({
     }
   },
   'h1, h2, h3': {
-    fontWeight: 300,
-    margin: '10px 0'
+    fontWeight: 600,
+    margin: '5px 0'
   },
   '*, *:after, *:before': {
     boxSizing: 'border-box',
     transition: '200ms ease'
+  },
+  '.icon': {
+    position: 'relative',
+    top: '3px'
   }
 });
 
-const App = ({ Component, pageProps }) => {
-  useEffect(typeKit, []);
-
+const App = ({ Component, pageProps, router }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Meta />
+      <Head>
+        <title>
+          {pageProps.title ? `${pageProps.title} - ` : ''}nzws.me (ねじわさみ)
+        </title>
+        <link rel="shortcut icon" href="/static/avatar.png" />
+        <meta
+          name="description"
+          content="nextで作られたねじわさ味を感じたかったウェブサイト"
+        />
+
+        <meta property="og:title" content="nzws.me - ねじわさみ" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://nzws.me${router.asPath}`} />
+        <meta
+          property="og:description"
+          content="nextで作られたねじわさ味を感じたかったウェブサイト"
+        />
+        <meta property="og:image" content="https://nzws.me/static/avatar.png" />
+        <meta name="Hatena::Bookmark" content="nocomment" />
+      </Head>
       <GlobalStyle />
       <Component {...pageProps} />
     </ThemeProvider>
@@ -71,7 +84,8 @@ const App = ({ Component, pageProps }) => {
 
 App.propTypes = {
   Component: PropTypes.func,
-  pageProps: PropTypes.object
+  pageProps: PropTypes.object,
+  router: PropTypes.object
 };
 
 export default App;
