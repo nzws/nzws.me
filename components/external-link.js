@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ExternalLink = props => {
-  const { href, children, ...others } = props;
+  const { href, children, ...prop } = props;
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" {...others}>
+    <a target="_blank" rel="noopener noreferrer" href={href} {...prop}>
       {children}
     </a>
   );
@@ -13,7 +13,8 @@ const ExternalLink = props => {
 
 ExternalLink.propTypes = {
   href: PropTypes.string.isRequired,
-  children: PropTypes.node
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
 };
 
 export default ExternalLink;

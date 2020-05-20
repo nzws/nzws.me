@@ -8,7 +8,7 @@ import Meta from '../components/meta';
 
 const bgBase = '#191110';
 const textBase = '#e3e3e3';
-const linkBase = '#0372ff';
+const linkBase = '#2986ff';
 const theme = {
   bgBase,
   textBase,
@@ -32,7 +32,6 @@ const GlobalStyle = createGlobalStyle({
     background: ({ theme: { background } }) => background
   },
   b: {
-    textDecoration: 'underline',
     fontWeight: 600,
     fontSize: '1.1rem',
     marginRight: '2px'
@@ -47,11 +46,15 @@ const GlobalStyle = createGlobalStyle({
   },
   'h1, h2, h3': {
     fontWeight: 600,
-    margin: '10px 0'
+    margin: '5px 0'
   },
   '*, *:after, *:before': {
     boxSizing: 'border-box',
     transition: '200ms ease'
+  },
+  '.icon': {
+    position: 'relative',
+    top: '3px'
   }
 });
 

@@ -31,13 +31,16 @@
     "pretty-quick": "^2.0.1"
   },
   "dependencies": {
+    "@icons-pack/react-simple-icons": "^3.0.0",
     "next": "^9.4.1",
     "polished": "^3.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-feather": "^2.0.8",
     "ress": "^2.0.4",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "styled-media-query": "^2.1.2"
   },
   "prettier": "@nzws/prettier-config"
 }
