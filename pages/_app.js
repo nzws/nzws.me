@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle({
     color: ({ theme: { linkBase } }) => linkBase,
     textDecoration: 'none',
     fontWeight: 400,
+    wordBreak: 'break-all',
     ':hover': {
       textDecoration: 'underline'
     }
@@ -51,7 +52,7 @@ const GlobalStyle = createGlobalStyle({
     transition: '200ms ease',
     outline: 0,
     scrollbarColor: ({ theme: { background } }) =>
-      `${lighten(0.1, background)} ${background}`,
+      `${lighten(0.2, background)} ${background}`,
     scrollbarWidth: 'thin'
   },
   '.icon': {
@@ -59,11 +60,10 @@ const GlobalStyle = createGlobalStyle({
     top: '3px'
   },
   '::-webkit-scrollbar': {
-    width: '5px',
-    height: '5px'
+    width: '6px'
   },
   '::-webkit-scrollbar-thumb': {
-    background: ({ theme: { background } }) => lighten(0.1, background),
+    background: ({ theme: { background } }) => lighten(0.2, background),
     border: 'none'
   }
 });
