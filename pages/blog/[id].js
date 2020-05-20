@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import * as matter from 'gray-matter';
 import unified from 'unified';
 import parse from 'remark-parse';
-import remark2react from 'remark-react';
+import remark2rehype from 'remark-rehype';
+import html from 'rehype-stringify';
 
 import styled from 'styled-components';
 import media from 'styled-media-query';
@@ -19,7 +20,15 @@ import { Twitter } from '@icons-pack/react-simple-icons';
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
 
-const processor = unified().use(parse).use(remark2react);
+const processor = unified()
+  .use(parse)
+  .use(remark2rehype, {
+    allowDangerousHtml: true
+  })
+  .use(html, {
+    allowDangerousHtml: true
+  });
+
 const dateOptions = {
   weekday: 'long',
   year: 'numeric',
@@ -47,10 +56,21 @@ const Container = styled.div`
     padding: 10px 0;
   }
 
-  img {
+  img,
+  iframe {
+    margin: 0 auto;
+  }
+
+  img,
+  iframe,
+  twitter-widget {
     display: block;
     max-width: 100%;
-    margin: 0 auto;
+  }
+
+  iframe,
+  twitter-widget {
+    margin: 10px auto;
   }
 
   main {
@@ -158,7 +178,11 @@ const BlogPost = ({ data }) => {
         )}
       </Header>
 
-      <main>{processor.processSync(data.body).result}</main>
+      <main
+        dangerouslySetInnerHTML={{
+          __html: processor.processSync(data.body).contents
+        }}
+      />
 
       <Footer>
         <a href="#">

@@ -84,11 +84,15 @@ const Summary = styled.div`
 const Footer = styled.footer`
   border-top: 1px solid
     ${({ theme: { background } }) => lighten(0.2, background)};
-  margin-top: 10px;
+  margin: 10px 0;
   padding-top: 10px;
 
   a {
     margin-right: 15px;
+  }
+
+  .prev-hidden {
+    visibility: hidden;
   }
 
   .next-page {
@@ -146,13 +150,11 @@ const Blog = ({ data, nextPageId, prevPageId }) => {
       ))}
 
       <Footer>
-        {prevPageId >= 0 && (
-          <Link href={`/blog?page=${prevPageId}`}>
-            <a>
-              <ChevronLeft className="icon" /> 前のページ
-            </a>
-          </Link>
-        )}
+        <Link href={`/blog?page=${prevPageId}`}>
+          <a className={prevPageId >= 0 ? '' : 'prev-hidden'}>
+            <ChevronLeft className="icon" /> 前のページ
+          </a>
+        </Link>
 
         {nextPageId && (
           <Link href={`/blog?page=${nextPageId}`}>
