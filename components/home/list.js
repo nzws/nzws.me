@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import Link from 'next/link';
 import ExternalLink from '../external-link';
 
 const StyledList = styled.div`
@@ -50,9 +51,15 @@ const List = ({ values = [], title = '' }) => (
               </th>
               <td>
                 {v[3] ? (
-                  <ExternalLink href={v[3]} rel="me">
-                    {v[1]}
-                  </ExternalLink>
+                  v[4] ? (
+                    <Link href={v[3]}>
+                      <a>{v[1]}</a>
+                    </Link>
+                  ) : (
+                    <ExternalLink href={v[3]} rel="me">
+                      {v[1]}
+                    </ExternalLink>
+                  )
                 ) : (
                   v[1]
                 )}

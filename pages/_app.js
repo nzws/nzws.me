@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import Head from 'next/head';
 
 import 'ress/dist/ress.min.css';
-
-import Meta from '../components/meta';
 
 const bgBase = '#191110';
 const textBase = '#e3e3e3';
@@ -18,10 +17,6 @@ const theme = {
 };
 
 const GlobalStyle = createGlobalStyle({
-  'html, body': {
-    width: '100%',
-    height: '100%'
-  },
   body: {
     fontFamily: "'M PLUS Rounded 1c', sans-serif",
     fontSize: '1rem',
@@ -58,10 +53,29 @@ const GlobalStyle = createGlobalStyle({
   }
 });
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, router }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Meta />
+      <Head>
+        <title>
+          {pageProps.title ? `${pageProps.title} - ` : ''}nzws.me (ねじわさみ)
+        </title>
+        <link rel="shortcut icon" href="/static/avatar.png" />
+        <meta
+          name="description"
+          content="nextで作られたねじわさ味を感じたかったウェブサイト"
+        />
+
+        <meta property="og:title" content="nzws.me - ねじわさみ" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://nzws.me${router.asPath}`} />
+        <meta
+          property="og:description"
+          content="nextで作られたねじわさ味を感じたかったウェブサイト"
+        />
+        <meta property="og:image" content="https://nzws.me/static/avatar.png" />
+        <meta name="Hatena::Bookmark" content="nocomment" />
+      </Head>
       <GlobalStyle />
       <Component {...pageProps} />
     </ThemeProvider>
@@ -70,7 +84,8 @@ const App = ({ Component, pageProps }) => {
 
 App.propTypes = {
   Component: PropTypes.func,
-  pageProps: PropTypes.object
+  pageProps: PropTypes.object,
+  router: PropTypes.object
 };
 
 export default App;

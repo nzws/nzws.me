@@ -28,19 +28,25 @@
     "eslint-plugin-react": "^7.18.3",
     "npm-run-all": "~4",
     "prettier": "~2.0.5",
-    "pretty-quick": "^2.0.1"
+    "pretty-quick": "^2.0.1",
+    "raw-loader": "^4.0.1"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^3.0.0",
+    "gray-matter": "^4.0.2",
     "next": "^9.4.1",
     "polished": "^3.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
+    "remark-parse": "^8.0.2",
+    "remark-react": "^7.0.1",
+    "remove-markdown": "^0.3.0",
     "ress": "^2.0.4",
     "styled-components": "^5.1.0",
-    "styled-media-query": "^2.1.2"
+    "styled-media-query": "^2.1.2",
+    "unified": "^9.0.0"
   },
   "prettier": "@nzws/prettier-config"
 }

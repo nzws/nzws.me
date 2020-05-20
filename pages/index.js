@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import { User, MapPin, MessageSquare, Mail } from 'react-feather';
+import { User, MapPin, MessageSquare, Mail, Book } from 'react-feather';
 import {
   Mastodon,
   Twitter,
@@ -94,6 +94,7 @@ const Index = () => {
         <List
           title="Accounts"
           values={[
+            ['Blog', 'nzws.me/blog', Book, '/blog', true],
             [
               'Mastodon',
               'nzws@don.nzws.me',
@@ -121,7 +122,7 @@ const Index = () => {
           ]}
         />
 
-        <Link href="/blogs/supporter">
+        <Link href="/blog/[id]" as="/blog/supporters">
           <a>
             <b>Supporters List</b>: Thank you for supporting 🙇
           </a>
