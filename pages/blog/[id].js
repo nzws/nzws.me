@@ -19,6 +19,7 @@ import { Twitter } from '@icons-pack/react-simple-icons';
 
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
+import useScript from '../../components/use-script';
 
 const processor = unified()
   .use(parse)
@@ -69,13 +70,40 @@ const Container = styled.div`
   }
 
   iframe,
-  twitter-widget {
+  twitter-widget,
+  pre {
     margin: 10px auto;
   }
 
   main {
     font-weight: 300;
     font-size: 1.2rem;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 4px 10px;
+    border-left: 5px solid
+      ${({ theme: { background } }) => lighten(0.5, background)};
+    color: ${({ theme: { text } }) => darken(0.1, text)};
+  }
+
+  pre,
+  code,
+  blockquote {
+    background: ${({ theme: { background } }) => lighten(0.1, background)};
+  }
+
+  code {
+    padding: 2px 4px;
+  }
+
+  pre > code {
+    background: none;
+  }
+
+  pre {
+    padding: 10px;
   }
 `;
 
@@ -134,6 +162,9 @@ const Footer = styled.footer`
 `;
 
 const BlogPost = ({ data }) => {
+  useScript('https://platform.twitter.com/widgets.js');
+  useScript('https://assets-don.nzws.me/embed.js');
+
   return (
     <Container>
       <Head>

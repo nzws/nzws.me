@@ -7,8 +7,6 @@ date: '2020-03-19 22:49:00'
 url: i-made-banking-client
 ---
 
-<script src="https://assets-don.nzws.me/embed.js" async="async"></script>
-
 はいどうも [ねじわさ](https://nzws.me) です。  
 夜風が涼しくなるこの頃ですね。また、桜が楽しみですがこの情勢だと花見しに行くのは厳しいかなぁ...と悩んでいる所です。
 

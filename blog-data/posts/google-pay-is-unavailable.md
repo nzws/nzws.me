@@ -61,5 +61,3 @@ url: google-pay-is-unavailable
 ## さいごに
 
 丸 2 日ぐらいこの現象が続いててここまで酷い状況になってるのは久しぶりです。本当に知ってる人いたら教えてください...
-
-<script src="https://assets-don.nzws.me/embed.js" async="async"></script>

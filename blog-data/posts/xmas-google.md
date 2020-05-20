@@ -46,7 +46,7 @@ _まじで 0 円でした_
 
 Sky 頼んだので青色の大福です。
 
-<iframe src="https://don.nzws.me/@nzws/103332256932982728/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://don.nzws.me/embed.js" async="async"></script>
+<iframe src="https://don.nzws.me/@nzws/103332256932982728/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe>
 
 ## 使ってみた感じとか
 

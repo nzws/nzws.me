@@ -58,5 +58,3 @@ Kyash アプリのアカウントタブからアクティベーションでき�
 ### 追記
 
 関係ないけど昨日くらいから VRChat 始めたので良かったらフレンドになってください: `nzws`
-
-<script src="https://assets-don.nzws.me/embed.js" async="async"></script>

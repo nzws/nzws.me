@@ -81,5 +81,3 @@ _↑ 発端の投稿_
 6 月あたりにお金貯まったら Oculus Quest 買おうと思います（他におすすめの HMD、買い方があれば教えてください）
 
 > note: VRChat の影響でここ数日なんもやってません、ごめんなさい
-
-<script src="https://assets-don.nzws.me/embed.js" async="async"></script>
