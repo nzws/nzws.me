@@ -107,6 +107,11 @@ const Container = styled.div`
   pre {
     padding: 10px;
   }
+
+  hr {
+    border-color: ${({ theme: { background } }) => lighten(0.2, background)};
+    margin: 10px 0;
+  }
 `;
 
 const Nav = styled.div`
