@@ -20,6 +20,7 @@ import { Twitter } from '@icons-pack/react-simple-icons';
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
 import useScript from '../../components/use-script';
+import MovedComponent from '../../components/moved-component';
 
 const processor = unified()
   .use(parse)
@@ -192,6 +193,8 @@ const BlogPost = ({ data }) => {
           </a>
         </Link>
       </Nav>
+
+      <MovedComponent />
 
       <Header>
         <h1>{data.title}</h1>
