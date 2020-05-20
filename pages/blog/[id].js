@@ -42,8 +42,15 @@ const Container = styled.div`
     padding-bottom: 10px;
   }
 
-  ul {
+  ul,
+  img {
     padding: 10px 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
   }
 
   main {
