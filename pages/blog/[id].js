@@ -105,6 +105,7 @@ const Container = styled.div`
 
   pre {
     padding: 10px;
+    overflow-x: auto;
   }
 
   hr {

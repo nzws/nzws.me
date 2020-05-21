@@ -60,7 +60,8 @@ const GlobalStyle = createGlobalStyle({
     top: '3px'
   },
   '::-webkit-scrollbar': {
-    width: '6px'
+    width: '6px',
+    height: '6px'
   },
   '::-webkit-scrollbar-thumb': {
     background: ({ theme: { background } }) => lighten(0.2, background),
