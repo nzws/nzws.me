@@ -7,6 +7,8 @@ tags:
   - コミックマーケット
 date: '2020-04-14 01:06:00'
 url: hello-vrchat
+scripts:
+  - don-nzws-me
 ---
 
 ## きっかけ

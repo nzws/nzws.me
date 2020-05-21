@@ -5,6 +5,8 @@ tags:
   - キャッシュレス
 date: '2020-04-12 18:57:00'
 url: kyash-card
+scripts:
+  - don-nzws-me
 ---
 
 どうも、 [ねじわさ](https://nzws.me) です。

@@ -149,9 +149,21 @@ const Footer = styled.footer`
   }
 `;
 
+const scriptUrls = {
+  twitter: 'https://platform.twitter.com/widgets.js',
+  'don-nzws-me': 'https://assets-don.nzws.me/embed.js'
+};
+
 const BlogPost = ({ data }) => {
-  useScript('https://platform.twitter.com/widgets.js');
-  useScript('https://assets-don.nzws.me/embed.js');
+  if (data.scripts) {
+    data.scripts.forEach(script => {
+      if (scriptUrls[script]) {
+        script = scriptUrls[script];
+      }
+
+      useScript(script);
+    });
+  }
 
   return (
     <Container>

@@ -6,6 +6,8 @@ tags:
   - スマートホーム
 date: '2019-12-19 22:30:21'
 url: xmas-google
+scripts:
+  - don-nzws-me
 ---
 
 こんにちは、 [ねじわさ](https://don.nzws.me/@nzws) です。

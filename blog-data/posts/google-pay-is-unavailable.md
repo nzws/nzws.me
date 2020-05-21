@@ -5,6 +5,8 @@ tags:
   - キャッシュレス
 date: '2020-04-04 16:46:00'
 url: google-pay-is-unavailable
+scripts:
+  - don-nzws-me
 ---
 
 # 追記

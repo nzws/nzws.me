@@ -5,6 +5,8 @@ tags:
   - React Native
 date: '2020-03-19 22:49:00'
 url: i-made-banking-client
+scripts:
+  - don-nzws-me
 ---
 
 はいどうも [ねじわさ](https://nzws.me) です。  

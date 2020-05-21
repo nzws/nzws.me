@@ -9,7 +9,7 @@ date: '2020-05-20'
 
 # このブログについて
 
-備忘録です。作った経緯とかは ~~[hello, world](/blog/hello-world/) を参照くだされ。~~ 適当
+備忘録です。作った経緯とかは ~~[hello, world](/blog/hello-world) を参照くだされ。~~ 適当  
 https://github.com/nzws/nzws.me で原本を公開してますので、誤字修正とかあればここにお願いします。
 
 # データ収集について
