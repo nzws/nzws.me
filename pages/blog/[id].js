@@ -65,13 +65,13 @@ const Container = styled.div`
 
   img,
   iframe,
-  twitter-widget {
+  .twitter-tweet {
     display: block;
     max-width: 100%;
   }
 
   iframe,
-  twitter-widget,
+  .twitter-tweet,
   pre {
     margin: 10px auto;
   }
