@@ -11,17 +11,16 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
 
-import Link from 'next/link';
 import Head from 'next/head';
 
 import { ChevronUp } from 'react-feather';
-import { Twitter } from '@icons-pack/react-simple-icons';
+import { Twitter, Github } from '@icons-pack/react-simple-icons';
 
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
 import useScript from '../../components/use-script';
 import MovedComponent from '../../components/blog/moved-component';
-import About from '../../components/blog/about';
+import Nav from '../../components/blog/nav';
 
 const processor = unified()
   .use(parse)
@@ -114,28 +113,6 @@ const Container = styled.div`
   }
 `;
 
-const Nav = styled.div`
-  margin-bottom: 10px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-
-  a {
-    color: ${({ theme: { text } }) => text};
-  }
-
-  &,
-  b {
-    font-size: 1.3rem;
-  }
-`;
-
-const Pan = styled.span`
-  padding: 0 4px;
-  font-size: 1.5rem;
-  color: ${({ theme: { text } }) => darken(0.25, text)};
-`;
-
 const Header = styled.div`
   padding-bottom: 10px;
   margin-bottom: 10px;
@@ -167,7 +144,7 @@ const Footer = styled.footer`
   padding-top: 10px;
 
   a {
-    margin-right: 15px;
+    margin-right: 20px;
   }
 `;
 
@@ -187,23 +164,13 @@ const BlogPost = ({ data }) => {
         )}
       </Head>
 
-      <Nav>
-        <About />
-
-        <Link href="/">
-          <a>nzws.me</a>
-        </Link>
-        <Pan>/</Pan>
-        <Link href="/blog">
-          <a>blog</a>
-        </Link>
-        <Pan>/</Pan>
-        <Link href="/blog/[id]" as={`/blog/${data.id}`}>
-          <a>
-            <b>{data.id}</b>
-          </a>
-        </Link>
-      </Nav>
+      <Nav
+        links={[
+          { title: 'nzws.me', href: '/' },
+          { title: 'blog', href: '/blog' },
+          { title: data.id, href: '/blog/[id]', as: `/blog/${data.id}` }
+        ]}
+      />
 
       <MovedComponent />
 
@@ -241,6 +208,11 @@ const BlogPost = ({ data }) => {
           )}&via=nzws_me&related=nzws_me`}
         >
           <Twitter className="icon" size={18} /> ツイート
+        </ExternalLink>
+        <ExternalLink
+          href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
+        >
+          <Github className="icon" size={18} /> GitHub で見る
         </ExternalLink>
       </Footer>
     </Container>

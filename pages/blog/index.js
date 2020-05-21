@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
 import MovedComponent from '../../components/blog/moved-component';
-import About from '../../components/blog/about';
+import Nav from '../../components/blog/nav';
 
 const dateOptions = {
   weekday: 'long',
@@ -28,28 +28,6 @@ const Container = styled.div`
   ${media.lessThan('medium')`
     margin: 10px;
   `};
-`;
-
-const Nav = styled.div`
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid
-    ${({ theme: { background } }) => lighten(0.2, background)};
-
-  a {
-    color: ${({ theme: { text } }) => text};
-  }
-
-  &,
-  b {
-    font-size: 1.3rem;
-  }
-`;
-
-const Pan = styled.span`
-  padding: 0 4px;
-  font-size: 1.5rem;
-  color: ${({ theme: { text } }) => darken(0.25, text)};
 `;
 
 const BlogLink = styled.a`
@@ -81,6 +59,8 @@ const Tags = styled.span`
 
 const Summary = styled.div`
   margin-top: 5px;
+  font-size: 0.95em;
+  color: ${({ theme: { text } }) => darken(0.2, text)};
 `;
 
 const Footer = styled.footer`
@@ -109,19 +89,12 @@ const Footer = styled.footer`
 const Blog = ({ data, nextPageId, prevPageId }) => {
   return (
     <Container>
-      <Nav>
-        <About />
-
-        <Link href="/">
-          <a>nzws.me</a>
-        </Link>
-        <Pan>/</Pan>
-        <Link href="/blog">
-          <a>
-            <b>blog</b>
-          </a>
-        </Link>
-      </Nav>
+      <Nav
+        links={[
+          { title: 'nzws.me', href: '/' },
+          { title: 'blog', href: '/blog' }
+        ]}
+      />
 
       <MovedComponent />
 
