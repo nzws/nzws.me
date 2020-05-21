@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 
-import * as matter from 'gray-matter';
 import Link from 'next/link';
-import generateSummary from '../../lib/summary';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
 import styled from 'styled-components';
@@ -89,6 +88,10 @@ const Footer = styled.footer`
 const Blog = ({ data, nextPageId, prevPageId }) => {
   return (
     <Container>
+      <Head>
+        <title>Blog - nzws.me (ねじわさみ)</title>
+      </Head>
+
       <Nav
         links={[
           { title: 'nzws.me', href: '/' },
@@ -154,30 +157,16 @@ Blog.propTypes = {
 };
 
 export const getServerSideProps = ({ query: { page } }) => {
-  const posts = require('../../blog-data/posts.json');
+  const posts = require('../../blog-data/.index.json');
   if (!page) {
     page = 0;
   }
   page = parseInt(page);
   const num = page * 10;
 
-  const data = posts.slice(num, num + 10).map(slug => {
-    const { default: md } = require(`../../blog-data/posts/${slug}.md`);
-    const m = matter(md);
-    const summary = generateSummary(m.content);
-
-    return {
-      slug,
-      title: m.data.title,
-      date: new Date(m.data.date).getTime(),
-      summary,
-      tags: m.data.tags
-    };
-  });
-
   return {
     props: {
-      data,
+      data: posts.slice(num, num + 10),
       nextPageId: posts[num + 10] ? page + 1 : null,
       prevPageId: page - 1
     }

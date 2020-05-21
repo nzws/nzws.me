@@ -16,12 +16,14 @@
     "format:prettier": "pretty-quick",
     "format:js": "eslint --cache --ignore-path .gitignore --fix \"**/*.js\"",
     "format": "npm-run-all format:* -s",
-    "build": "next build",
+    "build": "yarn generate-index && next build",
+    "generate-index": "babel-node ./scripts/generate-index.js",
     "dev": "next",
     "start": "next start",
     "analyze": "cross-env ANALYZE=true next build"
   },
   "devDependencies": {
+    "@babel/node": "^7.8.7",
     "@next/bundle-analyzer": "^9.4.2",
     "@nzws/prettier-config": "~1",
     "@yuzulabo/eslint-config": "~1",
