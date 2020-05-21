@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import * as matter from 'gray-matter';
 import Link from 'next/link';
-import posts from '../../blog-data/posts';
 import generateSummary from '../../lib/summary';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
@@ -148,43 +148,40 @@ const Blog = ({ data, nextPageId, prevPageId }) => {
 };
 
 Blog.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   nextPageId: PropTypes.number,
   prevPageId: PropTypes.number
 };
 
-Blog.getInitialProps = ({ res, query: { page } }) => {
-  try {
-    if (!page) {
-      page = 0;
-    }
-    page = parseInt(page);
-    const num = page * 10;
+export const getServerSideProps = ({ query: { page } }) => {
+  const posts = require('../../blog-data/posts.json');
+  if (!page) {
+    page = 0;
+  }
+  page = parseInt(page);
+  const num = page * 10;
 
-    const data = posts.slice(num, num + 10).map(slug => {
-      const { default: md } = require(`../../blog-data/posts/${slug}.md`);
-      const m = matter(md);
-      const summary = generateSummary(m.content);
-
-      return {
-        slug,
-        title: m.data.title,
-        date: m.data.date,
-        summary,
-        tags: m.data.tags
-      };
-    });
+  const data = posts.slice(num, num + 10).map(slug => {
+    const { default: md } = require(`../../blog-data/posts/${slug}.md`);
+    const m = matter(md);
+    const summary = generateSummary(m.content);
 
     return {
-      title: 'Blog',
+      slug,
+      title: m.data.title,
+      date: new Date(m.data.date).getTime(),
+      summary,
+      tags: m.data.tags
+    };
+  });
+
+  return {
+    props: {
       data,
       nextPageId: posts[num + 10] ? page + 1 : null,
       prevPageId: page - 1
-    };
-  } catch (e) {
-    res.statusCode = 404;
-    res.end('Not found');
-  }
+    }
+  };
 };
 
 export default Blog;

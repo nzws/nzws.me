@@ -80,9 +80,7 @@ const App = ({ Component, pageProps, router }) => {
   return (
     <ThemeProvider theme={theme}>
       <Head>
-        <title>
-          {pageProps.title ? `${pageProps.title} - ` : ''}nzws.me (ねじわさみ)
-        </title>
+        <title>nzws.me (ねじわさみ)</title>
         <link rel="shortcut icon" href="/static/avatar.png" />
         <meta
           name="description"

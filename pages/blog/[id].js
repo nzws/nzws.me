@@ -6,11 +6,11 @@ import unified from 'unified';
 import parse from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import html from 'rehype-stringify';
+import getFiles from '../../lib/get-files';
 
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
-
 import Head from 'next/head';
 
 import { ChevronUp } from 'react-feather';
@@ -155,6 +155,7 @@ const BlogPost = ({ data }) => {
   return (
     <Container>
       <Head>
+        <title>{data.title} - Blog - nzws.me (ねじわさみ)</title>
         <meta name="description" content={data.summary} />
         {data.tags && (
           <meta
@@ -192,7 +193,7 @@ const BlogPost = ({ data }) => {
 
       <main
         dangerouslySetInnerHTML={{
-          __html: processor.processSync(data.body).contents
+          __html: data.body
         }}
       />
 
@@ -223,25 +224,32 @@ BlogPost.propTypes = {
   data: PropTypes.object
 };
 
-BlogPost.getInitialProps = ({ res, query: { id } }) => {
-  try {
-    const { default: md } = require(`../../blog-data/posts/${id}.md`);
-    const m = matter(md);
-    const summary = generateSummary(m.content);
+export const getStaticPaths = async () => {
+  const files = await getFiles('./blog-data/posts');
+  const paths = files.map(file => `/blog/${file.split('.')[0]}`);
 
-    return {
-      title: `${m.data.title} - Blog`,
+  return {
+    paths,
+    fallback: false
+  };
+};
+
+export const getStaticProps = ({ params: { id } }) => {
+  const { default: md } = require(`../../blog-data/posts/${id}.md`);
+  const m = matter(md);
+  const summary = generateSummary(m.content);
+
+  return {
+    props: {
       data: {
         ...m.data,
-        body: m.content,
+        date: new Date(m.data.date).getTime(),
+        body: processor.processSync(m.content).contents,
         id,
         summary
       }
-    };
-  } catch (e) {
-    res.statusCode = 404;
-    res.end('Not found');
-  }
+    }
+  };
 };
 
 export default BlogPost;

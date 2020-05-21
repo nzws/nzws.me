@@ -18,13 +18,16 @@
     "format": "npm-run-all format:* -s",
     "build": "next build",
     "dev": "next",
-    "start": "next start"
+    "start": "next start",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^9.4.2",
     "@nzws/prettier-config": "~1",
     "@yuzulabo/eslint-config": "~1",
     "babel-eslint": "^10.0.3",
     "babel-plugin-styled-components": "^1.10.7",
+    "cross-env": "^7.0.2",
     "eslint": "~7.0.0",
     "eslint-plugin-react": "^7.18.3",
     "npm-run-all": "~4",
