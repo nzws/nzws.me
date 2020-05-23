@@ -13,8 +13,8 @@ import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
 import Head from 'next/head';
 
-import { ChevronUp } from 'react-feather';
-import { Twitter, Github } from '@icons-pack/react-simple-icons';
+import { ChevronUp, Share } from 'react-feather';
+import { Github } from '@icons-pack/react-simple-icons';
 
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
@@ -215,13 +215,11 @@ const BlogPost = ({ data }) => {
           <ChevronUp className="icon" />
         </a>
         <ExternalLink
-          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+          href={`https://easy-share.now.sh/?t=${encodeURIComponent(
             data.title + ' - Blog - nzws.me (ねじわさみ)'
-          )}&url=${encodeURIComponent(
-            'https://nzws.me/blog/' + data.id
-          )}&via=nzws_me&related=nzws_me`}
+          )}&link=${encodeURIComponent('https://nzws.me/blog/' + data.id)}`}
         >
-          <Twitter className="icon" size={18} /> ツイート
+          <Share className="icon" size={18} /> 共有
         </ExternalLink>
         <ExternalLink
           href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
