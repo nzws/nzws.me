@@ -131,6 +131,14 @@ const Index = () => {
       <Contents>
         <Columns>
           <Item
+            title="Easy Share"
+            link="https://easy-share.now.sh/"
+            tags={['React', 'Next.js']}
+            description="超簡単で多様な共有リンクを生成します。"
+            image="https://i.imgur.com/9y5lIqY.png"
+          />
+
+          <Item
             title="now-secrets"
             link="https://github.com/dotplants/now-secrets"
             tags={['Node.js', 'Vercel API']}
