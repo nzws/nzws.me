@@ -1,6 +1,8 @@
 ---
 title: '「Easy Share」を作りました'
 date: '2020-05-24'
+category:
+  - 作ったもの
 ---
 
 ![](https://i.imgur.com/9y5lIqY.png)

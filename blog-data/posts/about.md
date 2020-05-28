@@ -1,6 +1,7 @@
 ---
 title: 'About'
 date: '2020-05-20'
+isHidden: true
 ---
 
 # 私について

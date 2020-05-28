@@ -6,12 +6,12 @@ import unified from 'unified';
 import parse from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import html from 'rehype-stringify';
-import getFiles from '../../lib/get-files';
 
 import styled from 'styled-components';
 import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { ChevronUp, Share } from 'react-feather';
 import { Github } from '@icons-pack/react-simple-icons';
@@ -125,11 +125,14 @@ const Muted = styled.div`
   color: ${({ theme: { text } }) => darken(0.5, text)};
 `;
 
-const Tags = styled.div`
+const Tags = styled.span`
+  display: inline-block;
   margin-top: 5px;
 
-  > span {
+  > a {
     margin-right: 5px;
+    color: ${({ theme: { text } }) => text};
+    ${({ category }) => category && `font-weight: bold;`};
 
     > span {
       margin-left: 2px;
@@ -173,7 +176,12 @@ const BlogPost = ({ data }) => {
         {data.tags && (
           <meta
             name="keywords"
-            content={[...data.tags, 'ねじわさ', 'nzws'].join(', ')}
+            content={[
+              ...(data.category || []),
+              ...(data.tags || []),
+              'ねじわさ',
+              'nzws'
+            ].join(', ')}
           />
         )}
       </Head>
@@ -193,15 +201,39 @@ const BlogPost = ({ data }) => {
         <Muted>
           {new Date(data.date).toLocaleDateString(undefined, dateOptions)}
         </Muted>
-        {data.tags && (
-          <Tags>
-            {data.tags.map(tag => (
-              <span key={tag}>
-                #<span>{tag}</span>
-              </span>
-            ))}
-          </Tags>
-        )}
+        <div>
+          {data.category && (
+            <Tags category>
+              {data.category.map(tag => (
+                <Link
+                  href="/blog/[id]/[name]"
+                  as={`/blog/category/${tag}`}
+                  key={tag}
+                >
+                  <a>
+                    #<span>{tag}</span>
+                  </a>
+                </Link>
+              ))}
+            </Tags>
+          )}
+
+          {data.tags && (
+            <Tags>
+              {data.tags.map(tag => (
+                <Link
+                  href="/blog/[id]/[name]"
+                  as={`/blog/tags/${tag}`}
+                  key={tag}
+                >
+                  <a>
+                    #<span>{tag}</span>
+                  </a>
+                </Link>
+              ))}
+            </Tags>
+          )}
+        </div>
       </Header>
 
       <main
@@ -236,8 +268,8 @@ BlogPost.propTypes = {
 };
 
 export const getStaticPaths = async () => {
-  const files = await getFiles('./blog-data/posts');
-  const paths = files.map(file => `/blog/${file.split('.')[0]}`);
+  const files = require('../../blog-data/.index.json');
+  const paths = files.map(({ slug }) => `/blog/${slug}`);
 
   return {
     paths,

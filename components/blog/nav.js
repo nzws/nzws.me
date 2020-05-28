@@ -39,14 +39,23 @@ const Nav = ({ links }) => (
       </Link>
     </About>
 
-    {links.map((link, index) => (
-      <React.Fragment key={index}>
-        <Link href={link.href} as={link.as}>
-          <a>{index === links.length - 1 ? <b>{link.title}</b> : link.title}</a>
-        </Link>
-        {index !== links.length - 1 && <Pan>/</Pan>}
-      </React.Fragment>
-    ))}
+    {links.map((link, index) => {
+      const isLast = index === links.length - 1;
+      const text = isLast ? <b>{link.title}</b> : link.title;
+
+      return (
+        <React.Fragment key={index}>
+          {link.noHref ? (
+            text
+          ) : (
+            <Link href={link.href} as={link.as}>
+              <a>{text}</a>
+            </Link>
+          )}
+          {!isLast && <Pan>/</Pan>}
+        </React.Fragment>
+      );
+    })}
   </StyledNav>
 );
 

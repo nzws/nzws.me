@@ -1,6 +1,7 @@
 ---
 title: Supporters
 date: '2020-05-20'
+isHidden: true
 ---
 
 支援して頂きありがとうございます。
