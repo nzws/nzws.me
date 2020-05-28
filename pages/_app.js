@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import NextNprogress from 'nextjs-progressbar';
 import Head from 'next/head';
 import Router from 'next/router';
 import * as gtag from '../lib/gtag';
@@ -66,16 +67,22 @@ const GlobalStyle = createGlobalStyle({
   '::-webkit-scrollbar-thumb': {
     background: ({ theme: { background } }) => lighten(0.2, background),
     border: 'none'
+  },
+  '#nprogress .peg': {
+    boxShadow: 'none'
   }
 });
 
 const App = ({ Component, pageProps, router }) => {
   useEffect(() => {
-    const handleRouteChange = url => gtag.pageview(url);
-    Router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange);
-    };
+    if (process.env.NODE_ENV === 'production') {
+      const handleRouteChange = url => {
+        console.log(url);
+        gtag.pageview(url);
+      };
+      Router.events.on('routeChangeComplete', handleRouteChange);
+      return () => Router.events.off('routeChangeComplete', handleRouteChange);
+    }
   }, []);
 
   return (
@@ -99,6 +106,13 @@ const App = ({ Component, pageProps, router }) => {
         <meta name="Hatena::Bookmark" content="nocomment" />
       </Head>
       <GlobalStyle />
+      <NextNprogress
+        color="#FFF"
+        height="4"
+        options={{
+          showSpinner: false
+        }}
+      />
       <Component {...pageProps} />
     </ThemeProvider>
   );

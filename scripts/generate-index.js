@@ -11,6 +11,7 @@ const loadMd = slug => {
     return dataCache[slug];
   }
 
+  console.log('ロード: ' + slug);
   const data = fs.readFileSync(
     path.resolve(__dirname, `../blog-data/posts/${slug}.md`)
   );

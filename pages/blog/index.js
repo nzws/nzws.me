@@ -5,7 +5,7 @@ import Head from 'next/head';
 import MovedComponent from '../../components/blog/moved-component';
 import Nav from '../../components/blog/nav';
 import BlogSummary from '../../components/blog/blog-summary';
-import { Container } from '../../components/blog/list-layout';
+import { Container } from '../../components/blog/layouts';
 import Footer from '../../components/blog/list-footer';
 
 const Blog = ({ data, nextPageId, prevPageId }) => {

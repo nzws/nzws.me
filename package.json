@@ -41,6 +41,7 @@
     "@icons-pack/react-simple-icons": "^3.0.0",
     "gray-matter": "^4.0.2",
     "next": "^9.4.1",
+    "nextjs-progressbar": "^0.0.5",
     "polished": "^3.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

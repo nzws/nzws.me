@@ -6,7 +6,7 @@ import MovedComponent from '../../../components/blog/moved-component';
 import Nav from '../../../components/blog/nav';
 import BlogSummary from '../../../components/blog/blog-summary';
 import Footer from '../../../components/blog/list-footer';
-import { Container } from '../../../components/blog/list-layout';
+import { Container } from '../../../components/blog/layouts';
 
 const Blog = ({ data, nextPageId, prevPageId, id, name }) => {
   return (
@@ -28,8 +28,8 @@ const Blog = ({ data, nextPageId, prevPageId, id, name }) => {
 
       <MovedComponent />
 
-      {data.map(post => (
-        <BlogSummary post={post} key={post.id} />
+      {data.map((post, key) => (
+        <BlogSummary post={post} key={key} />
       ))}
 
       <Footer prevPageId={prevPageId} nextPageId={nextPageId} />

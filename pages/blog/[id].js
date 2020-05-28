@@ -8,7 +8,6 @@ import remark2rehype from 'remark-rehype';
 import html from 'rehype-stringify';
 
 import styled from 'styled-components';
-import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -21,6 +20,7 @@ import ExternalLink from '../../components/external-link';
 import useScript from '../../components/use-script';
 import MovedComponent from '../../components/blog/moved-component';
 import Nav from '../../components/blog/nav';
+import { Main, Container } from '../../components/blog/layouts';
 
 const processor = unified()
   .use(parse)
@@ -37,82 +37,6 @@ const dateOptions = {
   month: 'long',
   day: 'numeric'
 };
-
-const Container = styled.div`
-  ${media.greaterThan('medium')`
-    width: 700px;
-    margin: 20px auto;
-  `};
-
-  ${media.lessThan('medium')`
-    margin: 10px;
-  `};
-
-  p {
-    padding-top: 4px;
-    padding-bottom: 10px;
-  }
-
-  ul,
-  img {
-    padding: 10px 0;
-  }
-
-  img,
-  iframe {
-    margin: 0 auto;
-  }
-
-  img,
-  iframe,
-  .twitter-tweet {
-    display: block;
-    max-width: 100%;
-  }
-
-  iframe,
-  .twitter-tweet,
-  pre {
-    margin: 10px auto;
-  }
-
-  main {
-    font-weight: 300;
-    font-size: 1.2rem;
-  }
-
-  blockquote {
-    margin: 10px 0;
-    padding: 4px 10px;
-    border-left: 5px solid
-      ${({ theme: { background } }) => lighten(0.5, background)};
-    color: ${({ theme: { text } }) => darken(0.1, text)};
-  }
-
-  pre,
-  code,
-  blockquote {
-    background: ${({ theme: { background } }) => lighten(0.1, background)};
-  }
-
-  code {
-    padding: 2px 4px;
-  }
-
-  pre > code {
-    background: none;
-  }
-
-  pre {
-    padding: 10px;
-    overflow-x: auto;
-  }
-
-  hr {
-    border-color: ${({ theme: { background } }) => lighten(0.2, background)};
-    margin: 10px 0;
-  }
-`;
 
 const Header = styled.div`
   padding-bottom: 10px;
@@ -236,7 +160,7 @@ const BlogPost = ({ data }) => {
         </div>
       </Header>
 
-      <main
+      <Main
         dangerouslySetInnerHTML={{
           __html: data.body
         }}
