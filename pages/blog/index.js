@@ -46,11 +46,12 @@ export const getServerSideProps = ({ query: { page } }) => {
   }
   page = parseInt(page);
   const num = page * 10;
+  const data = posts.filter(v => !v.isHidden);
 
   return {
     props: {
-      data: posts.filter(v => !v.isHidden).slice(num, num + 10),
-      nextPageId: posts[num + 10] ? page + 1 : null,
+      data: data.slice(num, num + 10),
+      nextPageId: data[num + 10] ? page + 1 : null,
       prevPageId: page - 1
     }
   };

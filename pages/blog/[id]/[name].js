@@ -60,14 +60,14 @@ export const getServerSideProps = ({
     throw new Error('not found');
   }
 
+  const data = posts.filter(v => v?.[id]?.indexOf(name) !== -1 && !v.isHidden);
+
   return {
     props: {
       name,
       id,
-      data: posts
-        .filter(v => v?.[id]?.indexOf(name) !== -1 && !v.isHidden)
-        .slice(num, num + 10),
-      nextPageId: posts[num + 10] ? page + 1 : null,
+      data: data.slice(num, num + 10),
+      nextPageId: data[num + 10] ? page + 1 : null,
       prevPageId: page - 1
     }
   };
