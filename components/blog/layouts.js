@@ -3,6 +3,9 @@ import media from 'styled-media-query';
 import { lighten, darken } from 'polished';
 
 export const Main = styled.main`
+  font-weight: 300;
+  font-size: 1.2rem;
+
   p {
     padding-top: 4px;
     padding-bottom: 10px;
@@ -35,11 +38,6 @@ export const Main = styled.main`
   pre,
   table {
     margin: 10px auto;
-  }
-
-  main {
-    font-weight: 300;
-    font-size: 1.2rem;
   }
 
   blockquote {
