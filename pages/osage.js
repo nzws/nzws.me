@@ -12,6 +12,7 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
   position: relative;
+  background: url('/static/bg.png');
 
   img {
     position: absolute;
