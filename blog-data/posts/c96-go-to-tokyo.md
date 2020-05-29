@@ -1,7 +1,8 @@
 ---
 title: 【C96・前日】東京にきました
-tags:
+category:
   - コミケ
+tags:
   - C96
 date: '2019-08-08 22:00:00'
 url: c96-go-to-tokyo

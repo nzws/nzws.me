@@ -1,7 +1,8 @@
 ---
 title: 【C97】今年もあと少しですne
-tags:
+category:
   - コミケ
+tags:
   - C97
 date: '2019-12-27 16:29:58'
 url: c97-eve
