@@ -104,6 +104,7 @@ const App = ({ Component, pageProps, router }) => {
           content="nextで作られたねじわさ味を感じたかったウェブサイト"
         />
 
+        <meta property="og:site_name" content="nzws.me - ねじわさみ" />
         <meta property="og:title" content="nzws.me - ねじわさみ" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://nzws.me${router.asPath}`} />
@@ -111,6 +112,9 @@ const App = ({ Component, pageProps, router }) => {
           property="og:description"
           content="nextで作られたねじわさ味を感じたかったウェブサイト"
         />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@nzws_me" />
+        <meta name="twitter:creator" content="@nzws_me" />
         <meta property="og:image" content="https://nzws.me/static/avatar.png" />
         <meta name="Hatena::Bookmark" content="nocomment" />
       </Head>

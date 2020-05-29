@@ -95,6 +95,12 @@ const BlogPost = ({ data }) => {
     <Container>
       <Head>
         <title>{data.title} - Blog - nzws.me (ねじわさみ)</title>
+        <meta
+          property="og:title"
+          content="{data.title} - Blog - nzws.me (ねじわさみ)"
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={data.summary} />
         <meta name="description" content={data.summary} />
         {data.tags && (
           <meta
