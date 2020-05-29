@@ -97,7 +97,7 @@ const BlogPost = ({ data }) => {
         <title>{data.title} - Blog - nzws.me (ねじわさみ)</title>
         <meta
           property="og:title"
-          content="{data.title} - Blog - nzws.me (ねじわさみ)"
+          content={`${data.title} - Blog - nzws.me (ねじわさみ)`}
         />
         <meta property="og:type" content="article" />
         <meta property="og:description" content={data.summary} />
