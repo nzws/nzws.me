@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
-import { lighten, darken } from 'polished';
 
 export const Main = styled.main`
   font-weight: 300;
@@ -44,14 +43,15 @@ export const Main = styled.main`
     margin: 10px 0;
     padding: 4px 10px;
     border-left: 5px solid
-      ${({ theme: { background } }) => lighten(0.5, background)};
-    color: ${({ theme: { text } }) => darken(0.1, text)};
+      ${({ theme: { background, lighten } }) => lighten(0.5, background)};
+    color: ${({ theme: { text, darken } }) => darken(0.1, text)};
   }
 
   pre,
   code,
   blockquote {
-    background: ${({ theme: { background } }) => lighten(0.1, background)};
+    background: ${({ theme: { background, lighten } }) =>
+      lighten(0.1, background)};
   }
 
   code {
@@ -68,7 +68,8 @@ export const Main = styled.main`
   }
 
   hr {
-    border-color: ${({ theme: { background } }) => lighten(0.2, background)};
+    border-color: ${({ theme: { background, lighten } }) =>
+      lighten(0.2, background)};
     margin: 10px 0;
   }
 
@@ -88,7 +89,7 @@ export const Main = styled.main`
       min-width: 100px;
       padding: 8px 12px;
       border: 1px solid
-        ${({ theme: { background } }) => lighten(0.2, background)};
+        ${({ theme: { background, lighten } }) => lighten(0.2, background)};
     }
   }
 `;

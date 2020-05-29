@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { lighten } from 'polished';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
 const StyledFooter = styled.footer`
   border-top: 1px solid
-    ${({ theme: { background } }) => lighten(0.2, background)};
+    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
   margin: 10px 0;
   padding-top: 10px;
 

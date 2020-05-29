@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { lighten } from 'polished';
 import { User, MapPin, MessageSquare, Mail, Book } from 'react-feather';
 import {
   Mastodon,
@@ -27,7 +26,8 @@ const Container = styled.div`
 
 const Profile = styled.div`
   grid-column: 1;
-  background: ${({ theme: { background } }) => lighten(0.15, background)};
+  background: ${({ theme: { background, lighten } }) =>
+    lighten(0.15, background)};
   border-radius: 0 1em 1em 0;
   padding: 10px;
 

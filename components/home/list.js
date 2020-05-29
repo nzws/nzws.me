@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { lighten } from 'polished';
 import Link from 'next/link';
 import ExternalLink from '../external-link';
 
@@ -11,7 +10,7 @@ const StyledList = styled.div`
   h2 {
     padding-bottom: 4px;
     border-bottom: 1px solid
-      ${({ theme: { background } }) => lighten(0.25, background)};
+      ${({ theme: { background, lighten } }) => lighten(0.25, background)};
   }
 
   table {

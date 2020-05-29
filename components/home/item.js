@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { lighten } from 'polished';
 import ExternalLink from '../external-link';
 
 const StyledItem = styled(ExternalLink)`
@@ -9,7 +8,8 @@ const StyledItem = styled(ExternalLink)`
   width: 100%;
   border-radius: 5px;
   margin-bottom: 1rem;
-  background: ${({ theme: { background } }) => lighten(0.15, background)};
+  background: ${({ theme: { background, lighten } }) =>
+    lighten(0.15, background)};
   color: ${({ theme: { text } }) => text};
 
   :hover {

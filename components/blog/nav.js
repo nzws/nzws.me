@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { lighten, darken } from 'polished';
 import Link from 'next/link';
 
 const About = styled.div`
@@ -13,7 +12,7 @@ const About = styled.div`
 const StyledNav = styled.div`
   padding-bottom: 10px;
   border-bottom: 1px solid
-    ${({ theme: { background } }) => lighten(0.2, background)};
+    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
 
   a {
     color: ${({ theme: { text } }) => text};
@@ -28,7 +27,7 @@ const StyledNav = styled.div`
 const Pan = styled.span`
   padding: 0 4px;
   font-size: 1.5rem;
-  color: ${({ theme: { text } }) => darken(0.25, text)};
+  color: ${({ theme: { text, darken } }) => darken(0.25, text)};
 `;
 
 const Nav = ({ links }) => (

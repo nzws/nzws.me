@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { lighten } from 'polished';
 
 const Container = styled.div`
-  background: ${({ theme: { background } }) => lighten(0.1, background)};
+  background: ${({ theme: { background, lighten } }) =>
+    lighten(0.1, background)};
   margin: 15px 0;
   padding: 10px;
 `;

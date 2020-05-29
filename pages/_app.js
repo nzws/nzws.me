@@ -7,18 +7,25 @@ import Router from 'next/router';
 import * as gtag from '../lib/gtag';
 
 import 'ress/dist/ress.min.css';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 
-const bgBase = '#191110';
-const textBase = '#e3e3e3';
-const linkBase = '#2986ff';
-const theme = {
-  bgBase,
-  textBase,
-  linkBase,
-  background: bgBase,
-  text: textBase
+const darkTheme = {
+  linkBase: '#2986ff',
+  background: '#191110',
+  text: '#e3e3e3',
+  lighten,
+  darken
 };
+
+/*
+const lightTheme = {
+  linkBase: '#005bd1',
+  background: '#f6f4f4',
+  text: '#0b0909',
+  lighten: darken,
+  darken: lighten
+};
+*/
 
 const GlobalStyle = createGlobalStyle({
   body: {
@@ -85,6 +92,8 @@ const App = ({ Component, pageProps, router }) => {
     }
   }, []);
 
+  const theme = darkTheme;
+
   return (
     <ThemeProvider theme={theme}>
       <Head>
@@ -107,7 +116,7 @@ const App = ({ Component, pageProps, router }) => {
       </Head>
       <GlobalStyle />
       <NextNprogress
-        color="#FFF"
+        color={theme.text}
         height="4"
         options={{
           showSpinner: false

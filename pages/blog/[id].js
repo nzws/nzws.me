@@ -8,7 +8,6 @@ import remark2rehype from 'remark-rehype';
 import html from 'rehype-stringify';
 
 import styled from 'styled-components';
-import { lighten, darken } from 'polished';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -42,11 +41,11 @@ const Header = styled.div`
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid
-    ${({ theme: { background } }) => lighten(0.2, background)};
+    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
 `;
 
 const Muted = styled.div`
-  color: ${({ theme: { text } }) => darken(0.5, text)};
+  color: ${({ theme: { text, darken } }) => darken(0.5, text)};
 `;
 
 const Tags = styled.span`
@@ -67,7 +66,7 @@ const Tags = styled.span`
 
 const Footer = styled.footer`
   border-top: 1px solid
-    ${({ theme: { background } }) => lighten(0.2, background)};
+    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
   margin-top: 10px;
   padding-top: 10px;
 
