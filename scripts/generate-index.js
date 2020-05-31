@@ -49,13 +49,12 @@ const run = async () => {
       dataCache[b] = loadMd(b);
 
       return new Date(dataCache[a].date) < new Date(dataCache[b].date) ? 1 : -1;
-    });
-
-  const data = posts.map(slug => posts[slug] || loadMd(slug));
+    })
+    .map(loadMd);
 
   fs.writeFileSync(
     path.resolve(__dirname, `../blog-data/.index.json`),
-    JSON.stringify(data)
+    JSON.stringify(posts)
   );
 };
 
