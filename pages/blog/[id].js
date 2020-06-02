@@ -102,17 +102,16 @@ const BlogPost = ({ data }) => {
         <meta property="og:type" content="article" />
         <meta property="og:description" content={data.summary} />
         <meta name="description" content={data.summary} />
-        {data.tags && (
-          <meta
-            name="keywords"
-            content={[
-              ...(data.category || []),
-              ...(data.tags || []),
-              'ねじわさ',
-              'nzws'
-            ].join(', ')}
-          />
-        )}
+        <meta
+          name="keywords"
+          content={[
+            ...(data.category || []),
+            ...(data.tags || []),
+            "nzws's blog",
+            'ねじわさ',
+            'nzws'
+          ].join(', ')}
+        />
       </Head>
 
       <Nav
