@@ -91,6 +91,14 @@ Android なら Web から通知飛ばせるし全然良き。~~
 
 <iframe src="https://don.nzws.me/@nzws/104302768217140697/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe>
 
+また、これを活用して、IFTTT→Discord の連携をする事で結構色々な事を柔軟にできるようにしました。例えば、IFTTT の Button widget を使用してスマホのホーム画面に制御ボタンを設ける事ができます。
+
+<iframe src="https://don.nzws.me/@nzws/104301002407411906/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe>
+
+内部的には IFTTT が button widget の発火を検出 →IFTTT の webhook が discord の webhook URL にコマンドを投稿するだけで結構単純です。
+
+![](https://i.imgur.com/DvPRq4s.png)
+
 ## つかってみたまとめとか
 
 ### Nature Remo
