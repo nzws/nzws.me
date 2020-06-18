@@ -26,3 +26,5 @@ If you have any questions about this list, please contact me.
 - imbsky さん
 - さつき さん
 - うーねこ さん
+- あおりん さん
+- まんじまる さん
