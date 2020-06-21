@@ -63,7 +63,7 @@ const Columns = styled.div`
   column-gap: 1rem;
 `;
 
-const Index = () => {
+const Index: React.FC = () => {
   const [email, setEmail] = useState('');
   useEffect(() => {
     setEmail(['hi', 'nzws.me'].join('@'));
@@ -85,40 +85,85 @@ const Index = () => {
         <List
           title="Profile"
           values={[
-            ['Pronouns', 'he/him', User],
-            ['Location', 'Nagoya, Japan', MapPin],
-            ['Languages', 'ja-JP, JS and PHP', MessageSquare]
+            {
+              name: 'Pronouns',
+              value: 'he/him',
+              icon: User
+            },
+            {
+              name: 'Location',
+              value: 'Nagoya, Japan',
+              icon: MapPin
+            },
+            {
+              name: 'Languages',
+              value: 'ja-JP, JS and PHP',
+              icon: MessageSquare
+            }
           ]}
         />
 
         <List
           title="Accounts"
           values={[
-            ['Blog', 'nzws.me/blog', Book, '/blog', true],
-            [
-              'Mastodon',
-              'nzws@don.nzws.me',
-              Mastodon,
-              'https://don.nzws.me/@nzws'
-            ],
-            ['Twitter', '@nzws_me', Twitter, 'https://twitter.com/nzws_me'],
-            ['GitHub', '@nzws', Github, 'https://github.com/nzws'],
-            ['Keybase', '@nzws', Keybase, 'https://keybase.io/nzws'],
-            ['E-mail', email, Mail, `mailto:${email}`]
+            {
+              name: 'Blog',
+              value: 'nzws.me/blog',
+              icon: Book,
+              link: '/blog',
+              isInternal: true
+            },
+            {
+              name: 'Mastodon',
+              value: 'nzws@don.nzws.me',
+              icon: Mastodon,
+              link: 'https://don.nzws.me/@nzws'
+            },
+            {
+              name: 'Twitter',
+              value: '@nzws_me',
+              icon: Twitter,
+              link: 'https://twitter.com/nzws_me'
+            },
+            {
+              name: 'GitHub',
+              value: '@nzws',
+              icon: Github,
+              link: 'https://github.com/nzws'
+            },
+            {
+              name: 'Keybase',
+              value: '@nzws',
+              icon: Keybase,
+              link: 'https://keybase.io/nzws'
+            },
+            {
+              name: 'E-mail',
+              value: email,
+              icon: Mail,
+              link: `mailto:${email}`
+            }
           ]}
         />
 
         <List
           title="Donate"
           values={[
-            [
-              'GitHub Sponsors',
-              '@nzws',
-              null,
-              'https://github.com/sponsors/nzws'
-            ],
-            ['Kyash', 'nzws', null, 'kyash://qr/u/3407272513115463336'],
-            ['ほしいも', 'Link', null, 'http://amzn.asia/cjmzTWf']
+            {
+              name: 'GitHub Sponsors',
+              value: '@nzws',
+              link: 'https://github.com/sponsors/nzws'
+            },
+            {
+              name: 'Kyash',
+              value: 'nzws',
+              link: 'kyash://qr/u/3407272513115463336'
+            },
+            {
+              name: 'ほしいも',
+              value: 'Link',
+              link: 'http://amzn.asia/cjmzTWf'
+            }
           ]}
         />
 

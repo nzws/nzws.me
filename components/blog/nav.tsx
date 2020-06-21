@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -30,7 +29,16 @@ const Pan = styled.span`
   color: ${({ theme: { text, darken } }) => darken(0.25, text)};
 `;
 
-const Nav = ({ links }) => (
+type Props = {
+  links: Array<{
+    href?: string;
+    title: string;
+    noHref?: boolean;
+    as?: string;
+  }>;
+};
+
+const Nav: React.FC<Props> = ({ links }) => (
   <StyledNav>
     <About>
       <Link href="/blog/[id]" as="/blog/about">
@@ -43,7 +51,7 @@ const Nav = ({ links }) => (
       const text = isLast ? <b>{link.title}</b> : link.title;
 
       return (
-        <React.Fragment key={index}>
+        <Fragment key={index}>
           {link.noHref ? (
             text
           ) : (
@@ -52,14 +60,10 @@ const Nav = ({ links }) => (
             </Link>
           )}
           {!isLast && <Pan>/</Pan>}
-        </React.Fragment>
+        </Fragment>
       );
     })}
   </StyledNav>
 );
-
-Nav.propTypes = {
-  links: PropTypes.array.isRequired
-};
 
 export default Nav;

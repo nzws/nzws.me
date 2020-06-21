@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 
 import MovedComponent from '../../../components/blog/moved-component';
@@ -8,7 +7,16 @@ import BlogSummary from '../../../components/blog/blog-summary';
 import Footer from '../../../components/blog/list-footer';
 import { Container } from '../../../components/blog/layouts';
 
-const Blog = ({ data, nextPageId, prevPageId, id, name }) => {
+import post from '../../../types/post';
+type Props = {
+  data: Array<post>;
+  nextPageId?: number;
+  prevPageId?: number;
+  id: string;
+  name: string;
+};
+
+const Blog: React.FC<Props> = ({ data, nextPageId, prevPageId, id, name }) => {
   return (
     <Container>
       <Head>
@@ -37,24 +45,23 @@ const Blog = ({ data, nextPageId, prevPageId, id, name }) => {
   );
 };
 
-Blog.propTypes = {
-  data: PropTypes.array,
-  nextPageId: PropTypes.number,
-  prevPageId: PropTypes.number,
-  id: PropTypes.string,
-  name: PropTypes.string
-};
-
-export const getServerSideProps = ({
+export const getServerSideProps = async ({
   query: { page },
   params: { id, name }
-}) => {
+}: {
+  query: {
+    page?: string;
+  };
+  params: {
+    id: string;
+    name: string;
+  };
+}): Promise<{
+  props: Props;
+}> => {
   const posts = require('../../../blog-data/.index.json');
-  if (!page) {
-    page = 0;
-  }
-  page = parseInt(page);
-  const num = page * 10;
+  const Page = typeof page === 'string' ? parseInt(page) : 0;
+  const num = Page * 10;
 
   if (['tags', 'category'].indexOf(id) === -1) {
     throw new Error('not found');
@@ -67,8 +74,8 @@ export const getServerSideProps = ({
       name,
       id,
       data: data.slice(num, num + 10),
-      nextPageId: data[num + 10] ? page + 1 : null,
-      prevPageId: page - 1
+      nextPageId: data[num + 10] ? Page + 1 : null,
+      prevPageId: Page - 1
     }
   };
 };

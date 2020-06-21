@@ -1,8 +1,8 @@
-import fs from 'fs';
+import { readdir } from 'fs';
 
-const getFiles = path =>
+const getFiles = (path: string): Promise<Array<string>> =>
   new Promise((resolve, reject) => {
-    fs.readdir(path, (err, files) => {
+    readdir(path, (err, files) => {
       if (err) {
         return reject(err);
       }

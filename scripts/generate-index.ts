@@ -1,12 +1,13 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 import matter from 'gray-matter';
 import generateSummary from '../lib/summary';
 import getFiles from '../lib/get-files';
+import post from '../types/post';
 
 const dataCache = {};
 
-const loadMd = slug => {
+const loadMd = (slug: string): post => {
   if (dataCache[slug]) {
     return dataCache[slug];
   }
@@ -28,7 +29,7 @@ const loadMd = slug => {
   };
 };
 
-const run = async () => {
+const run = async (): Promise<void> => {
   try {
     const diff = require('../blog-data/.index.json');
     if (diff) {
