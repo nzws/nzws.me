@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { ChevronLeft, ChevronRight } from 'react-feather';
@@ -27,7 +26,12 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const Footer = ({ prevPageId, nextPageId }) => (
+type Props = {
+  prevPageId?: number;
+  nextPageId?: number;
+};
+
+const Footer: React.FC<Props> = ({ prevPageId, nextPageId }) => (
   <StyledFooter>
     <Link href={`?page=${prevPageId}`}>
       <a className={prevPageId >= 0 ? '' : 'prev-hidden'}>
@@ -44,10 +48,5 @@ const Footer = ({ prevPageId, nextPageId }) => (
     )}
   </StyledFooter>
 );
-
-Footer.propTypes = {
-  nextPageId: PropTypes.number,
-  prevPageId: PropTypes.number
-};
 
 export default Footer;

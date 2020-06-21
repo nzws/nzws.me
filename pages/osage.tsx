@@ -38,7 +38,7 @@ const Container = styled.div`
   }
 `;
 
-const Osage = () => (
+const Osage: React.FC = () => (
   <Container>
     <Head>
       <title>おさげ？？</title>

@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
-import * as matter from 'gray-matter';
+import matter from 'gray-matter';
 import unified from 'unified';
 import parse from 'remark-parse';
 import remark2rehype from 'remark-rehype';
@@ -80,7 +80,20 @@ const scriptUrls = {
   'don-nzws-me': 'https://assets-don.nzws.me/embed.js'
 };
 
-const BlogPost = ({ data }) => {
+type Props = {
+  data: {
+    scripts?: Array<string>;
+    title: string;
+    summary: string;
+    category?: Array<string>;
+    tags?: Array<string>;
+    id: string;
+    body: string;
+    date: number;
+  };
+};
+
+const BlogPost: React.FC<Props> = ({ data }) => {
   if (data.scripts) {
     data.scripts.forEach(script => {
       if (scriptUrls[script]) {
@@ -191,11 +204,7 @@ const BlogPost = ({ data }) => {
   );
 };
 
-BlogPost.propTypes = {
-  data: PropTypes.object
-};
-
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const files = require('../../blog-data/.index.json');
   const paths = files.map(({ slug }) => `/blog/${slug}`);
 
@@ -205,7 +214,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = ({ params: { id } }) => {
+export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
   const { default: md } = require(`../../blog-data/posts/${id}.md`);
   const m = matter(md);
   const summary = generateSummary(m.content);

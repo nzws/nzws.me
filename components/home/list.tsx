@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
 import ExternalLink from '../external-link';
@@ -35,32 +34,48 @@ const StyledList = styled.div`
   }
 `;
 
-const List = ({ values = [], title = '' }) => (
+interface Icon extends React.SVGAttributes<SVGElement> {
+  color?: string;
+  size?: string | number;
+}
+
+type Props = {
+  title: string;
+  values: Array<{
+    name: string;
+    value: string;
+    icon?: React.FC<Icon>;
+    isInternal?: boolean;
+    link?: string;
+  }>;
+};
+
+const List: React.FC<Props> = ({ values = [], title = '' }) => (
   <StyledList>
     <h2>{title}</h2>
     <table>
       <tbody>
         {values.map((v, key) => {
-          const Icon = v[2];
+          const Icon = v.icon;
 
           return (
             <tr key={key}>
               <th>
-                {Icon && <Icon size={18} className="icon" />} {v[0]}
+                {Icon && <Icon size={18} className="icon" />} {v.name}
               </th>
               <td>
-                {v[3] ? (
-                  v[4] ? (
-                    <Link href={v[3]}>
-                      <a>{v[1]}</a>
+                {v.link ? (
+                  v.isInternal ? (
+                    <Link href={v.link}>
+                      <a>{v.value}</a>
                     </Link>
                   ) : (
-                    <ExternalLink href={v[3]} rel="me">
-                      {v[1]}
+                    <ExternalLink href={v.link} rel="me">
+                      {v.value}
                     </ExternalLink>
                   )
                 ) : (
-                  v[1]
+                  v.value
                 )}
               </td>
             </tr>
@@ -70,10 +85,5 @@ const List = ({ values = [], title = '' }) => (
     </table>
   </StyledList>
 );
-
-List.propTypes = {
-  values: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired
-};
 
 export default List;

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ExternalLink from '../external-link';
 
@@ -41,13 +40,15 @@ const Tag = styled.span`
   }
 `;
 
-const Item = ({
-  title = '',
-  link = '',
-  tags = [],
-  description = '',
-  image = ''
-}) => (
+type Props = {
+  title: string;
+  link: string;
+  tags?: Array<string>;
+  description?: string;
+  image?: string;
+};
+
+const Item: React.FC<Props> = ({ title, link, tags, description, image }) => (
   <StyledItem href={link}>
     {image && <img src={image} alt={title} />}
     <div>
@@ -65,13 +66,5 @@ const Item = ({
     </div>
   </StyledItem>
 );
-
-Item.propTypes = {
-  title: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
-  tags: PropTypes.array,
-  description: PropTypes.string,
-  image: PropTypes.string
-};
 
 export default Item;

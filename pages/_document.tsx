@@ -1,11 +1,17 @@
 import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 import { GA_TRACKING_ID } from '../lib/gtag';
 
-class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx: DocumentContext): Promise<any> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -30,7 +36,7 @@ class MyDocument extends Document {
     }
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <Html lang="ja">
         <Head>
@@ -63,5 +69,3 @@ class MyDocument extends Document {
     );
   }
 }
-
-export default MyDocument;

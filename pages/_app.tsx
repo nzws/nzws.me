@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { AppProps } from 'next/app';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import NextNprogress from 'nextjs-progressbar';
 import Head from 'next/head';
@@ -80,7 +80,7 @@ const GlobalStyle = createGlobalStyle({
   }
 });
 
-const App = ({ Component, pageProps, router }) => {
+const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       const handleRouteChange = url => {
@@ -129,12 +129,6 @@ const App = ({ Component, pageProps, router }) => {
       <Component {...pageProps} />
     </ThemeProvider>
   );
-};
-
-App.propTypes = {
-  Component: PropTypes.func,
-  pageProps: PropTypes.object,
-  router: PropTypes.object
 };
 
 export default App;

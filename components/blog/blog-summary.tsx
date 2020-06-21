@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 import styled from 'styled-components';
@@ -53,7 +52,12 @@ const Summary = styled.div`
   color: ${({ theme: { text } }) => darken(0.2, text)};
 `;
 
-const BlogSummary = ({ post }) => (
+import post from '../../types/post';
+type Props = {
+  post: post;
+};
+
+const BlogSummary: React.FC<Props> = ({ post }) => (
   <Block>
     <h2>
       <Link
@@ -102,9 +106,5 @@ const BlogSummary = ({ post }) => (
     <Summary>{post.summary}</Summary>
   </Block>
 );
-
-BlogSummary.propTypes = {
-  post: PropTypes.object.isRequired
-};
 
 export default BlogSummary;

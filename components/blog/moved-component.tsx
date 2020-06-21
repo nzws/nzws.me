@@ -8,7 +8,7 @@ const Container = styled.div`
   padding: 10px;
 `;
 
-const MovedComponent = () => {
+const MovedComponent: React.FC = () => {
   const [hasHash, setHasHash] = useState(false);
   useEffect(() => {
     if (location && location.hash === '#from-blog-nzws-me') {
