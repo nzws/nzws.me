@@ -80,6 +80,7 @@ const scriptUrls = {
   'don-nzws-me': 'https://assets-don.nzws.me/embed.js'
 };
 
+import post from '../../types/post';
 type Props = {
   data: {
     scripts?: Array<string>;
@@ -96,11 +97,7 @@ type Props = {
 const BlogPost: React.FC<Props> = ({ data }) => {
   if (data.scripts) {
     data.scripts.forEach(script => {
-      if (scriptUrls[script]) {
-        script = scriptUrls[script];
-      }
-
-      useScript(script);
+      useScript(scriptUrls[script] || script);
     });
   }
 
@@ -205,7 +202,7 @@ const BlogPost: React.FC<Props> = ({ data }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const files = require('../../blog-data/.index.json');
+  const files: Array<post> = require('../../blog-data/.index.json');
   const paths = files.map(({ slug }) => `/blog/${slug}`);
 
   return {

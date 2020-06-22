@@ -9,7 +9,7 @@ import * as gtag from '../lib/gtag';
 import 'ress/dist/ress.min.css';
 import { lighten, darken } from 'polished';
 
-const darkTheme = {
+export const darkTheme = {
   linkBase: '#2986ff',
   background: '#191110',
   text: '#e3e3e3',

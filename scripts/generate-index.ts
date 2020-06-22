@@ -5,7 +5,9 @@ import generateSummary from '../lib/summary';
 import getFiles from '../lib/get-files';
 import post from '../types/post';
 
-const dataCache = {};
+const dataCache: {
+  [key: string]: post;
+} = {};
 
 const loadMd = (slug: string): post => {
   if (dataCache[slug]) {
@@ -34,7 +36,7 @@ const run = async (): Promise<void> => {
     const diff = require('../blog-data/.index.json');
     if (diff) {
       console.log('✅ 差分をロードしています...');
-      diff.forEach(v => {
+      diff.forEach((v: post) => {
         dataCache[v.slug] = v;
       });
     }

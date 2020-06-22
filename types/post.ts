@@ -1,4 +1,4 @@
-type post = {
+interface post {
   slug: string;
   title: string;
   date: number;
@@ -6,6 +6,6 @@ type post = {
   tags: Array<string>;
   isHidden: boolean;
   category: Array<string>;
-};
+}
 
 export default post;
