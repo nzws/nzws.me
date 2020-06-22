@@ -43,7 +43,7 @@ export const Main = styled.main`
     margin: 10px 0;
     padding: 4px 10px;
     border-left: 5px solid
-      ${({ theme: { background, lighten } }) => lighten(0.5, background)};
+      ${({ theme: { background, lighten } }) => lighten(0.3, background)};
     color: ${({ theme: { text, darken } }) => darken(0.1, text)};
   }
 
@@ -51,7 +51,7 @@ export const Main = styled.main`
   code,
   blockquote {
     background: ${({ theme: { background, lighten } }) =>
-      lighten(0.1, background)};
+      lighten(0.05, background)};
   }
 
   code {

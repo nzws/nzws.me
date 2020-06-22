@@ -5,7 +5,7 @@ declare module 'nextjs-progressbar' {
     stopDelayMs?: string;
     height?: string;
     options?: {
-      [key: string]: any;
+      [key: string]: string | number | boolean;
     };
   }
 
