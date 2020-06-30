@@ -176,6 +176,13 @@ const Index: React.FC = () => {
       <Contents>
         <Columns>
           <Item
+            title="Blog@Issue"
+            link="https://github.com/nzws/blog-at-issue-action"
+            tags={['GitHub Actions', 'Node.js', 'TypeScript']}
+            description="マークダウン式ブログで使用できる、GitHub Issue からブログ記事を簡単に編集/投稿できるActionです。"
+          />
+
+          <Item
             title="Easy Share"
             link="https://easy-share.now.sh/"
             tags={['React', 'Next.js']}
