@@ -56,6 +56,7 @@ export const Main = styled.main`
 
   code {
     padding: 2px 4px;
+    word-break: break-all;
   }
 
   pre > code {
