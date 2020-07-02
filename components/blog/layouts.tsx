@@ -60,6 +60,7 @@ export const Main = styled.main`
   }
 
   pre > code {
+    padding: 0;
     background: none;
   }
 

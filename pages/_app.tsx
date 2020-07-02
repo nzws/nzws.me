@@ -7,6 +7,7 @@ import Router from 'next/router';
 import * as gtag from '../lib/gtag';
 
 import 'ress/dist/ress.min.css';
+import 'highlight.js/styles/monokai.css';
 import { lighten, darken } from 'polished';
 
 export const darkTheme = {

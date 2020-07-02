@@ -50,6 +50,7 @@
   "dependencies": {
     "@icons-pack/react-simple-icons": "^3.1.1",
     "gray-matter": "^4.0.2",
+    "highlight.js": "^10.1.1",
     "next": "^9.4.4",
     "nextjs-progressbar": "^0.0.5",
     "polished": "^3.6.3",
@@ -60,6 +61,7 @@
     "react-feather": "^2.0.8",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
     "rehype-stringify": "^7.0.0",
+    "remark-highlight.js": "^6.0.0",
     "remark-parse": "^8.0.2",
     "remark-rehype": "^7.0.0",
     "remove-markdown": "^0.3.0",

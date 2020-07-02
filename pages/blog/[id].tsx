@@ -4,6 +4,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import matter from 'gray-matter';
 import unified from 'unified';
 import parse from 'remark-parse';
+import highlight from 'remark-highlight.js';
 import remark2rehype from 'remark-rehype';
 import html from 'rehype-stringify';
 
@@ -20,15 +21,6 @@ import useScript from '../../components/use-script';
 import MovedComponent from '../../components/blog/moved-component';
 import Nav from '../../components/blog/nav';
 import { Main, Container } from '../../components/blog/layouts';
-
-const processor = unified()
-  .use(parse)
-  .use(remark2rehype, {
-    allowDangerousHtml: true
-  })
-  .use(html, {
-    allowDangerousHtml: true
-  });
 
 const dateOptions = {
   weekday: 'long',
@@ -210,6 +202,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false
   };
 };
+
+const processor = unified()
+  .use(parse)
+  .use(highlight)
+  .use(remark2rehype, {
+    allowDangerousHtml: true
+  })
+  .use(html, {
+    allowDangerousHtml: true
+  });
 
 export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
   const { default: md } = require(`../../blog-data/posts/${id}.md`);
