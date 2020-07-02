@@ -183,6 +183,13 @@ const Index: React.FC = () => {
           />
 
           <Item
+            title="Spotify To YouTube Bot"
+            link="https://github.com/nzws/spotify-to-youtube-bot"
+            tags={['Discord Bot', 'Node.js']}
+            description="Spotifyの音楽リンクからYouTubeの動画を検索して提供するBotです。"
+          />
+
+          <Item
             title="Easy Share"
             link="https://easy-share.now.sh/"
             tags={['React', 'Next.js']}
