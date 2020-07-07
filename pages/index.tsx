@@ -7,16 +7,13 @@ import {
   Github,
   Keybase
 } from '@icons-pack/react-simple-icons';
-import media from 'styled-media-query';
 import Link from 'next/link';
 import List from '../components/home/list';
 import Item from '../components/home/item';
-
-const mobile = media.lessThan('medium');
-const desktop = media.greaterThan('medium');
+import { mediaDesktop, mediaMobile } from '../components/blog/layouts';
 
 const Container = styled.div`
-  ${desktop`
+  ${mediaDesktop`
     height: 100vh;
     display: grid;
     grid-template-columns: 340px 1fr;
@@ -31,7 +28,7 @@ const Profile = styled.div`
   border-radius: 0 1em 1em 0;
   padding: 10px;
 
-  ${mobile`
+  ${mediaMobile`
     border-radius: 0 0 1em 1em;
   `};
 `;

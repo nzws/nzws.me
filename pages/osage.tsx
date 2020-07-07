@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import media from 'styled-media-query';
 import Head from 'next/head';
 import Link from 'next/link';
-
-const mobile = media.lessThan('medium');
-const desktop = media.greaterThan('medium');
+import { mediaDesktop, mediaMobile } from '../components/blog/layouts';
 
 const Container = styled.div`
   width: 100vw;
@@ -20,7 +17,7 @@ const Container = styled.div`
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
 
-    ${desktop`
+    ${mediaDesktop`
       max-width: 100%;
 
       &.mobile {
@@ -28,7 +25,7 @@ const Container = styled.div`
       }
     `};
 
-    ${mobile`
+    ${mediaMobile`
       max-height: 100%;
 
       &.desktop {

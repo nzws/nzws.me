@@ -13,7 +13,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { ChevronUp, Share } from 'react-feather';
-import { Github } from '@icons-pack/react-simple-icons';
 
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
@@ -62,8 +61,21 @@ const Footer = styled.footer`
   margin-top: 10px;
   padding-top: 10px;
 
-  a {
-    margin-right: 20px;
+  .right {
+    float: right;
+
+    a {
+      margin-left: 20px;
+    }
+  }
+
+  .left {
+    margin-top: 8px;
+    font-size: 0.85rem;
+
+    a {
+      margin: 0 5px;
+    }
   }
 `;
 
@@ -173,21 +185,30 @@ const BlogPost: React.FC<Props> = ({ data }) => {
       />
 
       <Footer>
-        <a href="#">
-          <ChevronUp className="icon" />
-        </a>
-        <ExternalLink
-          href={`https://easy-share.now.sh/?t=${encodeURIComponent(
-            data.title + ' - Blog - nzws.me (ねじわさみ)'
-          )}&link=${encodeURIComponent('https://nzws.me/blog/' + data.id)}`}
-        >
-          <Share className="icon" size={18} /> 共有
-        </ExternalLink>
-        <ExternalLink
-          href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
-        >
-          <Github className="icon" size={18} /> GitHub で見る
-        </ExternalLink>
+        <div className="right">
+          <ExternalLink
+            href={`https://easy-share.now.sh/?t=${encodeURIComponent(
+              data.title + ' - Blog - nzws.me (ねじわさみ)'
+            )}&link=${encodeURIComponent('https://nzws.me/blog/' + data.id)}`}
+          >
+            <Share className="icon" size={18} /> 共有
+          </ExternalLink>
+          <a href="#">
+            <ChevronUp className="icon" />
+          </a>
+        </div>
+
+        <div className="left">
+          誤字脱字は
+          <ExternalLink
+            href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
+          >
+            GitHub
+          </ExternalLink>
+          に、コメントは
+          <ExternalLink href="https://don.nzws.me/@nzws">@nzws</ExternalLink>
+          まで
+        </div>
       </Footer>
     </Container>
   );

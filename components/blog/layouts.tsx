@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import media from 'styled-media-query';
 
+export const mediaDesktop = media.greaterThan('medium');
+export const mediaMobile = media.lessThan('medium');
+
 export const Main = styled.main`
   font-weight: 300;
   font-size: 1.2rem;
@@ -97,12 +100,12 @@ export const Main = styled.main`
 `;
 
 export const Container = styled.div`
-  ${media.greaterThan('medium')`
+  ${mediaDesktop`
   width: 700px;
   margin: 20px auto;
 `};
 
-  ${media.lessThan('medium')`
+  ${mediaMobile`
   margin: 10px;
 `};
 `;
