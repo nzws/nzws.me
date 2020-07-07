@@ -154,7 +154,7 @@ const Index: React.FC = () => {
             {
               name: 'Kyash',
               value: 'nzws',
-              link: 'kyash://qr/u/3407272513115463336'
+              link: 'https://kyash.now.sh/?id=nzws&link=3407272513115463336'
             },
             {
               name: 'ほしいも',
