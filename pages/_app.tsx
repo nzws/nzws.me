@@ -29,10 +29,10 @@ const lightTheme = {
 
 const GlobalStyle = createGlobalStyle({
   body: {
-    fontFamily: "'M PLUS Rounded 1c', sans-serif",
+    fontFamily: "'Noto Serif JP', serif",
     fontSize: '1rem',
-    lineHeight: '1.5',
-    fontWeight: 400,
+    lineHeight: '1.6',
+    fontWeight: 300,
     fontStyle: 'normal',
     color: ({ theme: { text } }) => text,
     background: ({ theme: { background } }) => background

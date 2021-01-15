@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 const About = styled.div`
-  float: right;
   font-size: 14px;
-  padding-top: 5px;
+  margin: auto 0;
+  margin-left: auto;
+  width: 60px;
+  text-align: right;
 `;
 
 const StyledNav = styled.div`
+  display: flex;
+  column-gap: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid
     ${({ theme: { background, lighten } }) => lighten(0.2, background)};
@@ -21,6 +25,12 @@ const StyledNav = styled.div`
   b {
     font-size: 1.3rem;
   }
+`;
+
+const Links = styled.div`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 const Pan = styled.span`
@@ -40,29 +50,31 @@ type Props = {
 
 const Nav: React.FC<Props> = ({ links }) => (
   <StyledNav>
+    <Links>
+      {links.map((link, index) => {
+        const isLast = index === links.length - 1;
+        const text = isLast ? <b>{link.title}</b> : link.title;
+
+        return (
+          <Fragment key={index}>
+            {link.noHref ? (
+              text
+            ) : (
+              <Link href={link.href} as={link.as}>
+                <a>{text}</a>
+              </Link>
+            )}
+            {!isLast && <Pan>/</Pan>}
+          </Fragment>
+        );
+      })}
+    </Links>
+
     <About>
       <Link href="/blog/[id]" as="/blog/about">
         <a>About</a>
       </Link>
     </About>
-
-    {links.map((link, index) => {
-      const isLast = index === links.length - 1;
-      const text = isLast ? <b>{link.title}</b> : link.title;
-
-      return (
-        <Fragment key={index}>
-          {link.noHref ? (
-            text
-          ) : (
-            <Link href={link.href} as={link.as}>
-              <a>{text}</a>
-            </Link>
-          )}
-          {!isLast && <Pan>/</Pan>}
-        </Fragment>
-      );
-    })}
   </StyledNav>
 );
 

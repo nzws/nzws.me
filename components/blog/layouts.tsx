@@ -7,6 +7,8 @@ export const mediaMobile = media.lessThan('medium');
 export const Main = styled.main`
   font-weight: 300;
   font-size: 1.2rem;
+  line-height: 2;
+  word-break: break-word;
 
   p {
     padding-top: 4px;
@@ -100,12 +102,7 @@ export const Main = styled.main`
 `;
 
 export const Container = styled.div`
-  ${mediaDesktop`
-  width: 700px;
+  width: 800px;
+  max-width: calc(100% - 20px);
   margin: 20px auto;
-`};
-
-  ${mediaMobile`
-  margin: 10px;
-`};
 `;
