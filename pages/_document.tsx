@@ -8,7 +8,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import { GA_TRACKING_ID } from '../lib/gtag';
+const CF_ANALYTICS_TOKEN = 'a389d4c824b1412294ef01ede7fc3fee';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<any> {
@@ -44,26 +44,15 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;600&display=swap"
             rel="stylesheet"
           />
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `
-            }}
-          />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${CF_ANALYTICS_TOKEN}"}`}
+          ></script>
         </body>
       </Html>
     );

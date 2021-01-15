@@ -4,7 +4,6 @@ import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import NextNprogress from 'nextjs-progressbar';
 import Head from 'next/head';
 import Router from 'next/router';
-import * as gtag from '../lib/gtag';
 
 import 'ress/dist/ress.min.css';
 import 'highlight.js/styles/monokai.css';
@@ -86,7 +85,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
     if (process.env.NODE_ENV === 'production') {
       const handleRouteChange = url => {
         console.log(url);
-        gtag.pageview(url);
+        // gtag.pageview(url);
       };
       Router.events.on('routeChangeComplete', handleRouteChange);
       return () => Router.events.off('routeChangeComplete', handleRouteChange);

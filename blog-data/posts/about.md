@@ -15,10 +15,5 @@ https://github.com/nzws/nzws.me で原本を公開してますので、誤字修
 
 # データ収集について
 
-当サイトでは、 Google LLC 提供の [Google アナリティクス](https://analytics.google.com/) を使用しています。
-Google アナリティクスでは、トラフィックデータの収集のために Cookie を使用しています。
-このトラフィックデータは匿名で収集されており、個人を特定するものではありません。
-収集をオプトアウトする場合は、ブラウザの設定で当サイトの**Cookie を無効化**してください。
-
-- Google アナリティクス利用規約: https://marketingplatform.google.com/about/analytics/terms/jp/
-- ユーザーが Google パートナーのサイトやアプリを使用する際の Google によるデータ使用: https://marketingplatform.google.com/about/analytics/terms/jp/
+当サイトでは、 Cloudflare, Inc. 提供の [Cloudflare Web Analytics](https://www.cloudflare.com/ja-jp/analytics/) を使用しています。  
+Cloudflare Web Analytics では訪問者の個人データを収集することはありません。([参考](https://support.cloudflare.com/hc/en-us/articles/360052685432-Cloudflare-Web-Analytics))
