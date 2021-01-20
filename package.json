@@ -26,7 +26,7 @@
     "@next/bundle-analyzer": "^10.0.5",
     "@nzws/prettier-config": "~1.0.1",
     "@types/gtag.js": "^0.0.4",
-    "@types/node": "^14.14.20",
+    "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/remove-markdown": "^0.1.1",
