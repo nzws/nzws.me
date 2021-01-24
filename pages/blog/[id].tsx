@@ -1,25 +1,19 @@
 import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
-
 import matter from 'gray-matter';
-import unified from 'unified';
-import parse from 'remark-parse';
-import highlight from 'remark-highlight.js';
-import remark2rehype from 'remark-rehype';
-import html from 'rehype-stringify';
-
 import styled from 'styled-components';
 import Head from 'next/head';
 import Link from 'next/link';
-
+import post from '../../types/post';
+import { processor } from '../../lib/processor';
 import { ChevronUp, Share } from 'react-feather';
-
 import generateSummary from '../../lib/summary';
 import ExternalLink from '../../components/external-link';
 import useScript from '../../components/use-script';
 import MovedComponent from '../../components/blog/moved-component';
 import Nav from '../../components/blog/nav';
 import { Main, Container } from '../../components/blog/layouts';
+import { Footer } from '../../components/blog/footer';
 
 const dateOptions = {
   weekday: 'long',
@@ -28,73 +22,18 @@ const dateOptions = {
   day: 'numeric'
 };
 
-const Header = styled.div`
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid
-    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
-`;
-
-const Muted = styled.div`
-  color: ${({ theme: { text, darken } }) => darken(0.5, text)};
-`;
-
-const Tags = styled.span`
-  display: inline-block;
-  margin-top: 5px;
-
-  > a {
-    margin-right: 5px;
-    color: ${({ theme: { text } }) => text};
-    ${({ category }) => category && `font-weight: bold;`};
-
-    > span {
-      margin-left: 2px;
-      font-size: 16px;
-    }
-  }
-`;
-
-const Footer = styled.footer`
-  border-top: 1px solid
-    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
-  margin-top: 10px;
-  padding-top: 10px;
-
-  .right {
-    float: right;
-
-    a {
-      margin-left: 20px;
-    }
-  }
-
-  .left {
-    margin-top: 8px;
-    font-size: 0.85rem;
-
-    a {
-      margin: 0 5px;
-    }
-  }
-`;
-
 const scriptUrls = {
   twitter: 'https://platform.twitter.com/widgets.js',
   'don-nzws-me': 'https://assets-don.nzws.me/embed.js'
 };
 
-import post from '../../types/post';
 type Props = {
-  data: {
+  data: post & {
     scripts?: Array<string>;
     title: string;
     summary: string;
-    category?: Array<string>;
-    tags?: Array<string>;
     id: string;
     body: string;
-    date: number;
   };
 };
 
@@ -185,6 +124,18 @@ const BlogPost: React.FC<Props> = ({ data }) => {
       />
 
       <Footer>
+        <div className="left">
+          誤字脱字は
+          <ExternalLink
+            href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
+          >
+            GitHub
+          </ExternalLink>
+          に、コメントは
+          <ExternalLink href="https://don.nzws.me/@nzws">@nzws</ExternalLink>
+          まで
+        </div>
+
         <div className="right">
           <ExternalLink
             href={`https://easy-share.now.sh/?t=${encodeURIComponent(
@@ -197,22 +148,37 @@ const BlogPost: React.FC<Props> = ({ data }) => {
             <ChevronUp className="icon" />
           </a>
         </div>
-
-        <div className="left">
-          誤字脱字は
-          <ExternalLink
-            href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
-          >
-            GitHub
-          </ExternalLink>
-          に、コメントは
-          <ExternalLink href="https://don.nzws.me/@nzws">@nzws</ExternalLink>
-          まで
-        </div>
       </Footer>
     </Container>
   );
 };
+
+const Header = styled.div`
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid
+    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
+`;
+
+const Muted = styled.div`
+  color: ${({ theme: { text, darken } }) => darken(0.5, text)};
+`;
+
+const Tags = styled.span`
+  display: inline-block;
+  margin-top: 5px;
+
+  > a {
+    margin-right: 5px;
+    color: ${({ theme: { text } }) => text};
+    ${({ category }) => category && `font-weight: bold;`};
+
+    > span {
+      margin-left: 2px;
+      font-size: 16px;
+    }
+  }
+`;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const files: Array<post> = require('../../blog-data/.index.json');
@@ -223,16 +189,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false
   };
 };
-
-const processor = unified()
-  .use(parse)
-  .use(highlight)
-  .use(remark2rehype, {
-    allowDangerousHtml: true
-  })
-  .use(html, {
-    allowDangerousHtml: true
-  });
 
 export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
   const { default: md } = require(`../../blog-data/posts/${id}.md`);
