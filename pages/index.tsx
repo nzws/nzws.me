@@ -48,7 +48,7 @@ const Index: React.FC<Props> = ({ data }) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { default: md } = require(`../blog-data/posts/index.md`);
+  const { default: md } = require(`../blog-data/posts/home.md`);
   const m = matter(md);
   const summary = generateSummary(m.content);
 
