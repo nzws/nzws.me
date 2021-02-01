@@ -49,7 +49,7 @@
     "@icons-pack/react-simple-icons": "^4.0.0",
     "gray-matter": "^4.0.2",
     "highlight.js": "^10.5.0",
-    "next": "^10.0.5",
+    "next": "^10.0.6",
     "nextjs-progressbar": "^0.0.7",
     "polished": "^4.1.0",
     "react": "^17.0.1",
