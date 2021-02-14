@@ -5,7 +5,7 @@ import { Status } from '../../types/mastodon';
 import ExternalLink from '../external-link';
 import { Comment } from './comment';
 
-const DOMAIN = process.env.COMMENT_SERVER;
+const DOMAIN = process.env.NEXT_PUBLIC_COMMENT_SERVER;
 
 type Props = {
   id: string;

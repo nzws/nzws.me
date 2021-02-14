@@ -7,7 +7,7 @@ import sanitize from 'sanitize-filename';
 import { StatusesContext } from '../../types/mastodon';
 import indexes from '../../blog-data/.index.json';
 
-const DOMAIN = process.env.COMMENT_SERVER;
+const DOMAIN = process.env.NEXT_PUBLIC_COMMENT_SERVER;
 const CACHE_MS = 1000 * 60 * 1;
 
 const handler = async (
