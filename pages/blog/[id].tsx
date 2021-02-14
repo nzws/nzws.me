@@ -14,6 +14,7 @@ import MovedComponent from '../../components/blog/moved-component';
 import Nav from '../../components/blog/nav';
 import { Main, Container } from '../../components/blog/layouts';
 import { Footer } from '../../components/blog/footer';
+import { Comments } from '../../components/blog/comments';
 
 const dateOptions = {
   weekday: 'long',
@@ -123,6 +124,8 @@ const BlogPost: React.FC<Props> = ({ data }) => {
         }}
       />
 
+      {data.commentId && <Comments id={data.id} statusId={data.commentId} />}
+
       <Footer>
         <div className="left">
           誤字脱字は
@@ -131,8 +134,6 @@ const BlogPost: React.FC<Props> = ({ data }) => {
           >
             GitHub
           </ExternalLink>
-          に、コメントは
-          <ExternalLink href="https://don.nzws.me/@nzws">@nzws</ExternalLink>
           まで
         </div>
 
