@@ -6,7 +6,7 @@ tags:
   - ブログ
   - NextJS
 date: '2021-02-15'
-commentId: 'wip'
+commentId: '105734732902716704'
 ---
 
 ## tl;dr
