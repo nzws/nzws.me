@@ -27,7 +27,8 @@ const loadMd = (slug: string): post => {
     summary: generateSummary(m.content),
     tags: m.data.tags || [],
     isHidden: m.data.isHidden,
-    category: m.data.category || []
+    category: m.data.category || [],
+    commentId: m.data.commentId
   };
 };
 
