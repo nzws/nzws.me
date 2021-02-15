@@ -9,6 +9,7 @@ import indexes from '../../blog-data/.index.json';
 
 const DOMAIN = process.env.NEXT_PUBLIC_COMMENT_SERVER;
 const CACHE_MS = 1000 * 60 * 1;
+const ignoreTags = ['nocomment'];
 
 const handler = async (
   req: NextApiRequest,
@@ -28,14 +29,16 @@ const handler = async (
   const cacheFile = path.resolve(os.tmpdir(), `comment_${postId}`);
 
   try {
-    const { mtime } = await promises.stat(cacheFile);
-    const updatedAt = new Date(mtime);
+    if (process.env.NODE_ENV !== 'development') {
+      const { mtime } = await promises.stat(cacheFile);
+      const updatedAt = new Date(mtime);
 
-    if (Date.now() - updatedAt.getTime() < CACHE_MS) {
-      console.log('cached');
-      const body = JSON.parse(await promises.readFile(cacheFile, 'utf8'));
+      if (Date.now() - updatedAt.getTime() < CACHE_MS) {
+        console.log('cached');
+        const body = JSON.parse(await promises.readFile(cacheFile, 'utf8'));
 
-      return res.status(200).json(body);
+        return res.status(200).json(body);
+      }
     }
   } catch (_) {
     //
@@ -55,6 +58,7 @@ const handler = async (
   const data = body.descendants
     .map(status => ({
       id: status.id,
+      in_reply_to_id: status.in_reply_to_id,
       created_at: status.created_at,
       sensitive: status.sensitive,
       spoiler_text: status.spoiler_text,
@@ -62,6 +66,7 @@ const handler = async (
       url: status.url,
       content: status.content,
       reblog: status.reblog,
+      tags: status.tags,
       account: {
         id: status.account.id,
         username: status.account.username,
@@ -77,7 +82,9 @@ const handler = async (
         ['public', 'unlisted'].includes(status.visibility) &&
         !status.sensitive &&
         !status.spoiler_text &&
-        !status.account.bot
+        !status.account.bot &&
+        !status.reblog &&
+        !status.tags.some(tag => ignoreTags.includes(tag.name.toLowerCase()))
     );
 
   await promises.writeFile(cacheFile, JSON.stringify(data));

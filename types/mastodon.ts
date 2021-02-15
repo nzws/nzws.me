@@ -8,8 +8,14 @@ export type Account = {
   avatar_static: string;
 };
 
+export type Tag = {
+  name: string;
+  url: string;
+};
+
 export type Status = {
   id: string;
+  in_reply_to_id: string;
   created_at: string;
   sensitive: boolean;
   spoiler_text: string;
@@ -18,6 +24,7 @@ export type Status = {
   content: string;
   reblog?: Status;
   account: Account;
+  tags: Tag[];
 };
 
 export type StatusesContext = {
