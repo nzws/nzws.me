@@ -45,6 +45,7 @@ img {
 - [タミヤ ユニバーサルアームセット 70143](https://www.yodobashi.com/product/100000001001083273/): サムターン回し部分の細かいパーツ作成
 - 適当なニッパー
 - 適当な強力両面テープ
+- 適当な M5StickC の充電方法（充電ケーブルとかモバイルバッテリーとか）
 
 Homebridge については[以前も書きましたが](/blog/202011-homebridge)、Apple Homekit と TypeScript 製サーバーで色々なスマートホーム機器を非公式に連携させるものですが、
 私は普段 Android スマートフォンを使用しているため[homebridge-gsh](https://npm.im/homebridge-gsh)を使用して Google Home に繋いで使用しています。
