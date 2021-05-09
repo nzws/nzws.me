@@ -70,7 +70,7 @@ SPF レコードは[ここらへん](https://support.google.com/a/answer/2716802
 
 今回初めて知った事としては、MTA-STS レポートなるものがあるそうで、そちらのセットアップもしておきました。
 これについては、TXT レコードの他にポリシーファイルを mta-sts.(domain)/.well-known/mta-sts.txt にホストする必要があるらしく、
-雑に Vercel で即席デプロイしました。[wasabichang/mta-sts.nzws.me](https://github.com/wasabichang/mta-sts.nzws.me) をフォークすれば多分他の人もそのまま使い回せます。  
+雑に Vercel で即席デプロイしました。[nzws/mta-sts.nzws.me](https://github.com/nzws/mta-sts.nzws.me) をフォークすれば多分他の人もそのまま使い回せます。  
 イマイチ MTA-STS 自体を理解しきれていないので現状は testing で動かしています。
 
 肝心の DKIM ですが、他の人からも聞いたのですがセットアップ直後は設定できないらしくエラーが出るので後ほど設定します。
