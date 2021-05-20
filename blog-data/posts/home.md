@@ -30,7 +30,7 @@ isHidden: true
 # Accounts
 
 - Blog: [/blog](/blog)
-- 🐘 Mastodon: [@nzws@don.nzws.me](https://don.nzws.me/@nzws)
+- 🐘 Mastodon: <a rel="me" href="https://don.nzws.me/@nzws">@nzws@don.nzws.me</a>
 - 🎮 Discord: nzws#0001
 - 😺 GitHub: [@nzws](https://github.com/nzws)
 - 💳 Kyash: [nzws](https://kyash.now.sh/?id=nzws&link=3407272513115463336)
