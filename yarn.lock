@@ -415,10 +415,10 @@
   dependencies:
     prop-types "^15.7.2"
 
-"@next/bundle-analyzer@^10.0.6":
-  version "10.0.6"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-10.0.6.tgz#e39b45f7d08a5e913c870d5bc0b666bf5a230f37"
-  integrity sha512-zwl08fz784t0tpJFTUpoYTcPUQ3SqIEb2M+3Lyv2rMXeQ8AsRru7bSvTdW1P15ENWDDF2AovJptAoohjfutViQ==
+"@next/bundle-analyzer@^10.2.2":
+  version "10.2.2"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-10.2.2.tgz#ab3cb6f3bd12157a7950a59361bf196a7fea100d"
+  integrity sha512-aqFikByfY1EUnscZJTEAxKcGqKcqdYC4v2CBKQcay8W5XBHoiGFBcficVoRQbLF5fyAoYIJzsBVzxoOSYIZ7eg==
   dependencies:
     webpack-bundle-analyzer "4.3.0"
 
