@@ -10,6 +10,15 @@ export const Main = styled.main`
   line-height: 2;
   word-break: break-word;
 
+  video,
+  img {
+    max-height: 500px;
+  }
+
+  img {
+    object-fit: contain;
+  }
+
   p {
     padding-top: 4px;
     padding-bottom: 10px;
@@ -30,6 +39,7 @@ export const Main = styled.main`
   }
 
   img,
+  video,
   iframe,
   .twitter-tweet,
   table {

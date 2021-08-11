@@ -2,20 +2,12 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const About = styled.div`
-  font-size: 14px;
-  margin: auto 0;
-  margin-left: auto;
-  width: 60px;
-  text-align: right;
-`;
-
-const StyledNav = styled.div`
+const StyledNav = styled.div<{ $noBorder?: boolean }>`
   display: flex;
   column-gap: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid
-    ${({ theme: { background, lighten } }) => lighten(0.2, background)};
+  border-bottom: ${({ theme: { background, lighten }, $noBorder }) =>
+    !$noBorder && `1px solid ${lighten(0.2, background)}`};
 
   a {
     color: ${({ theme: { text } }) => text};
@@ -46,10 +38,11 @@ type Props = {
     noHref?: boolean;
     as?: string;
   }>;
+  noBorder?: boolean;
 };
 
-const Nav: React.FC<Props> = ({ links }) => (
-  <StyledNav>
+const Nav: React.FC<Props> = ({ links, noBorder }) => (
+  <StyledNav $noBorder={noBorder}>
     <Links>
       {links.map((link, index) => {
         const isLast = index === links.length - 1;
@@ -69,12 +62,6 @@ const Nav: React.FC<Props> = ({ links }) => (
         );
       })}
     </Links>
-
-    <About>
-      <Link href="/blog/[id]" as="/blog/about">
-        <a>About</a>
-      </Link>
-    </About>
   </StyledNav>
 );
 

@@ -1,66 +1,46 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { GetStaticProps } from 'next';
-import matter from 'gray-matter';
-import { ChevronUp, Share } from 'react-feather';
-import { processor } from '../lib/processor';
-import generateSummary from '../lib/summary';
-import ExternalLink from '../components/external-link';
 import Nav from '../components/blog/nav';
-import { Main, Container } from '../components/blog/layouts';
+import { Container } from '../components/blog/layouts';
 import post from '../types/post';
-import { Footer } from '../components/blog/footer';
+import BlogSummary from '../components/blog/blog-summary';
+import Footer from '../components/blog/list-footer';
+import { Profile } from '../components/home/layouts';
+import { Head } from '../components/home/head';
+import { Accounts } from '../components/home/accounts';
+import { Sponsor } from '../components/home/sponsor';
 
 type Props = {
-  data: post & {
-    scripts?: Array<string>;
-    title: string;
-    summary: string;
-    id: string;
-    body: string;
-  };
+  data: post[];
+  nextPageId?: number;
 };
 
-const Index: React.FC<Props> = ({ data }) => (
+const Index: FC<Props> = ({ data, nextPageId }) => (
   <Container>
-    <Nav links={[{ title: 'nzws.me', href: '/' }]} />
+    <Nav links={[{ title: 'nzws.me', href: '/' }]} noBorder />
 
-    <Main
-      dangerouslySetInnerHTML={{
-        __html: data.body
-      }}
-    />
+    <Profile>
+      <Head />
+      <Accounts />
+      <Sponsor />
+    </Profile>
 
-    <Footer>
-      <div className="right">
-        <ExternalLink
-          href={`https://easy-share.now.sh/?t=${encodeURIComponent(
-            'nzws.me (ねじわさみ)'
-          )}&link=${encodeURIComponent('https://nzws.me/')}`}
-        >
-          <Share className="icon" size={18} /> 共有
-        </ExternalLink>
-        <a href="#">
-          <ChevronUp className="icon" />
-        </a>
-      </div>
-    </Footer>
+    {data.map(post => (
+      <BlogSummary post={post} key={post.slug} />
+    ))}
+
+    <Footer nextPageId={nextPageId} />
   </Container>
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { default: md } = require(`../blog-data/posts/home.md`);
-  const m = matter(md);
-  const summary = generateSummary(m.content);
+  const posts = require('../blog-data/.index.json');
+  const data = posts.filter(v => !v.isHidden);
 
   return {
     props: {
-      data: {
-        ...m.data,
-        date: new Date(m.data.date).getTime(),
-        body: processor.processSync(m.content).contents,
-        id: 'index',
-        summary
-      }
+      data: data.slice(0, 10),
+      nextPageId: data[10] ? 1 : null
     }
   };
 };

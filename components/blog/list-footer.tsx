@@ -33,14 +33,14 @@ type Props = {
 
 const Footer: React.FC<Props> = ({ prevPageId, nextPageId }) => (
   <StyledFooter>
-    <Link href={`?page=${prevPageId}`}>
+    <Link href={`/blog?page=${prevPageId}`}>
       <a className={prevPageId >= 0 ? '' : 'prev-hidden'}>
         <ChevronLeft className="icon" /> 前のページ
       </a>
     </Link>
 
     {nextPageId && (
-      <Link href={`?page=${nextPageId}`}>
+      <Link href={`/blog?page=${nextPageId}`}>
         <a className="next-page">
           次のページ <ChevronRight className="icon" />
         </a>

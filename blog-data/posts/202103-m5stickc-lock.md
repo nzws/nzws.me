@@ -9,19 +9,6 @@ date: '2021-03-18'
 commentId: '105908790552481946'
 ---
 
-<!-- 仮 -->
-<style>
-video {
-  max-width: 100%;
-  max-height: 500px;
-}
-
-img {
-  max-height: 500px;
-  object-fit: contain;
-}
-</style>
-
 どうもこんにちは、ねじわさです。
 家のスマートホームのコア部分であるラズパイの更新掛けてたら archive.raspberrypi.org が 20KB/s しか出なくてカーネルのダウンロードに 6 時間かかるやでって言われてキレ散らかしながらこの記事を書いてます。
 
