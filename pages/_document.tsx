@@ -4,14 +4,17 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext
+  DocumentContext,
+  DocumentInitialProps
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 const CF_ANALYTICS_TOKEN = 'a389d4c824b1412294ef01ede7fc3fee';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext): Promise<any> {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 

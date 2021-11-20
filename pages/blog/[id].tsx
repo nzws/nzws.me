@@ -15,13 +15,7 @@ import Nav from '../../components/blog/nav';
 import { Main, Container } from '../../components/blog/layouts';
 import { Footer } from '../../components/blog/footer';
 import { Comments } from '../../components/blog/comments';
-
-const dateOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-};
+import { dateOptions } from '../../lib/const';
 
 const scriptUrls = {
   twitter: 'https://platform.twitter.com/widgets.js',
@@ -201,7 +195,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
       data: {
         ...m.data,
         date: new Date(m.data.date).getTime(),
-        body: processor.processSync(m.content).contents,
+        body: processor.processSync(m.content).toString(),
         id,
         summary
       }
