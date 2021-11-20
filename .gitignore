@@ -165,3 +165,6 @@ sketch
 !.vscode/*.code-snippets
 
 # End of https://www.toptal.com/developers/gitignore/api/node,visualstudiocode,react
+
+.index.json
+.vercel
