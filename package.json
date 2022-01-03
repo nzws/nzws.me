@@ -63,7 +63,7 @@
     "remove-markdown": "^0.3.0",
     "ress": "^4.0.0",
     "sanitize-filename": "^1.6.3",
-    "simple-icons": "^5.23.0",
+    "simple-icons": "^6.5.0",
     "styled-components": "^5.3.3",
     "styled-media-query": "^2.1.2",
     "unified": "^10.1.1"
