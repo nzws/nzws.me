@@ -82,7 +82,7 @@ prebuild はスクリプトもすべて用意されていて、GitHub のトー�
 
 ![Untitled 2](https://user-images.githubusercontent.com/14953122/148654807-0ca011c0-ea7f-4447-98d8-0e53a7054847.png)
 
-yarn install をする時に prebuild で追加した 自分の `install` スクリプトを試してしまい、存在しない prebuild ファイルを求めるようになってしまいました。ライブラリ開発時は prebuild のコマンドをスキップさせたいのですが、~~どうやら yarn v2 では install コマンドに ignore-scripts が無いようです。とりあえず適当な踏み台のスクリプトを用意して、環境変数で prebuild コマンドを動かすかどうか分岐させています。~~
+yarn install をする時に prebuild で追加した 自分の `install` スクリプトを試してしまい、存在しない prebuild ファイルを求めるようになってしまいました。ライブラリ開発時は prebuild のコマンドをスキップさせたいのですが、<s>どうやら yarn v2 では install コマンドに ignore-scripts が無いようです。とりあえず適当な踏み台のスクリプトを用意して、環境変数で prebuild コマンドを動かすかどうか分岐させています。</s>
 
 [https://yarnpkg.com/cli/install](https://yarnpkg.com/cli/install) もしかしてお前 `--mode=skip-build` か...？（最後まで見てなかった）
 
