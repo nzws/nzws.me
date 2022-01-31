@@ -42,6 +42,7 @@ export const Accounts: FC = () => (
     {items.map((item, index) => (
       <Item
         {...(item.url ? { href: item.url, target: '_blank', as: 'a' } : {})}
+        rel="me"
         key={index}
       >
         <Icon title={item.title}>{item.icon}</Icon>
