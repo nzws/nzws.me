@@ -3022,10 +3022,10 @@ side-channel@^1.0.4:
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
 
-simple-icons@^5.23.0:
-  version "5.24.0"
-  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-5.24.0.tgz#6485a5713c2e5758605b461b833396c4874e9e4d"
-  integrity sha512-wKHeqUBsHYB5KPqdc3e7BGQPQCx/NbHfJuukjo70ABGk6hegjTDSoJhsSEcVadknVG4W3+jcC3G3RbytJnapGQ==
+simple-icons@^6.14.0:
+  version "6.14.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-6.14.0.tgz#0440e5a9354e6c83ffd4db70fd7b49ddd6f050a9"
+  integrity sha512-G1BloriCtFDxdxLPJJ7Ri4ffYp4ET/KOvpqTWaFUxeHcGognm468hmXp5g7auPYxKg2OsPqJ1zCYEjCRMqFtMg==
 
 sirv@^1.0.7:
   version "1.0.19"
