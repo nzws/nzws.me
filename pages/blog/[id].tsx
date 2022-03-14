@@ -53,11 +53,11 @@ const BlogPost: React.FC<Props> = ({ data }) => (
           'nzws'
         ].join(', ')}
       />
-
-      {data.scripts?.map((script, key) => (
-        <Script key={key} src={scriptUrls[script] || script} strategy="afterInteractive" />
-      ))}
     </Head>
+
+    {data.scripts?.map((script, key) => (
+      <Script key={key} src={scriptUrls[script] || script} />
+    ))}
 
     <Nav
       links={[
@@ -173,7 +173,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   };
 };
 
