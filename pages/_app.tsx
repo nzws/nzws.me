@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import NextNprogress from 'nextjs-progressbar';
 import Head from 'next/head';
-import Router from 'next/router';
 
 import 'ress/dist/ress.min.css';
 import 'highlight.js/styles/monokai.css';
@@ -81,24 +79,13 @@ const GlobalStyle = createGlobalStyle({
 });
 
 const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      const handleRouteChange = url => {
-        console.log(url);
-        // gtag.pageview(url);
-      };
-      Router.events.on('routeChangeComplete', handleRouteChange);
-      return () => Router.events.off('routeChangeComplete', handleRouteChange);
-    }
-  }, []);
-
   const theme = darkTheme;
 
   return (
     <ThemeProvider theme={theme}>
       <Head>
         <title>nzws.me (ねじわさみ)</title>
-        <link rel="shortcut icon" href="/static/avatar.png" />
+        <link rel="shortcut icon" href="/static/nzws_cry.png" />
         <meta
           name="description"
           content="nextで作られたねじわさ味を感じたかったウェブサイト"
@@ -115,13 +102,13 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@nzws_me" />
         <meta name="twitter:creator" content="@nzws_me" />
-        <meta property="og:image" content="https://nzws.me/static/avatar.png" />
+        <meta property="og:image" content="https://nzws.me/static/nzws_cry.png" />
         <meta name="Hatena::Bookmark" content="nocomment" />
       </Head>
       <GlobalStyle />
       <NextNprogress
         color={theme.text}
-        height="4"
+        height={4}
         options={{
           showSpinner: false
         }}

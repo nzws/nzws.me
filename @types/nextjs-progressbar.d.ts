@@ -3,7 +3,7 @@ declare module 'nextjs-progressbar' {
     color?: string;
     startPosition?: string;
     stopDelayMs?: string;
-    height?: string;
+    height?: number;
     options?: {
       [key: string]: string | number | boolean;
     };
