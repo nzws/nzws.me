@@ -17,8 +17,8 @@ const nextConfig = {
   },
   compiler: {
     // ssr and displayName are configured by default
-    styledComponents: true,
-  },
+    styledComponents: true
+  }
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

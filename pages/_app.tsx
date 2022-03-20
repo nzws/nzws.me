@@ -102,7 +102,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@nzws_me" />
         <meta name="twitter:creator" content="@nzws_me" />
-        <meta property="og:image" content="https://nzws.me/static/nzws_cry.png" />
+        <meta
+          property="og:image"
+          content="https://nzws.me/static/nzws_cry.png"
+        />
         <meta name="Hatena::Bookmark" content="nocomment" />
       </Head>
       <GlobalStyle />

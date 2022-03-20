@@ -27,7 +27,7 @@ export const Comments: FC<Props> = ({ id, statusId }) => {
       );
       setComments(body);
     })();
-  }, [disabled]);
+  }, [disabled, id]);
 
   return (
     <_Comments>

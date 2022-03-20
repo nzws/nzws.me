@@ -32,113 +32,123 @@ type Props = {
   };
 };
 
-const BlogPost: React.FC<Props> = ({ data }) => (
-  <Container>
-    <Head>
-      <title>{data.title} - Blog - nzws.me (ねじわさみ)</title>
-      <meta
-        property="og:title"
-        content={`${data.title} - Blog - nzws.me (ねじわさみ)`}
+const BlogPost: React.FC<Props> = ({ data }) => {
+  if (!data) {
+    return null;
+  }
+
+  return (
+    <Container>
+      <Head>
+        <title>{data.title} - Blog - nzws.me (ねじわさみ)</title>
+        <meta
+          property="og:title"
+          content={`${data.title} - Blog - nzws.me (ねじわさみ)`}
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={data.summary} />
+        <meta name="description" content={data.summary} />
+        <meta
+          name="keywords"
+          content={[
+            ...(data.category || []),
+            ...(data.tags || []),
+            "nzws's blog",
+            'ねじわさ',
+            'nzws'
+          ].join(', ')}
+        />
+      </Head>
+
+      {data.scripts?.map((script, key) => (
+        <Script key={key} src={scriptUrls[script] || script} />
+      ))}
+
+      <Nav
+        links={[
+          { title: 'nzws.me', href: '/' },
+          { title: 'blog', href: '/blog' },
+          { title: data.id, href: '/blog/[id]', as: `/blog/${data.id}` }
+        ]}
       />
-      <meta property="og:type" content="article" />
-      <meta property="og:description" content={data.summary} />
-      <meta name="description" content={data.summary} />
-      <meta
-        name="keywords"
-        content={[
-          ...(data.category || []),
-          ...(data.tags || []),
-          "nzws's blog",
-          'ねじわさ',
-          'nzws'
-        ].join(', ')}
+
+      <MovedComponent />
+
+      <Header>
+        <h1>{data?.title}</h1>
+        <Muted>
+          {new Date(data.date).toLocaleDateString(undefined, dateOptions)}
+        </Muted>
+        <div>
+          {data.category && (
+            <Tags category>
+              {data.category.map(tag => (
+                <Link
+                  href="/blog/[id]/[name]"
+                  as={`/blog/category/${tag}`}
+                  key={tag}
+                >
+                  <a>
+                    #<span>{tag}</span>
+                  </a>
+                </Link>
+              ))}
+            </Tags>
+          )}
+
+          {data.tags && (
+            <Tags>
+              {data.tags.map(tag => (
+                <Link
+                  href="/blog/[id]/[name]"
+                  as={`/blog/tags/${tag}`}
+                  key={tag}
+                >
+                  <a>
+                    #<span>{tag}</span>
+                  </a>
+                </Link>
+              ))}
+            </Tags>
+          )}
+        </div>
+      </Header>
+
+      <Main
+        dangerouslySetInnerHTML={{
+          __html: data.body
+        }}
       />
-    </Head>
 
-    {data.scripts?.map((script, key) => (
-      <Script key={key} src={scriptUrls[script] || script} />
-    ))}
+      {data.commentId && <Comments id={data.id} statusId={data.commentId} />}
 
-    <Nav
-      links={[
-        { title: 'nzws.me', href: '/' },
-        { title: 'blog', href: '/blog' },
-        { title: data.id, href: '/blog/[id]', as: `/blog/${data.id}` }
-      ]}
-    />
+      <Footer>
+        <div className="left">
+          誤字脱字は
+          <ExternalLink
+            href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
+          >
+            GitHub
+          </ExternalLink>
+          まで
+        </div>
 
-    <MovedComponent />
-
-    <Header>
-      <h1>{data.title}</h1>
-      <Muted>
-        {new Date(data.date).toLocaleDateString(undefined, dateOptions)}
-      </Muted>
-      <div>
-        {data.category && (
-          <Tags category>
-            {data.category.map(tag => (
-              <Link
-                href="/blog/[id]/[name]"
-                as={`/blog/category/${tag}`}
-                key={tag}
-              >
-                <a>
-                  #<span>{tag}</span>
-                </a>
-              </Link>
-            ))}
-          </Tags>
-        )}
-
-        {data.tags && (
-          <Tags>
-            {data.tags.map(tag => (
-              <Link href="/blog/[id]/[name]" as={`/blog/tags/${tag}`} key={tag}>
-                <a>
-                  #<span>{tag}</span>
-                </a>
-              </Link>
-            ))}
-          </Tags>
-        )}
-      </div>
-    </Header>
-
-    <Main
-      dangerouslySetInnerHTML={{
-        __html: data.body
-      }}
-    />
-
-    {data.commentId && <Comments id={data.id} statusId={data.commentId} />}
-
-    <Footer>
-      <div className="left">
-        誤字脱字は
-        <ExternalLink
-          href={`https://github.com/nzws/nzws.me/blob/master/blog-data/posts/${data.id}.md`}
-        >
-          GitHub
-        </ExternalLink>
-        まで
-      </div>
-
-      <div className="right">
-        <ExternalLink
-          href={`https://easy-share.now.sh/?t=${encodeURIComponent(
-            data.title + ' - Blog - nzws.me (ねじわさみ)'
-          )}&link=${encodeURIComponent('https://nzws.me/blog/' + data.id)}`}
-        >
-          <Share className="icon" size={18} /> 共有
-        </ExternalLink>
-        <a href="#">
-          <ChevronUp className="icon" />
-        </a>
-      </div>
-    </Footer>
-  </Container>
-);
+        <div className="right">
+          <ExternalLink
+            href={`https://easy-share.now.sh/?t=${encodeURIComponent(
+              data.title + ' - Blog - nzws.me (ねじわさみ)'
+            )}&link=${encodeURIComponent('https://nzws.me/blog/' + data.id)}`}
+          >
+            <Share className="icon" size={18} /> 共有
+          </ExternalLink>
+          <a href="#">
+            <ChevronUp className="icon" />
+          </a>
+        </div>
+      </Footer>
+    </Container>
+  );
+};
 
 const Header = styled.div`
   padding-bottom: 10px;

@@ -20,7 +20,10 @@ export const Comment: FC<Props> = ({ comment, comments, reply }) => (
       $isReply={reply}
     >
       <Avatar>
-        <img src={comment.account.avatar_static} />
+        <img
+          src={comment.account.avatar_static}
+          alt={`${comment.account.acct}'s avatar`}
+        />
       </Avatar>
       <Account>
         <b>{comment.account.display_name || comment.account.username}</b>
