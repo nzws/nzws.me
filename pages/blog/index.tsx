@@ -1,6 +1,7 @@
-import React from 'react';
+import { FC } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import fs from 'fs/promises';
 
 import MovedComponent from '../../components/blog/moved-component';
 import Nav from '../../components/blog/nav';
@@ -15,7 +16,7 @@ type Props = {
   prevPageId?: number;
 };
 
-const Blog: React.FC<Props> = ({ data, nextPageId, prevPageId }) => {
+const Blog: FC<Props> = ({ data, nextPageId, prevPageId }) => {
   return (
     <Container>
       <Head>
@@ -43,7 +44,9 @@ const Blog: React.FC<Props> = ({ data, nextPageId, prevPageId }) => {
 export const getServerSideProps: GetServerSideProps = async ({
   query: { page }
 }) => {
-  const posts = require('../../blog-data/.index.json');
+  const posts = JSON.parse(
+    await fs.readFile('./blog-data/.index.json', 'utf8')
+  ) as post[];
   const Page = typeof page === 'string' ? parseInt(page) : 0;
   const num = Page * 10;
   const data = posts.filter(v => !v.isHidden);

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment, FC } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 
@@ -41,7 +41,7 @@ type Props = {
   noBorder?: boolean;
 };
 
-const Nav: React.FC<Props> = ({ links, noBorder }) => (
+const Nav: FC<Props> = ({ links, noBorder }) => (
   <StyledNav $noBorder={noBorder}>
     <Links>
       {links.map((link, index) => {

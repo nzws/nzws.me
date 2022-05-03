@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment, ReactElement } from 'react';
 import Document, {
   Html,
   Head,
@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
     }
   }
 
-  render(): React.ReactElement {
+  render(): ReactElement {
     return (
       <Html lang="ja">
         <Head>
@@ -53,6 +53,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
           <script
             defer
             src="https://static.cloudflareinsights.com/beacon.min.js"

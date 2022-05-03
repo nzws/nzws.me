@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import { FC, Fragment, useEffect, useState } from 'react';
 import { HelpCircle } from 'react-feather';
 import styled from 'styled-components';
 import { Status } from '../../types/mastodon';
@@ -17,14 +17,14 @@ export const Comments: FC<Props> = ({ id, statusId }) => {
   const disabled = statusId === 'wip';
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       if (disabled) {
         return;
       }
 
-      const body = await fetch(`/api/comments?id=${id}`).then(response =>
+      const body = (await fetch(`/api/comments?id=${id}`).then(response =>
         response.json()
-      );
+      )) as Status[];
       setComments(body);
     })();
   }, [disabled, id]);

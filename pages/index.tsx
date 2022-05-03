@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import fs from 'fs/promises';
+import { FC } from 'react';
 import { GetStaticProps } from 'next';
 import Nav from '../components/blog/nav';
 import { Container } from '../components/blog/layouts';
@@ -34,7 +35,9 @@ const Index: FC<Props> = ({ data, nextPageId }) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = require('../blog-data/.index.json');
+  const posts = JSON.parse(
+    await fs.readFile('./blog-data/.index.json', 'utf8')
+  ) as post[];
   const data = posts.filter(v => !v.isHidden);
 
   return {

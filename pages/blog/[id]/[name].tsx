@@ -1,4 +1,5 @@
-import React from 'react';
+import fs from 'fs/promises';
+import { FC } from 'react';
 import Head from 'next/head';
 
 import MovedComponent from '../../../components/blog/moved-component';
@@ -16,7 +17,7 @@ type Props = {
   name: string;
 };
 
-const Blog: React.FC<Props> = ({ data, nextPageId, prevPageId, id, name }) => {
+const Blog: FC<Props> = ({ data, nextPageId, prevPageId, id, name }) => {
   return (
     <Container>
       <Head>
@@ -59,15 +60,17 @@ export const getServerSideProps = async ({
 }): Promise<{
   props: Props;
 }> => {
-  const posts = require('../../../blog-data/.index.json');
+  const posts = JSON.parse(
+    await fs.readFile('./blog-data/.index.json', 'utf8')
+  ) as post[];
   const Page = typeof page === 'string' ? parseInt(page) : 0;
   const num = Page * 10;
 
-  if (['tags', 'category'].indexOf(id) === -1) {
+  if (id !== 'tags' && id !== 'category') {
     throw new Error('not found');
   }
 
-  const data = posts.filter(v => v?.[id]?.indexOf(name) !== -1 && !v.isHidden);
+  const data = posts.filter(v => v?.[id]?.includes(name) && !v.isHidden);
 
   return {
     props: {
