@@ -1,15 +1,12 @@
-import fs from 'fs/promises';
 import { FC } from 'react';
 import Head from 'next/head';
-
 import MovedComponent from '../../../components/blog/moved-component';
 import Nav from '../../../components/blog/nav';
 import BlogSummary from '../../../components/blog/blog-summary';
 import Footer from '../../../components/blog/list-footer';
 import { Container } from '../../../components/blog/layouts';
-
 import post from '../../../types/post';
-import { getIndexPath } from '../../../lib/path';
+
 type Props = {
   data: Array<post>;
   nextPageId?: number;
@@ -47,7 +44,7 @@ const Blog: FC<Props> = ({ data, nextPageId, prevPageId, id, name }) => {
   );
 };
 
-export const getServerSideProps = async ({
+export const getServerSideProps = ({
   query: { page },
   params: { id, name }
 }: {
@@ -61,7 +58,8 @@ export const getServerSideProps = async ({
 }): Promise<{
   props: Props;
 }> => {
-  const posts = JSON.parse(await fs.readFile(getIndexPath(), 'utf8')) as post[];
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const posts = require('../../../blog-data/.index.json') as post[];
   const Page = typeof page === 'string' ? parseInt(page) : 0;
   const num = Page * 10;
 
@@ -71,7 +69,7 @@ export const getServerSideProps = async ({
 
   const data = posts.filter(v => v?.[id]?.includes(name) && !v.isHidden);
 
-  return {
+  return Promise.resolve({
     props: {
       name,
       id,
@@ -79,7 +77,7 @@ export const getServerSideProps = async ({
       nextPageId: data[num + 10] ? Page + 1 : null,
       prevPageId: Page - 1
     }
-  };
+  });
 };
 
 export default Blog;
