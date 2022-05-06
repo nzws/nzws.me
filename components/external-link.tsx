@@ -1,11 +1,12 @@
-import React from 'react';
+import { FC, ReactNode } from 'react';
 
 type Props = {
   href: string;
   rel?: string;
+  children: ReactNode;
 };
 
-const ExternalLink: React.FC<Props> = props => {
+const ExternalLink: FC<Props> = props => {
   const { href, children, rel, ...prop } = props;
 
   const Rel = ['noopener', 'noreferrer', ...(rel || '').split(' ')].join(' ');

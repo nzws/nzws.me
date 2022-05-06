@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { ReactElement } from 'react';
 import Document, {
   Html,
   Head,
@@ -28,19 +28,14 @@ export default class MyDocument extends Document {
 
       return {
         ...initialProps,
-        styles: (
-          <Fragment>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </Fragment>
-        )
+        styles: [initialProps.styles, sheet.getStyleElement()]
       };
     } finally {
       sheet.seal();
     }
   }
 
-  render(): React.ReactElement {
+  render(): ReactElement {
     return (
       <Html lang="ja">
         <Head>
@@ -53,6 +48,7 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+
           <script
             defer
             src="https://static.cloudflareinsights.com/beacon.min.js"

@@ -1,4 +1,5 @@
-import React from 'react';
+import fs from 'fs/promises';
+import { FC } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import matter from 'gray-matter';
 import styled from 'styled-components';
@@ -16,8 +17,9 @@ import { Main, Container } from '../../components/blog/layouts';
 import { Footer } from '../../components/blog/footer';
 import { Comments } from '../../components/blog/comments';
 import { dateOptions } from '../../lib/const';
+import { getIndexPath, getPostPath } from '../../lib/path';
 
-const scriptUrls = {
+const scriptUrls: Record<string, string> = {
   twitter: 'https://platform.twitter.com/widgets.js',
   'don-nzws-me': 'https://assets-don.nzws.me/embed.js'
 };
@@ -32,7 +34,7 @@ type Props = {
   };
 };
 
-const BlogPost: React.FC<Props> = ({ data }) => {
+const BlogPost: FC<Props> = ({ data }) => {
   if (!data) {
     return null;
   }
@@ -161,7 +163,7 @@ const Muted = styled.div`
   color: ${({ theme: { text, darken } }) => darken(0.5, text)};
 `;
 
-const Tags = styled.span`
+const Tags = styled.span<{ category?: boolean }>`
   display: inline-block;
   margin-top: 5px;
 
@@ -178,8 +180,8 @@ const Tags = styled.span`
 `;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const files: Array<post> = require('../../blog-data/.index.json');
-  const paths = files.map(({ slug }) => `/blog/${slug}`);
+  const posts = JSON.parse(await fs.readFile(getIndexPath(), 'utf8')) as post[];
+  const paths = posts.map(({ slug }) => `/blog/${slug}`);
 
   return {
     paths,
@@ -188,7 +190,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
-  const { default: md } = require(`../../blog-data/posts/${id}.md`);
+  if (!id || typeof id !== 'string' || !id.match(/^[a-z0-9-]+$/)) {
+    throw new Error('invalid id');
+  }
+
+  const md = await fs.readFile(getPostPath(id), 'utf8');
   const m = matter(md);
   const summary = generateSummary(m.content);
 
@@ -196,7 +202,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
     props: {
       data: {
         ...m.data,
-        date: new Date(m.data.date).getTime(),
+        date: new Date(m.data.date as string).getTime(),
         body: processor.processSync(m.content).toString(),
         id,
         summary

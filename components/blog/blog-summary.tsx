@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { darken } from 'polished';
@@ -9,7 +9,7 @@ type Props = {
   post: post;
 };
 
-const BlogSummary: React.FC<Props> = ({ post }) => (
+const BlogSummary: FC<Props> = ({ post }) => (
   <Block>
     <h2>
       <Link
@@ -68,7 +68,7 @@ const Block = styled.div`
   }
 `;
 
-const Tags = styled.span`
+const Tags = styled.span<{ category?: boolean }>`
   ${({ category }) =>
     category &&
     `

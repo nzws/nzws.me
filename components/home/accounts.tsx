@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import media from 'styled-media-query';
 import { Mail } from 'react-feather';
 import { Discord, Github, Mastodon } from '@icons-pack/react-simple-icons';

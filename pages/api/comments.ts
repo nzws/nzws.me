@@ -1,6 +1,6 @@
 import path from 'path';
 import os from 'os';
-import { promises } from 'fs';
+import fs from 'fs/promises';
 import got from 'got';
 import { NextApiRequest, NextApiResponse } from 'next';
 import sanitize from 'sanitize-filename';
@@ -30,12 +30,14 @@ const handler = async (
 
   try {
     if (process.env.NODE_ENV !== 'development') {
-      const { mtime } = await promises.stat(cacheFile);
+      const { mtime } = await fs.stat(cacheFile);
       const updatedAt = new Date(mtime);
 
       if (Date.now() - updatedAt.getTime() < CACHE_MS) {
         console.log('cached');
-        const body = JSON.parse(await promises.readFile(cacheFile, 'utf8'));
+        const body = JSON.parse(
+          await fs.readFile(cacheFile, 'utf8')
+        ) as unknown;
 
         return res.status(200).json(body);
       }
@@ -87,7 +89,7 @@ const handler = async (
         !status.tags.some(tag => ignoreTags.includes(tag.name.toLowerCase()))
     );
 
-  await promises.writeFile(cacheFile, JSON.stringify(data));
+  await fs.writeFile(cacheFile, JSON.stringify(data));
   res.status(200).json(data);
 };
 
