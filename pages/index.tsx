@@ -10,6 +10,7 @@ import { Profile } from '../components/home/layouts';
 import { Head } from '../components/home/head';
 import { Accounts } from '../components/home/accounts';
 import { Sponsor } from '../components/home/sponsor';
+import { getIndexPath } from '../lib/path';
 
 type Props = {
   data: post[];
@@ -35,9 +36,7 @@ const Index: FC<Props> = ({ data, nextPageId }) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = JSON.parse(
-    await fs.readFile('./blog-data/.index.json', 'utf8')
-  ) as post[];
+  const posts = JSON.parse(await fs.readFile(getIndexPath(), 'utf8')) as post[];
   const data = posts.filter(v => !v.isHidden);
 
   return {

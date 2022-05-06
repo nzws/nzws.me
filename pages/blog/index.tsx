@@ -10,6 +10,7 @@ import { Container } from '../../components/blog/layouts';
 import Footer from '../../components/blog/list-footer';
 
 import post from '../../types/post';
+import { getIndexPath } from '../../lib/path';
 type Props = {
   data: Array<post>;
   nextPageId?: number;
@@ -44,9 +45,7 @@ const Blog: FC<Props> = ({ data, nextPageId, prevPageId }) => {
 export const getServerSideProps: GetServerSideProps = async ({
   query: { page }
 }) => {
-  const posts = JSON.parse(
-    await fs.readFile('./blog-data/.index.json', 'utf8')
-  ) as post[];
+  const posts = JSON.parse(await fs.readFile(getIndexPath(), 'utf8')) as post[];
   const Page = typeof page === 'string' ? parseInt(page) : 0;
   const num = Page * 10;
   const data = posts.filter(v => !v.isHidden);

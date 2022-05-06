@@ -9,6 +9,7 @@ import Footer from '../../../components/blog/list-footer';
 import { Container } from '../../../components/blog/layouts';
 
 import post from '../../../types/post';
+import { getIndexPath } from '../../../lib/path';
 type Props = {
   data: Array<post>;
   nextPageId?: number;
@@ -60,9 +61,7 @@ export const getServerSideProps = async ({
 }): Promise<{
   props: Props;
 }> => {
-  const posts = JSON.parse(
-    await fs.readFile('./blog-data/.index.json', 'utf8')
-  ) as post[];
+  const posts = JSON.parse(await fs.readFile(getIndexPath(), 'utf8')) as post[];
   const Page = typeof page === 'string' ? parseInt(page) : 0;
   const num = Page * 10;
 

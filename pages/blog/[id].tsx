@@ -17,6 +17,7 @@ import { Main, Container } from '../../components/blog/layouts';
 import { Footer } from '../../components/blog/footer';
 import { Comments } from '../../components/blog/comments';
 import { dateOptions } from '../../lib/const';
+import { getIndexPath, getPostPath } from '../../lib/path';
 
 const scriptUrls: Record<string, string> = {
   twitter: 'https://platform.twitter.com/widgets.js',
@@ -179,9 +180,7 @@ const Tags = styled.span<{ category?: boolean }>`
 `;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = JSON.parse(
-    await fs.readFile('./blog-data/.index.json', 'utf8')
-  ) as post[];
+  const posts = JSON.parse(await fs.readFile(getIndexPath(), 'utf8')) as post[];
   const paths = posts.map(({ slug }) => `/blog/${slug}`);
 
   return {
@@ -195,9 +194,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { id } }) => {
     throw new Error('invalid id');
   }
 
-  const md = JSON.parse(
-    await fs.readFile(`./blog-data/${id}.md`, 'utf8')
-  ) as string;
+  const md = await fs.readFile(getPostPath(id), 'utf8');
   const m = matter(md);
   const summary = generateSummary(m.content);
 
