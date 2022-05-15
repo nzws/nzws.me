@@ -10,3 +10,5 @@ interface post {
 }
 
 export default post;
+
+export const a = 'a';
