@@ -21,7 +21,7 @@ import { getIndexPath, getPostPath } from '../../lib/path';
 
 const scriptUrls: Record<string, string> = {
   twitter: 'https://platform.twitter.com/widgets.js',
-  'don-nzws-me': 'https://assets-don.nzws.me/embed.js'
+  'don-nzws-me': 'https://don.nzws.me/embed.js'
 };
 
 type Props = {
