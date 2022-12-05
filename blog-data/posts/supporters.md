@@ -7,7 +7,7 @@ isHidden: true
 支援して頂きありがとうございます。
 
 もしあなたのお名前が追加されていなかったり、その他要望がございましたら、お手数おかけしますが問い合わせください。  
-If you have any questions about this list, please contact me.
+If your name has not been added or you have any other requests, please contact me.
 
 - 神崎おにいさん さん
 - mopopo さん
