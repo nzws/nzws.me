@@ -29,7 +29,7 @@
     "@types/remove-markdown": "^0.3.1",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
+    "@typescript-eslint/parser": "^5.51.0",
     "cross-env": "^7.0.3",
     "eslint": "~8.14.0",
     "eslint-config-next": "12.1.6",
