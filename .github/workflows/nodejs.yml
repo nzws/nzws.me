@@ -8,26 +8,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Restore deps from actions cache
-        uses: actions/cache@v1
-        id: cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('yarn.lock') }}
+          cache: 'yarn'
 
       - name: Install deps
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
 
       - name: Build files
         run: yarn build
