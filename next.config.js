@@ -1,22 +1,18 @@
+// @ts-check
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 });
 
+/**
+ * @type {import('next').NextConfig}
+ **/
 const nextConfig = {
-  webpack: config => {
-    config.module.rules.push({ test: /\.md$/, use: ['raw-loader'] });
-    /*
-    if (!isServer) {
-      config.node = {
-        fs: 'empty'
-      };
-    }
-    */
-
-    return config;
-  },
   compiler: {
     styledComponents: true
+  },
+  experimental: {
+    appDir: true
   },
   reactStrictMode: true
 };
