@@ -1,14 +1,14 @@
 import { Navigation } from '../../components/navigation';
+import { PageNumber } from '../../utils/constants';
 
 export default function Page() {
   return (
     <div>
-      <Navigation />
+      <Navigation currentPage={PageNumber.About} />
     </div>
   );
 }
 
 export const metadata = {
-  title: 'nzws.me',
-  description: 'nzws.me'
+  title: 'nzws.me'
 };

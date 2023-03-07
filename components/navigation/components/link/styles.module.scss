@@ -1,0 +1,16 @@
+@import '../../styles.module.scss';
+
+.link {
+  display: block;
+  width: $linkWidth;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 22px;
+  position: relative;
+
+  &[data-active] {
+    font-weight: 600;
+  }
+}

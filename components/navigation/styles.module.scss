@@ -1,0 +1,39 @@
+@import '~/styles/shared';
+
+.container {
+  @extend .shared_container;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.brand {
+  font-size: 28px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+$linkWidth: 120px;
+
+.bar {
+  width: $linkWidth;
+  height: 2px;
+  background: $primaryText;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.command_button {
+  display: block;
+  color: $primaryText;
+}

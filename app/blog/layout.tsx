@@ -1,9 +1,11 @@
 import { PropsWithChildren } from 'react';
+import { Navigation } from '~/components/navigation';
+import { PageNumber } from '~/utils/constants';
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
     <div>
-      stub
+      <Navigation currentPage={PageNumber.Blog} />
       {children}
     </div>
   );

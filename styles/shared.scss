@@ -1,0 +1,13 @@
+@import './theme.scss';
+
+.shared_container {
+  width: 1024px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.mincho {
+  font-family: var(--font-mincho);
+}

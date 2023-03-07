@@ -12,8 +12,5 @@
   ],
   "parserOptions": {
     "project": ["./tsconfig.json"]
-  },
-  "rules": {
-    "@next/next/no-img-element": "off"
   }
 }

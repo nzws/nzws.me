@@ -1,0 +1,45 @@
+@import '~/styles/shared.scss';
+
+.container_link {
+  display: block;
+  text-decoration: none;
+  color: $textPrimary;
+}
+
+.cover {
+  width: 100%;
+  border-radius: 16px;
+  background-color: $backgroundSecondary;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.cover_image {
+  object-fit: contain;
+}
+
+.title {
+  font-size: 32px;
+  font-family: var(--font-mincho);
+}
+
+.tags {
+  .tag {
+    font-size: 18px;
+    color: $textSecondary;
+
+    :first-child {
+      font-weight: bold;
+    }
+  }
+}
+
+.createdAt {
+  font-size: 18px;
+  color: $textSecondary;
+}
+
+.description {
+  font-size: 18px;
+  font-family: var(--font-mincho);
+}
