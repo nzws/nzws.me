@@ -9,6 +9,8 @@ export default function Page() {
   );
 }
 
+export const runtime = 'experimental-edge';
+
 export const metadata = {
   title: 'nzws.me'
 };

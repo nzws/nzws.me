@@ -1,0 +1,58 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { getPlaiceholder } from 'plaiceholder';
+import { BASE_URL } from '~/utils/constants';
+import { ImageDetails } from '~/utils/type';
+
+// also edit me: next.config.js
+const allowOrigins = [
+  BASE_URL,
+  'https://user-images.githubusercontent.com',
+  'https://i.imgur.com'
+];
+
+export async function GET(request: NextRequest) {
+  const params = new URLSearchParams(request.nextUrl.search.substring(1));
+  const url = params.get('url');
+  if (!url) {
+    return NextResponse.json(
+      {
+        error: 'url is required'
+      },
+      { status: 400 }
+    );
+  }
+
+  const allowed =
+    url.startsWith('/static/') ||
+    allowOrigins.some(origin => url.startsWith(origin));
+  if (!allowed) {
+    return NextResponse.json(
+      {
+        error: 'this url is not allowed'
+      },
+      { status: 403 }
+    );
+  }
+
+  try {
+    const response = await getPlaiceholder(url);
+
+    const data: ImageDetails = {
+      src: url,
+      width: response.img.width,
+      height: response.img.height,
+      type: response.img.type,
+      base64: response.base64
+    };
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      {
+        error: 'failed to get image size'
+      },
+      { status: 404 }
+    );
+  }
+}

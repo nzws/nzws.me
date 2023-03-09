@@ -9,7 +9,7 @@ type Props = {
   title: string;
   description?: string;
   tags: string[];
-  createdAt: string;
+  date: number;
   coverImage?: string;
   isFirst: boolean;
 };
@@ -19,7 +19,7 @@ export const Item: FC<Props> = ({
   title,
   description,
   tags,
-  createdAt,
+  date,
   coverImage,
   isFirst
 }) => (
@@ -48,7 +48,7 @@ export const Item: FC<Props> = ({
             ))}
           </HStack>
 
-          <div className={styles.createdAt}>{createdAt}</div>
+          <div className={styles.createdAt}>{date}</div>
         </HStack>
 
         {!isFirst && <div className={styles.description}>{description}</div>}

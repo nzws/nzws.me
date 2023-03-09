@@ -8,13 +8,23 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  compiler: {
-    styledComponents: true
-  },
   experimental: {
     appDir: true
   },
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      // also edit me: api/web/image/route.ts
+      {
+        protocol: 'https',
+        hostname: 'user-images.githubusercontent.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com'
+      }
+    ]
+  }
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
