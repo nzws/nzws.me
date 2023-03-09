@@ -8,6 +8,7 @@ tags:
 date: '2022-01-09'
 scripts:
   - don-nzws-me
+coverImage: /static/blog/202201-create-native-module/cover.png
 ---
 
 どうもこんにちは、そろそろ冬休みが終わり辛くなっている [ねじわさ](https://don.nzws.me/@nzws) です。ちなみに冬休みの後半はほとんどこれで潰しました。(本当は原神もしてた)

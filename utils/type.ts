@@ -3,7 +3,9 @@ export interface ArticleSummary {
   title: string;
   date: number;
   description: string;
+  coverImage?: string;
   tags: string[];
+  type: string;
 }
 
 export interface ArticleDetails extends Omit<ArticleSummary, 'description'> {
@@ -18,4 +20,9 @@ export interface ImageDetails {
   height: number;
   type?: string;
   base64: string;
+}
+
+export interface ArticleSearch {
+  title: string;
+  url: string;
 }

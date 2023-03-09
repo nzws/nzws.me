@@ -32,7 +32,11 @@ export const Navigation: FC<Props> = ({ currentPage }) => {
           </NextLink>
         </div>
 
-        <HStack justifyContent="center" alignItems="center">
+        <HStack
+          justifyContent="center"
+          alignItems="center"
+          className={styles.links}
+        >
           <div
             className={styles.bar}
             style={{

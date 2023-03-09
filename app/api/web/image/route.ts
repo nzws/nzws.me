@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPlaiceholder } from 'plaiceholder';
+import { CacheService } from '~/lib/cache-service';
 import { BASE_URL } from '~/utils/constants';
 import { ImageDetails } from '~/utils/type';
 
@@ -24,7 +25,7 @@ export async function GET(request: NextRequest) {
 
   const allowed =
     url.startsWith('/static/') ||
-    allowOrigins.some(origin => url.startsWith(origin));
+    allowOrigins.some(origin => new URL(url).origin === origin);
   if (!allowed) {
     return NextResponse.json(
       {
@@ -35,17 +36,28 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const response = await getPlaiceholder(url);
+    const data = await new CacheService<ImageDetails>('image-meta', url).sync(
+      async () => {
+        const response = await getPlaiceholder(url, {
+          removeAlpha: false
+        });
 
-    const data: ImageDetails = {
-      src: url,
-      width: response.img.width,
-      height: response.img.height,
-      type: response.img.type,
-      base64: response.base64
-    };
+        const data: ImageDetails = {
+          src: url,
+          width: response.img.width,
+          height: response.img.height,
+          type: response.img.type,
+          base64: response.base64
+        };
 
-    return NextResponse.json(data);
+        return data;
+      }
+    );
+
+    const header = new Headers();
+    header.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+
+    return NextResponse.json(data, { headers: header });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

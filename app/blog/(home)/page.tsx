@@ -26,7 +26,7 @@ export default async function Page() {
           description={article.description}
           tags={article.tags}
           date={article.date}
-          //coverImage={article.coverImage}
+          coverImage={article.coverImage}
           isFirst={index === 0}
         />
       ))}

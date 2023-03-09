@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
-import { HStack, Stack, VStack } from '~/components/stack';
+import { Image } from '~/components/image';
+import { HStack, VStack } from '~/components/stack';
 import styles from './styles.module.scss';
 
 type Props = {
@@ -24,15 +24,10 @@ export const Item: FC<Props> = ({
   isFirst
 }) => (
   <Link href={`/blog/${slug}`} className={styles.container_link}>
-    <Stack direction={isFirst ? 'vertical' : 'horizontal'} gap="12px">
+    <div className={styles.container} data-is-first={isFirst || undefined}>
       <div className={styles.cover}>
         {coverImage && (
-          <Image
-            src={coverImage}
-            alt={title}
-            fill
-            className={styles.cover_image}
-          />
+          <Image url={coverImage} alt={title} className={styles.cover_image} />
         )}
       </div>
 
@@ -53,6 +48,6 @@ export const Item: FC<Props> = ({
 
         {!isFirst && <div className={styles.description}>{description}</div>}
       </VStack>
-    </Stack>
+    </div>
   </Link>
 );

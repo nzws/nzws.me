@@ -8,7 +8,7 @@
     "lint": "prettier --check . && next lint",
     "format": "prettier --write .",
     "build": "next build",
-    "dev": "next",
+    "dev": "rm -rf .nzws-cache && next",
     "start": "next start",
     "analyze": "ANALYZE=true next build"
   },
@@ -37,6 +37,7 @@
     "@icons-pack/react-simple-icons": "6.3.0",
     "cmdk": "0.2.0",
     "gray-matter": "4.0.3",
+    "include-media": "2.0.0",
     "next": "13.2.3",
     "plaiceholder": "2.5.0",
     "polished": "4.2.2",
@@ -49,6 +50,7 @@
     "remark-rehype": "10.1.0",
     "remove-markdown": "0.5.0",
     "ress": "5.0.2",
+    "sanitize-filename": "1.6.3",
     "sharp": "0.31.3",
     "styled-components": "5.3.8",
     "unified": "10.1.2"

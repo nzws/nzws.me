@@ -3,8 +3,8 @@
 .link {
   display: block;
   width: $linkWidth;
-  height: 64px;
-  line-height: 64px;
+  height: $linkHeight;
+  line-height: $linkHeight;
   text-align: center;
   text-decoration: none;
   font-size: 22px;

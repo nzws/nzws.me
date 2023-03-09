@@ -1,6 +1,6 @@
 @import '~/styles/shared';
 
 .container {
-  @extend .shared_container;
+  @include shared_container;
   padding: 20px 12px;
 }

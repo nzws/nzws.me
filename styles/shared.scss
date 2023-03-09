@@ -1,6 +1,7 @@
+@import '~include-media/dist/_include-media.scss';
 @import './theme.scss';
 
-.shared_container {
+@mixin shared_container {
   width: 1024px;
   margin: 0 auto;
   max-width: 100%;
