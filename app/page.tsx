@@ -1,5 +1,5 @@
-import { Navigation } from '../../components/navigation';
-import { PageNumber } from '../../utils/constants';
+import { Navigation } from '~/components/navigation';
+import { PageNumber } from '~/utils/constants';
 
 export default function Page() {
   return (
