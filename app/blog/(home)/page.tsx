@@ -34,7 +34,7 @@ export default async function Page() {
   );
 }
 
-// export const runtime = 'experimental-edge';
+export const runtime = 'experimental-edge';
 
 export const metadata = {
   title: 'Blog - nzws.me'
