@@ -18,7 +18,9 @@ export async function GET() {
   const flatted = data.map(item => ({
     title: item.title,
     url: `/${item.type}/${item.slug}`,
-    keywords: [item.slug, item.title, item.description, ...item.tags].join(' ')
+    keywords: [item.slug, item.title, item.description, ...item.tags]
+      .join(',')
+      .toLowerCase()
   }));
 
   const header = new Headers();

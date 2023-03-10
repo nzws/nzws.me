@@ -9,6 +9,7 @@ import {
   useCallback,
   useDeferredValue,
   useEffect,
+  useRef,
   useState
 } from 'react';
 import styles from './styles.module.scss';
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
+  const searchLogsRef = useRef<Record<string, ArticleSearch[]>>({});
   const router = useRouter();
   const [search, setSearch] = useState('');
   const deferredSearch = useDeferredValue(search);
@@ -38,6 +40,11 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
   useEffect(() => {
     if (deferredSearch.length < 1) return;
 
+    if (searchLogsRef.current[deferredSearch]) {
+      setSearchResult(searchLogsRef.current[deferredSearch]);
+      return;
+    }
+
     setLoading(true);
     const abort = new AbortController();
 
@@ -47,6 +54,7 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
       .then(res => res.json())
       .then(res => {
         setSearchResult(res as ArticleSearch[]);
+        searchLogsRef.current[deferredSearch] = res as ArticleSearch[];
         setLoading(false);
       });
 
