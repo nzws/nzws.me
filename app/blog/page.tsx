@@ -5,12 +5,18 @@ import { Item } from './components/item';
 import styles from './styles.module.scss';
 
 async function getData() {
-  const response = await fetch(`${BASE_URL}/api/web/articles/blog`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch');
-  }
+  try {
+    console.log(`${BASE_URL}/api/web/articles/blog`);
+    const response = await fetch(`${BASE_URL}/api/web/articles/blog`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch');
+    }
 
-  return (await response.json()) as ArticleSummary[];
+    return (await response.json()) as ArticleSummary[];
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 }
 
 export default async function Page() {
