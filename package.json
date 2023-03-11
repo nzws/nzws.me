@@ -1,8 +1,8 @@
 {
   "name": "nzws.me",
   "repository": "https://github.com/nzws/nzws.me.git",
-  "author": "nzws <github@nzws.me>",
-  "license": "MPL-2.0",
+  "author": "nzws <yuzu@nzws.me>",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "lint": "prettier --check . && next lint",
@@ -45,6 +45,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-feather": "2.0.10",
+    "rehype-external-links": "2.0.1",
     "rehype-stringify": "9.0.3",
     "remark-highlight.js": "7.0.1",
     "remark-parse": "10.0.1",

@@ -3129,6 +3129,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-absolute-url@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "is-absolute-url@npm:4.0.1"
+  checksum: de172a718439982a54477fdae55f21be69ec0e6a4b205db5484975d2f4ee749851fd46c28f3790dfc51a274c2ed1d0f8457b6d1fff02ab829069fd9cc761e48c
+  languageName: node
+  linkType: hard
+
 "is-arguments@npm:^1.1.1":
   version: 1.1.1
   resolution: "is-arguments@npm:1.1.1"
@@ -4323,6 +4330,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-feather: 2.0.10
+    rehype-external-links: 2.0.1
     rehype-stringify: 9.0.3
     remark-highlight.js: 7.0.1
     remark-parse: 10.0.1
@@ -4861,6 +4869,20 @@ __metadata:
   version: 3.2.0
   resolution: "regexpp@npm:3.2.0"
   checksum: a78dc5c7158ad9ddcfe01aa9144f46e192ddbfa7b263895a70a5c6c73edd9ce85faf7c0430e59ac38839e1734e275b9c3de5c57ee3ab6edc0e0b1bdebefccef8
+  languageName: node
+  linkType: hard
+
+"rehype-external-links@npm:2.0.1":
+  version: 2.0.1
+  resolution: "rehype-external-links@npm:2.0.1"
+  dependencies:
+    "@types/hast": ^2.0.0
+    extend: ^3.0.0
+    is-absolute-url: ^4.0.0
+    space-separated-tokens: ^2.0.0
+    unified: ^10.0.0
+    unist-util-visit: ^4.0.0
+  checksum: 56d3a49d1f7bff62bebfb2fdd2c15f8d39a26323090fb8935c202e3c2e3cce217a7d5c4c4b684b09e5a4c896c5b586931c71ec9eaabe1120693b44e3cf0704ce
   languageName: node
   linkType: hard
 

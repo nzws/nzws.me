@@ -1,7 +1,7 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest, NextResponse } from 'next/server';
 import { BASE_URL } from '~/utils/constants';
-import { ArticleSummary } from '~/utils/type';
+import { ArticleList } from '~/utils/type';
 
 export const runtime = 'experimental-edge';
 
@@ -22,7 +22,7 @@ const genei_latemin = fetch(genei_latemin_p_url).then(res => res.arrayBuffer());
 
 async function getData(type: string, id: string) {
   const response = await fetch(`${BASE_URL}/api/internal/articles/${type}`);
-  const data = (await response.json()) as ArticleSummary[];
+  const data = (await response.json()) as ArticleList;
 
   return data.find(d => d.slug === id);
 }
@@ -36,14 +36,36 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Params }
 ) {
+  const query = new URLSearchParams(request.nextUrl.search.substring(1));
   const { type, id } = params;
   if (type !== 'blog' && type !== 'product') {
-    return NextResponse.json(null, { status: 404 });
+    return NextResponse.json(
+      {
+        error: 'Invalid type'
+      },
+      { status: 404 }
+    );
+  }
+
+  const width = Number(query.get('width')) || 1200;
+  const height = Number(query.get('height')) || 630;
+  if (width > 3840 || height > 2160 || width < 1 || height < 1) {
+    return NextResponse.json(
+      {
+        error: 'Invalid width or height'
+      },
+      { status: 400 }
+    );
   }
 
   const data = await getData(type, id);
   if (!data) {
-    return NextResponse.json(null, { status: 404 });
+    return NextResponse.json(
+      {
+        error: 'Not found'
+      },
+      { status: 404 }
+    );
   }
 
   const [IBMPlexSans, GenEiLatemin] = await Promise.all([
@@ -71,7 +93,7 @@ export async function GET(
       >
         <div
           style={{
-            fontSize: 42,
+            fontSize: 48,
             fontStyle: 'normal',
             fontWeight: '600',
             color: '#e1e1e1',
@@ -104,8 +126,8 @@ export async function GET(
       </div>
     ),
     {
-      width: 1200,
-      height: 630,
+      width,
+      height,
       fonts: [
         {
           name: 'GenEiLateMinP_v2',

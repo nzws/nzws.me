@@ -1,13 +1,11 @@
 import { readdir, readFile } from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
-import removeMD from 'remove-markdown';
 import { ArticleType } from '~/utils/constants';
-import { ArticleDetails, ArticleSummary } from '~/utils/type';
+import { ArticleDetails } from '~/utils/type';
+import RemoveMarkdown from 'remove-markdown';
 
 const newLineRegex = /\n/gi;
-
-type DescriptionType = 'short' | 'full';
 
 export class ArticleService {
   private directory: string;
@@ -16,11 +14,9 @@ export class ArticleService {
     this.directory = path.resolve(process.cwd(), `contents/${type}`);
   }
 
-  async getSummaryList(requireDescription?: DescriptionType) {
+  async getAll() {
     const slugs = await this.getList();
-    const items = await Promise.all(
-      slugs.map(slug => this.getSummary(slug, requireDescription))
-    );
+    const items = await Promise.all(slugs.map(slug => this.getArticle(slug)));
     const sorted = (items.filter(item => item) as ArticleDetails[]).sort(
       (a, b) => b.date - a.date
     );
@@ -34,59 +30,33 @@ export class ArticleService {
     return files.map(file => file.split('.')[0]);
   }
 
-  // 一覧用
-  async getSummary(
-    slug: string,
-    requireDescription?: DescriptionType
-  ): Promise<ArticleSummary | undefined> {
-    const data = await this.getData(slug);
+  async getArticle(slug: string): Promise<ArticleDetails | undefined> {
+    const data = await this.getRawData(slug);
     if (!data) {
       return undefined;
     }
 
-    // 一覧で表示しない項目（メタデータなど）
-    if (data.isHidden) {
-      return undefined;
-    }
-
-    if (requireDescription && !data.description) {
-      data.description = this.generateDescription(
-        data.markdown,
-        requireDescription === 'short' ? 120 : undefined
-      );
-    }
-
-    return {
-      slug: data.slug,
-      title: data.title,
-      date: data.date,
-      description: data.description || '',
-      tags: data.tags,
-      coverImage: data.coverImage,
-      type: data.type
-    };
-  }
-
-  async getDetails(slug: string): Promise<ArticleDetails | undefined> {
-    const data = await this.getData(slug);
-    if (!data) {
-      return undefined;
-    }
+    const fallbackCoverImage = `/api/web/og/articles/${this.type}/${data.slug}`;
 
     return {
       slug: data.slug,
       title: data.title,
       date: data.date,
       description: data.description,
+      fallbackDescription: !data.description
+        ? this.generateDescription(data.markdown)
+        : undefined,
       tags: data.tags,
       scripts: data.scripts,
       coverImage: data.coverImage,
+      fallbackCoverImage: !data.coverImage ? fallbackCoverImage : undefined,
       markdown: data.markdown,
-      type: data.type
+      type: data.type,
+      isHidden: data.isHidden
     };
   }
 
-  async getData(slug: string) {
+  async getRawData(slug: string) {
     try {
       const raw = await readFile(
         path.resolve(this.directory, `${slug}.md`),
@@ -127,7 +97,7 @@ export class ArticleService {
   }
 
   private generateDescription(content: string, length?: number) {
-    const text = removeMD(content).replace(newLineRegex, ' ');
+    const text = RemoveMarkdown(content).replace(newLineRegex, ' ');
 
     const trimmed = text.trim();
     if (!length || trimmed.length < length) {

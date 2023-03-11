@@ -15,3 +15,10 @@ export const BASE_URL =
   process.env.NODE_ENV === 'production'
     ? `https://${DEPLOYMENT_DOMAIN}`
     : `http://${DEPLOYMENT_DOMAIN}`;
+
+export const dateOptions = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+} as const;

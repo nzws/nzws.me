@@ -1,4 +1,123 @@
+@import '~/styles/shared.scss';
+
 // todo
 .container {
   color: #fff;
+}
+
+.body {
+  @include shared_container;
+
+  color: darken($primaryText, 8%);
+  font-family: var(--font-mincho);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 250%;
+  letter-spacing: 0.1em;
+  word-break: break-word;
+
+  h1,
+  h2 {
+    margin: 20px 0 10px;
+  }
+
+  h3,
+  h4 {
+    margin: 10px 0 5px;
+  }
+
+  video,
+  img {
+    max-height: 500px;
+  }
+
+  img {
+    object-fit: contain;
+  }
+
+  p {
+    padding-top: 4px;
+    padding-bottom: 10px;
+  }
+
+  ul,
+  img {
+    padding: 10px 0;
+  }
+
+  li {
+    padding: 3px 0;
+  }
+
+  img,
+  iframe {
+    margin: 0 auto;
+  }
+
+  img,
+  video,
+  iframe,
+  .twitter-tweet,
+  table {
+    display: block;
+    max-width: 100%;
+  }
+
+  iframe,
+  .twitter-tweet,
+  pre,
+  table {
+    margin: 10px auto;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 4px 10px;
+    border-left: 5px solid $border;
+    color: darken($primaryText, 10%);
+  }
+
+  pre,
+  code,
+  blockquote {
+    background: rgba(lighten($backgroundPrimary, 10%), 60%);
+  }
+
+  code {
+    padding: 2px 4px;
+    word-break: break-all;
+  }
+
+  pre > code {
+    padding: 0;
+    background: none;
+  }
+
+  pre {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  hr {
+    border-color: $border;
+    margin: 10px 0;
+  }
+
+  ul > li > ul {
+    margin-left: 1rem;
+    padding: 0;
+  }
+
+  table {
+    overflow-x: auto;
+    border-collapse: collapse;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    th,
+    td {
+      min-width: 100px;
+      padding: 8px 12px;
+      border: 1px solid $border;
+    }
+  }
 }

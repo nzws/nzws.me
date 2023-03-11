@@ -19,18 +19,18 @@ function SuspenseComponent() {
 }
 
 type Props = {
-  url: string;
+  src: string;
 } & Omit<React.ComponentProps<typeof NextImage>, 'src' | 'width' | 'height'>;
 
-async function RealComponent({ url, ...props }: Props) {
-  const metadata = await getMetadata(url);
+async function RealComponent({ src, ...props }: Props) {
+  const metadata = await getMetadata(src);
 
   return (
     <NextImage
-      src={url}
-      width={metadata.width}
-      height={metadata.height}
-      blurDataURL={metadata.base64}
+      src={src}
+      width={metadata?.width}
+      height={metadata?.height}
+      blurDataURL={metadata?.base64}
       placeholder="blur"
       {...props}
     />

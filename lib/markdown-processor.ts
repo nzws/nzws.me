@@ -2,6 +2,7 @@ import { unified } from 'unified';
 import parse from 'remark-parse';
 import highlight from 'remark-highlight.js';
 import remark2rehype from 'remark-rehype';
+import rehypeExternalLinks from 'rehype-external-links';
 import html from 'rehype-stringify';
 
 export const markdownProcessor = unified()
@@ -10,6 +11,7 @@ export const markdownProcessor = unified()
   .use(remark2rehype, {
     allowDangerousHtml: true
   })
+  .use(rehypeExternalLinks, { rel: ['nofollow'], target: '_blank' })
   .use(html, {
     allowDangerousHtml: true
   });

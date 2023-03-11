@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import { VStack } from '~/components/stack';
+import { markdownProcessor } from '~/lib/markdown-processor';
 import { BASE_URL } from '~/utils/constants';
-import { ArticleDetails, ArticleSummary } from '~/utils/type';
+import { ArticleDetails } from '~/utils/type';
 import styles from './styles.module.scss';
 
 async function getData(id: string) {
@@ -11,6 +12,10 @@ async function getData(id: string) {
   }
 
   return (await response.json()) as ArticleDetails;
+}
+
+function getHtml(markdown: string) {
+  return markdownProcessor.processSync(markdown).toString();
 }
 
 type Params = {
@@ -23,9 +28,16 @@ export default async function Page({ params: { id } }: { params: Params }) {
     return notFound();
   }
 
+  const __html = getHtml(article.markdown);
+
   return (
     <VStack gap="50px" className={styles.container}>
-      {JSON.stringify(article, null, 2)}
+      <div
+        dangerouslySetInnerHTML={{
+          __html
+        }}
+        className={styles.body}
+      />
     </VStack>
   );
 }

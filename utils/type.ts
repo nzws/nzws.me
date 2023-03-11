@@ -1,18 +1,19 @@
-export interface ArticleSummary {
+export interface ArticleDetails {
+  type: string;
   slug: string;
   title: string;
   date: number;
-  description: string;
   coverImage?: string;
   tags: string[];
-  type: string;
-}
-
-export interface ArticleDetails extends Omit<ArticleSummary, 'description'> {
   description?: string;
   scripts: string[];
   markdown: string;
+  fallbackDescription?: string;
+  fallbackCoverImage?: string;
+  isHidden: boolean;
 }
+
+export type ArticleList = Omit<ArticleDetails, 'markdown'>[];
 
 export interface ImageDetails {
   src: string;
@@ -20,6 +21,12 @@ export interface ImageDetails {
   height: number;
   type?: string;
   base64: string;
+}
+
+export interface ArticleSearchExport {
+  title: string;
+  url: string;
+  keywords: string;
 }
 
 export interface ArticleSearch {

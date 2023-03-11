@@ -1,6 +1,6 @@
 import { VStack } from '~/components/stack';
 import { BASE_URL } from '~/utils/constants';
-import { ArticleSummary } from '~/utils/type';
+import { ArticleList } from '~/utils/type';
 import { Item } from './components/item';
 import styles from './styles.module.scss';
 
@@ -10,7 +10,7 @@ async function getData() {
     throw new Error('Failed to fetch');
   }
 
-  return (await response.json()) as ArticleSummary[];
+  return (await response.json()) as ArticleList;
 }
 
 export default async function Page() {
@@ -23,7 +23,6 @@ export default async function Page() {
           key={article.slug}
           slug={article.slug}
           title={article.title}
-          description={article.description}
           tags={article.tags}
           date={article.date}
           coverImage={article.coverImage}

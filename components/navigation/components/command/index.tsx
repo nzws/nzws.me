@@ -37,6 +37,14 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
     }
   }, []);
 
+  const handleSelect = useCallback(
+    (url: string) => {
+      void router.push(url);
+      setIsOpened(false);
+    },
+    [router, setIsOpened]
+  );
+
   useEffect(() => {
     if (deferredSearch.length < 1) return;
 
@@ -84,7 +92,7 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
           <Command.Group heading="検索結果">
             {searchResult.length ? (
               searchResult.map(({ title, url }) => (
-                <Command.Item key={url} onSelect={() => void router.push(url)}>
+                <Command.Item key={url} onSelect={() => handleSelect(url)}>
                   {title}
                 </Command.Item>
               ))
@@ -99,25 +107,25 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
         ) : (
           <Fragment>
             <Command.Group heading="ナビゲーション">
-              <Command.Item onSelect={() => void router.push('/')}>
+              <Command.Item onSelect={() => handleSelect('/')}>
                 About
               </Command.Item>
-              <Command.Item onSelect={() => void router.push('/blog')}>
+              <Command.Item onSelect={() => handleSelect('/blog')}>
                 Blog
               </Command.Item>
-              <Command.Item onSelect={() => void router.push('/product')}>
+              <Command.Item onSelect={() => handleSelect('/product')}>
                 Products
               </Command.Item>
             </Command.Group>
 
             <Command.Group heading="ソーシャルリンク">
               <Command.Item
-                onSelect={() => void router.push('https://don.nzws.me/@nzws')}
+                onSelect={() => handleSelect('https://don.nzws.me/@nzws')}
               >
                 Mastodon
               </Command.Item>
               <Command.Item
-                onSelect={() => void router.push('https://github.com/nzws')}
+                onSelect={() => handleSelect('https://github.com/nzws')}
               >
                 GitHub
               </Command.Item>

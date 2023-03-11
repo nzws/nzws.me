@@ -15,10 +15,11 @@ export async function GET(request: Request, { params }: { params: Params }) {
     return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
   }
 
-  const data = await new CacheService<ArticleDetails | undefined>(
-    'article-details-' + type,
-    id
-  ).sync(() => new ArticleService(type).getDetails(id));
+  const list = await new CacheService<ArticleDetails[]>(
+    'article-list',
+    type
+  ).sync(() => new ArticleService(type).getAll());
+  const data = list.find(item => item.slug === id);
 
   if (!data) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });

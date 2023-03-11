@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { Image } from '~/components/image';
 import { HStack, VStack } from '~/components/stack';
+import { dateOptions } from '~/utils/constants';
 import styles from './styles.module.scss';
 
 type Props = {
   slug: string;
   title: string;
-  description?: string;
   tags: string[];
   date: number;
   coverImage?: string;
@@ -17,7 +17,6 @@ type Props = {
 export const Item: FC<Props> = ({
   slug,
   title,
-  description,
   tags,
   date,
   coverImage,
@@ -26,8 +25,17 @@ export const Item: FC<Props> = ({
   <Link href={`/blog/${slug}`} className={styles.container_link}>
     <div className={styles.container} data-is-first={isFirst || undefined}>
       <div className={styles.cover}>
-        {coverImage && (
-          <Image url={coverImage} alt={title} className={styles.cover_image} />
+        {coverImage ? (
+          <Image src={coverImage} alt={title} className={styles.cover_image} />
+        ) : (
+          <img
+            // fixme: nextjs がバグる
+            src={`/api/web/og/articles/blog/${slug}?width=960&height=540`}
+            width={960}
+            height={540}
+            alt={title}
+            className={styles.cover_image}
+          />
         )}
       </div>
 
@@ -43,10 +51,10 @@ export const Item: FC<Props> = ({
             ))}
           </HStack>
 
-          <div className={styles.createdAt}>{date}</div>
+          <div className={styles.createdAt}>
+            {new Date(date).toLocaleDateString(undefined, dateOptions)}
+          </div>
         </HStack>
-
-        {!isFirst && <div className={styles.description}>{description}</div>}
       </VStack>
     </div>
   </Link>

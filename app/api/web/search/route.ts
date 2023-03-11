@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { BASE_URL } from '~/utils/constants';
+import { ArticleSearchExport } from '~/utils/type';
 
 export const runtime = 'experimental-edge';
 
@@ -11,11 +12,7 @@ export async function GET(request: NextRequest) {
   }
 
   const response = await fetch(`${BASE_URL}/api/internal/search-raw`);
-  const data = (await response.json()) as {
-    title: string;
-    url: string;
-    keywords: string;
-  }[];
+  const data = (await response.json()) as ArticleSearchExport[];
 
   const result = data
     .filter(item => item.keywords.includes(q))
