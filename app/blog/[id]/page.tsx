@@ -29,7 +29,7 @@ export default async function Page({ params: { id } }: { params: Params }) {
     </VStack>
   );
 }
-
+/*
 export async function generateStaticParams() {
   const response = await fetch(`${BASE_URL}/api/internal/articles/blog`);
   if (!response.ok) {
@@ -42,6 +42,7 @@ export async function generateStaticParams() {
     id: article.slug
   }));
 }
+*/
 
 export async function generateMetadata({ params }: { params: Params }) {
   const article = await getData(params.id);
