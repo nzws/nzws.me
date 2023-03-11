@@ -2,18 +2,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { VStack } from '~/components/stack';
 import { markdownProcessor } from '~/lib/markdown-processor';
-import { BASE_URL } from '~/utils/constants';
-import { ArticleDetails } from '~/utils/type';
+import { ArticleType } from '~/utils/constants';
 import styles from './styles.module.scss';
-
-async function getData(id: string) {
-  const response = await fetch(`${BASE_URL}/api/internal/articles/blog/${id}`);
-  if (!response.ok || response.status !== 200) {
-    return undefined;
-  }
-
-  return (await response.json()) as ArticleDetails;
-}
+import { getArticle, getArticleSlugs } from '~/lib/file-io';
 
 function getHtml(markdown: string) {
   return markdownProcessor.processSync(markdown).toString();
@@ -24,7 +15,7 @@ type Params = {
 };
 
 export default async function Page({ params: { id } }: { params: Params }) {
-  const article = await getData(id);
+  const article = await getArticle(ArticleType.Blog, id);
   if (!article) {
     return notFound();
   }
@@ -42,27 +33,21 @@ export default async function Page({ params: { id } }: { params: Params }) {
     </VStack>
   );
 }
-/*
-export async function generateStaticParams() {
-  const response = await fetch(`${BASE_URL}/api/internal/articles/blog`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch');
-  }
 
-  const data = (await response.json()) as ArticleSummary[];
+export async function generateStaticParams() {
+  const data = await getArticleSlugs(ArticleType.Blog);
 
   return data.map(article => ({
-    id: article.slug
+    id: article
   }));
 }
-*/
 
 export async function generateMetadata({
   params
 }: {
   params: Params;
 }): Promise<Metadata> {
-  const article = await getData(params.id);
+  const article = await getArticle(ArticleType.Blog, params.id);
   if (!article) {
     return {
       title: 'Blog - nzws.me'
@@ -90,5 +75,3 @@ export async function generateMetadata({
     }
   };
 }
-
-export const runtime = 'experimental-edge';
