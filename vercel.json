@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "YARN_CACHE_FOLDER=.vercel/cache/yarn yarn install"
+}
