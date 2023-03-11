@@ -5,7 +5,7 @@ import { Item } from './components/item';
 import styles from './styles.module.scss';
 
 async function getData() {
-  const response = await fetch(`${BASE_URL}/api/web/articles/blog`);
+  const response = await fetch(`${BASE_URL}/api/internal/articles/blog`);
   if (!response.ok) {
     throw new Error('Failed to fetch');
   }

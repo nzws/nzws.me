@@ -53,8 +53,9 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
     })
       .then(res => res.json())
       .then(res => {
-        setSearchResult(res as ArticleSearch[]);
-        searchLogsRef.current[deferredSearch] = res as ArticleSearch[];
+        const data = res as ArticleSearch[];
+        setSearchResult(data);
+        searchLogsRef.current[deferredSearch] = data;
         setLoading(false);
       });
 
@@ -81,9 +82,7 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
       <Command.List>
         {search ? (
           <Command.Group heading="検索結果">
-            {isLoading ? (
-              <Command.Item disabled>読込中...</Command.Item>
-            ) : searchResult.length ? (
+            {searchResult.length ? (
               searchResult.map(({ title, url }) => (
                 <Command.Item key={url} onSelect={() => void router.push(url)}>
                   {title}
@@ -91,6 +90,10 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
               ))
             ) : (
               <Command.Empty>結果はありません！</Command.Empty>
+            )}
+
+            {isLoading && !searchResult.length && (
+              <Command.Item disabled>読込中...</Command.Item>
             )}
           </Command.Group>
         ) : (

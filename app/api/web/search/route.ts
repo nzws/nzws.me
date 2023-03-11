@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json([]);
   }
 
-  const response = await fetch(`${BASE_URL}/api/web/search-raw`);
+  const response = await fetch(`${BASE_URL}/api/internal/search-raw`);
   const data = (await response.json()) as {
     title: string;
     url: string;

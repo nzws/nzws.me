@@ -5,7 +5,7 @@ import { ImageDetails } from '~/utils/type';
 
 async function getMetadata(url: string) {
   const response = await fetch(
-    `${BASE_URL}/api/web/image?url=` + encodeURIComponent(url)
+    `${BASE_URL}/api/internal/image?url=` + encodeURIComponent(url)
   );
   if (!response.ok || response.status !== 200) {
     throw new Error('Failed to fetch');
