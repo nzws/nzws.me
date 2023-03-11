@@ -68,7 +68,6 @@ export async function GET(
             'radial-gradient(circle at 25px 25px, #9d7474 4%, transparent 0%), radial-gradient(circle at 75px 75px, #9d7474 4%, transparent 0%)',
           backgroundSize: '100px 100px'
         }}
-        lang="ja-JP"
       >
         <div
           style={{
