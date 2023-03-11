@@ -4,16 +4,16 @@ import { CacheService } from '~/lib/cache-service';
 import { ArticleType } from '~/utils/constants';
 import { ArticleDetails, ArticleSearchExport } from '~/utils/type';
 
+const items = Object.values(ArticleType).map(type =>
+  new CacheService<ArticleDetails[]>('article-list', type).sync(() =>
+    new ArticleService(type).getAll()
+  )
+);
+
 export async function GET() {
-  const data = (
-    await Promise.all(
-      Object.values(ArticleType).map(type =>
-        new CacheService<ArticleDetails[]>('article-list', type).sync(() =>
-          new ArticleService(type).getAll()
-        )
-      )
-    )
-  ).flatMap(item => item);
+  const data = (await Promise.all(items))
+    .flatMap(item => item)
+    .filter(item => !item.isHidden);
 
   const flatted: ArticleSearchExport[] = data.map(item => ({
     title: item.title,
@@ -23,8 +23,5 @@ export async function GET() {
       .toLowerCase()
   }));
 
-  const header = new Headers();
-  header.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
-
-  return NextResponse.json(flatted, { headers: header });
+  return NextResponse.json(flatted);
 }

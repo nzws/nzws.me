@@ -54,10 +54,7 @@ export async function GET(request: NextRequest) {
       }
     );
 
-    const header = new Headers();
-    header.set('Cache-Control', 's-maxage=86400, stale-while-revalidate');
-
-    return NextResponse.json(data, { headers: header });
+    return NextResponse.json(data);
   } catch (error) {
     console.error(error);
     return NextResponse.json(
