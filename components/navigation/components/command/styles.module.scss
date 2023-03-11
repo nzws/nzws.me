@@ -86,6 +86,11 @@
     overscroll-behavior: contain;
     transition: 100ms ease;
     transition-property: height;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   [cmdk-separator] {

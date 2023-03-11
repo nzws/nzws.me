@@ -12,3 +12,13 @@ export default function RootLayout({ children }: PropsWithChildren) {
     </html>
   );
 }
+
+export const metadata = {
+  title: {
+    default: 'nzws.me',
+    template: '%s - nzws.me'
+  },
+  other: {
+    'Hatena::Bookmark': 'nocomment'
+  }
+};

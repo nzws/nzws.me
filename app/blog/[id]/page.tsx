@@ -69,14 +69,13 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${article.title} - Blog - nzws.me`;
   const description = article.description || article.fallbackDescription;
   const imageUrl = article.coverImage || article.fallbackCoverImage;
   return {
-    title,
+    title: article.title,
     description,
     openGraph: {
-      title,
+      title: `${article.title} - Blog - nzws.me`,
       description,
       images: [
         {

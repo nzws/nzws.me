@@ -10,3 +10,10 @@ export default function Layout({ children }: PropsWithChildren) {
     </div>
   );
 }
+
+export const metadata = {
+  title: {
+    default: 'Blog - nzws.me',
+    template: '%s - Blog - nzws.me'
+  }
+};

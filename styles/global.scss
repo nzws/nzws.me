@@ -36,7 +36,7 @@ h6 {
 *:after,
 *:before {
   box-sizing: border-box;
-  scrollbar-color: $backgroundSecondary;
+  scrollbar-color: lighten($border, 10%) $backgroundPrimary;
   scrollbar-width: thin;
 }
 
@@ -46,6 +46,6 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  scrollbar-color: $backgroundSecondary;
+  background-color: $border;
   border: none;
 }
