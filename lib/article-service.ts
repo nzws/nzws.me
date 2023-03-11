@@ -43,13 +43,11 @@ export class ArticleService {
       title: data.title,
       date: data.date,
       description: data.description,
-      fallbackDescription: !data.description
-        ? this.generateDescription(data.markdown)
-        : undefined,
+      fallbackDescription: this.generateDescription(data.markdown, 120),
       tags: data.tags,
       scripts: data.scripts,
       coverImage: data.coverImage,
-      fallbackCoverImage: !data.coverImage ? fallbackCoverImage : undefined,
+      fallbackCoverImage: fallbackCoverImage,
       markdown: data.markdown,
       type: data.type,
       isHidden: data.isHidden

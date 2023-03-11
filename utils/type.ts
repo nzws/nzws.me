@@ -8,8 +8,8 @@ export interface ArticleDetails {
   description?: string;
   scripts: string[];
   markdown: string;
-  fallbackDescription?: string;
-  fallbackCoverImage?: string;
+  fallbackDescription: string;
+  fallbackCoverImage: string;
   isHidden: boolean;
 }
 

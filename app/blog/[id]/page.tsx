@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { VStack } from '~/components/stack';
 import { markdownProcessor } from '~/lib/markdown-processor';
@@ -56,7 +57,11 @@ export async function generateStaticParams() {
 }
 */
 
-export async function generateMetadata({ params }: { params: Params }) {
+export async function generateMetadata({
+  params
+}: {
+  params: Params;
+}): Promise<Metadata> {
   const article = await getData(params.id);
   if (!article) {
     return {
@@ -64,9 +69,26 @@ export async function generateMetadata({ params }: { params: Params }) {
     };
   }
 
+  const title = `${article.title} - Blog - nzws.me`;
+  const description = article.description || article.fallbackDescription;
+  const imageUrl = article.coverImage || article.fallbackCoverImage;
   return {
-    title: `${article.title} - Blog - nzws.me`,
-    description: article.description
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: imageUrl
+        }
+      ]
+    },
+    twitter: {
+      card: 'summary_large_image',
+      creator: '@nzws_me',
+      images: [imageUrl]
+    }
   };
 }
 
