@@ -5,9 +5,20 @@ import { ArticleSummary } from '~/utils/type';
 
 export const runtime = 'experimental-edge';
 
-const font = fetch(
-  new URL('../../../assets/GenEiLateMinP_v2.ttf', import.meta.url)
-).then(res => res.arrayBuffer());
+// IBM Plex Sans JP: Open Font License
+// https://fonts.google.com/specimen/IBM+Plex+Sans+JP
+const ibm_plex_sans_jp_url =
+  'https://static-cdn.nzws.me/nzws.me-IBMPlexSansJP-Bold.ttf';
+
+// GenEi Late Min P: SIL Open Font License 1.1
+// https://okoneya.jp/font/genei-latin.html
+const genei_latemin_p_url =
+  'https://static-cdn.nzws.me/nzws.me-GenEiLateMinP_v2.ttf';
+
+const ibm_plex_sans = fetch(ibm_plex_sans_jp_url).then(res =>
+  res.arrayBuffer()
+);
+const genei_latemin = fetch(genei_latemin_p_url).then(res => res.arrayBuffer());
 
 async function getData(type: string, id: string) {
   const response = await fetch(`${BASE_URL}/api/internal/articles/${type}`);
@@ -35,7 +46,10 @@ export async function GET(
     return NextResponse.json(null, { status: 404 });
   }
 
-  const fontData = await font;
+  const [IBMPlexSans, GenEiLatemin] = await Promise.all([
+    ibm_plex_sans,
+    genei_latemin
+  ]);
 
   return new ImageResponse(
     (
@@ -83,7 +97,7 @@ export async function GET(
             color: '#be9e9e',
             backgroundColor: '#674138',
             padding: 8,
-            fontFamily: 'Inter'
+            fontFamily: 'IBM_Plex_Sans_JP'
           }}
         >
           nzws.me
@@ -96,7 +110,12 @@ export async function GET(
       fonts: [
         {
           name: 'GenEiLateMinP_v2',
-          data: fontData,
+          data: GenEiLatemin,
+          style: 'normal'
+        },
+        {
+          name: 'IBM_Plex_Sans_JP',
+          data: IBMPlexSans,
           style: 'normal'
         }
       ]
