@@ -86,6 +86,7 @@ export const Navigation: FC<Props> = ({ currentPage }) => {
           <button
             className={styles.command_button}
             onClick={() => setIsCmdOpened(prev => !prev)}
+            aria-label="Command"
           >
             <Command size={22} />
           </button>
