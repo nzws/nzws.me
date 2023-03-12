@@ -1,9 +1,13 @@
 @import '~/styles/shared.scss';
 
 .container {
+  height: 100vh;
+  height: 100vwh;
+}
+
+.main {
   @include shared_container;
   color: $primaryText;
-  padding: 20% 0;
 }
 
 .body {

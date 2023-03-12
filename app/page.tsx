@@ -1,45 +1,59 @@
+import { cache } from 'react';
+import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
 import { VStack } from '~/components/stack';
 import { markdownProcessor } from '~/lib/markdown-processor';
 import { PageNumber } from '~/utils/constants';
 import { Header } from './components/header';
+import { Time } from './components/time';
 import styles from './styles.module.scss';
 
 const README_URL =
   'https://raw.githubusercontent.com/nzws/nzws/master/README.md';
 
-async function getReadme() {
+const getReadme = cache(async () => {
   const response = await fetch(README_URL);
   const text = await response.text();
-  return text;
-}
+
+  return {
+    text,
+    fetchedAt: new Date().toISOString()
+  };
+});
 
 function getHtml(markdown: string) {
   return markdownProcessor.processSync(markdown).toString();
 }
 
 export default async function Page() {
-  const readme = await getReadme();
+  const { text, fetchedAt } = await getReadme();
 
   return (
-    <div>
+    <VStack
+      gap="8px"
+      className={styles.container}
+      justifyContent="space-between"
+      alignItems="center"
+    >
       <Navigation currentPage={PageNumber.About} />
 
-      <VStack gap="24px" className={styles.container}>
+      <VStack gap="24px" className={styles.main}>
         <Header />
 
         <div
           dangerouslySetInnerHTML={{
-            __html: getHtml(readme)
+            __html: getHtml(text)
           }}
           className={styles.body}
         />
 
         <div className={styles.footer}>
-          Fetched <Link /> at {new Date().toLocaleString()}
+          Fetched <Link /> at <Time time={fetchedAt} />
         </div>
       </VStack>
-    </div>
+
+      <Footer />
+    </VStack>
   );
 }
 

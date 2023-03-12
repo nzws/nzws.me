@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
 import { PageNumber } from '~/utils/constants';
 
@@ -7,6 +8,7 @@ export default function Layout({ children }: PropsWithChildren) {
     <div>
       <Navigation currentPage={PageNumber.Blog} />
       {children}
+      <Footer />
     </div>
   );
 }
