@@ -1,18 +1,7 @@
+import 'server-only';
 import NextImage from 'next/image';
 import { Suspense } from 'react';
-import { BASE_URL } from '~/utils/constants';
-import { ImageDetails } from '~/utils/type';
-
-async function getMetadata(url: string) {
-  const response = await fetch(
-    `${BASE_URL}/api/internal/image?url=` + encodeURIComponent(url)
-  );
-  if (!response.ok || response.status !== 200) {
-    throw new Error('Failed to fetch');
-  }
-
-  return (await response.json()) as ImageDetails;
-}
+import { getImageMetadata } from '~/lib/file-io';
 
 function SuspenseComponent() {
   return <div />;
@@ -23,7 +12,7 @@ type Props = {
 } & Omit<React.ComponentProps<typeof NextImage>, 'src' | 'width' | 'height'>;
 
 async function RealComponent({ src, ...props }: Props) {
-  const metadata = await getMetadata(src);
+  const metadata = await getImageMetadata(src);
 
   return (
     <NextImage

@@ -9,6 +9,10 @@ export enum ArticleType {
   Product = 'product'
 }
 
+export const isValidArticleType = (type: string): type is ArticleType => {
+  return Object.values(ArticleType).includes(type as ArticleType);
+};
+
 const DEPLOYMENT_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_URL || 'localhost:3000';
 export const BASE_URL =

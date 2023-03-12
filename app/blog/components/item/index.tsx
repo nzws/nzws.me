@@ -11,6 +11,7 @@ type Props = {
   tags: string[];
   date: number;
   coverImage?: string;
+  fallbackCoverImage: string;
   isFirst: boolean;
 };
 
@@ -20,6 +21,7 @@ export const Item: FC<Props> = ({
   tags,
   date,
   coverImage,
+  fallbackCoverImage,
   isFirst
 }) => (
   <Link href={`/blog/${slug}`} className={styles.container_link}>
@@ -28,9 +30,10 @@ export const Item: FC<Props> = ({
         {coverImage ? (
           <Image src={coverImage} alt={title} className={styles.cover_image} />
         ) : (
+          // next/image がバグる
+          // eslint-disable-next-line @next/next/no-img-element
           <img
-            // fixme: nextjs がバグる
-            src={`/api/web/og/articles/blog/${slug}?width=960&height=540`}
+            src={`${fallbackCoverImage}?width=960&height=540`}
             width={960}
             height={540}
             alt={title}

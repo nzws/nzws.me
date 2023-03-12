@@ -21,6 +21,7 @@ export default async function Page() {
             tags={article.tags}
             date={article.date}
             coverImage={article.coverImage}
+            fallbackCoverImage={article.fallbackCoverImage}
             isFirst={index === 0}
           />
         ))}

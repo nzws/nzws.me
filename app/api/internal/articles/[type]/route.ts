@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { ArticleService } from '~/lib/article-service';
+import { ArticleFinder } from '~/lib/article-finder';
 import { CacheService } from '~/lib/cache-service';
+import { isValidArticleType } from '~/utils/constants';
 import { ArticleDetails, ArticleList } from '~/utils/type';
 
 type Params = {
@@ -10,13 +11,13 @@ type Params = {
 export async function GET(request: Request, { params }: { params: Params }) {
   const { type } = params;
 
-  if (!ArticleService.isValidType(type)) {
+  if (!isValidArticleType(type)) {
     return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
   }
 
   const data: ArticleList = (
     await new CacheService<ArticleDetails[]>('article-list', type).sync(() =>
-      new ArticleService(type).getAll()
+      new ArticleFinder(type).getAll()
     )
   )
     .map(item => ({

@@ -3,7 +3,9 @@ import matter from 'gray-matter';
 import path from 'path';
 import RemoveMarkdown from 'remove-markdown';
 import { ArticleType } from '~/utils/constants';
-import { ArticleDetails } from '~/utils/type';
+import { ArticleDetails, OGImageDataArticle } from '~/utils/type';
+import { signature } from './crypto/node';
+import { encode } from './encoder';
 
 const newLineRegex = /\n/gi;
 
@@ -16,7 +18,10 @@ export class ArticleServiceV2 {
       return undefined;
     }
 
-    const fallbackCoverImage = `/api/web/og/articles/${this.type}/${data.slug}`;
+    const fallbackCoverImage = await this.getFallbackCoverImageUrl({
+      type: 'article',
+      title: data.title
+    });
 
     return {
       slug: data.slug,
@@ -84,7 +89,10 @@ export class ArticleServiceV2 {
     }
   }
 
-  static isValidType(type: string): type is ArticleType {
-    return Object.values(ArticleType).includes(type as ArticleType);
+  private async getFallbackCoverImageUrl(data: OGImageDataArticle) {
+    const base64 = encode(data);
+    const hash = await signature(base64);
+
+    return `/api/web/og/${hash}/${base64}`;
   }
 }

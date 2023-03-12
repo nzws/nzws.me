@@ -33,3 +33,10 @@ export interface ArticleSearch {
   title: string;
   url: string;
 }
+
+export interface OGImageDataArticle {
+  type: 'article';
+  title: string;
+}
+
+export type OGImageData = OGImageDataArticle;
