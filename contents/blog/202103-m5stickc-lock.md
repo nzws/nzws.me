@@ -7,6 +7,7 @@ tags:
   - M5StickC
 date: '2021-03-18'
 commentId: '105908790552481946'
+coverImage: https://user-images.githubusercontent.com/14953122/111572197-839b7600-87eb-11eb-831b-424b24c9b1aa.png
 ---
 
 どうもこんにちは、ねじわさです。

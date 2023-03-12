@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { VStack } from '~/components/stack';
+import { HStack, VStack } from '~/components/stack';
 import { markdownProcessor } from '~/lib/markdown-processor';
-import { ArticleType } from '~/utils/constants';
+import { ArticleType, dateOptions } from '~/utils/constants';
 import styles from './styles.module.scss';
 import { getArticle, getArticleSlugs } from '~/lib/file-io';
+import { Image } from '~/components/image';
+import Script from 'next/script';
 
 function getHtml(markdown: string) {
   return markdownProcessor.processSync(markdown).toString();
@@ -23,16 +25,69 @@ export default async function Page({ params: { id } }: { params: Params }) {
   const __html = getHtml(article.markdown);
 
   return (
-    <VStack gap="50px" className={styles.container}>
+    <VStack gap="28px" className={styles.container}>
+      <div className={styles.header}>
+        {article.coverImage && (
+          <Image
+            src={article.coverImage}
+            alt={article.title}
+            className={styles.cover_image}
+          />
+        )}
+
+        <div
+          className={[
+            styles.title_container,
+            article.coverImage && styles.title_container_floating
+          ].join(' ')}
+        >
+          <div className={styles.title}>{article.title}</div>
+        </div>
+
+        {!article.coverImage && <div className={styles.cover_image_mock} />}
+      </div>
+
+      <HStack
+        gap="8px"
+        justifyContent="space-between"
+        alignItems="center"
+        className={styles.meta_container}
+      >
+        <HStack gap="12px" alignItems="center" className={styles.tags}>
+          {article.tags.map(tag => (
+            <div key={tag} className={styles.tag}>
+              #{tag}
+            </div>
+          ))}
+        </HStack>
+
+        <div className={styles.createdAt}>
+          {new Date(article.date).toLocaleDateString(undefined, dateOptions)}
+        </div>
+      </HStack>
+
       <div
         dangerouslySetInnerHTML={{
           __html
         }}
         className={styles.body}
       />
+
+      {article.scripts?.map((script, key) => (
+        <Script
+          key={key}
+          src={scriptUrls[script] || script}
+          strategy="lazyOnload"
+        />
+      ))}
     </VStack>
   );
 }
+
+const scriptUrls: Record<string, string> = {
+  twitter: 'https://platform.twitter.com/widgets.js',
+  'don-nzws-me': 'https://don.nzws.me/embed.js'
+};
 
 export async function generateStaticParams() {
   const data = await getArticleSlugs(ArticleType.Blog);

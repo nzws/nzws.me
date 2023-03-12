@@ -8,9 +8,8 @@ tags:
 date: '2021-05-08'
 scripts:
   - don-nzws-me
+coverImage: https://user-images.githubusercontent.com/14953122/117500216-47002580-afb7-11eb-9f9f-faec3ed6c165.png
 ---
-
-![image](https://user-images.githubusercontent.com/14953122/117500216-47002580-afb7-11eb-9f9f-faec3ed6c165.png)
 
 どうもこんにちは、Google 信者のねじわさです。  
 主に nzws.me で送受信するメールサーバーのために Google Workspace を契約したメモです。
