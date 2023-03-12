@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { cache } from 'react';
 import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
@@ -5,8 +6,11 @@ import { VStack } from '~/components/stack';
 import { markdownProcessor } from '~/lib/markdown-processor';
 import { PageNumber } from '~/utils/constants';
 import { Header } from './components/header';
-import { Time } from './components/time';
 import styles from './styles.module.scss';
+
+const Time = dynamic(() => import('./components/time'), {
+  ssr: false
+});
 
 const README_URL =
   'https://raw.githubusercontent.com/nzws/nzws/master/README.md';
@@ -17,7 +21,7 @@ const getReadme = cache(async () => {
 
   return {
     text,
-    fetchedAt: new Date().toISOString()
+    fetchedAt: response.headers.get('date')
   };
 });
 
@@ -48,7 +52,7 @@ export default async function Page() {
         />
 
         <div className={styles.footer}>
-          Fetched <Link /> at <Time time={fetchedAt} />
+          Fetched <Link /> at {fetchedAt ? <Time time={fetchedAt} /> : '?'}
         </div>
       </VStack>
 
@@ -66,7 +70,7 @@ function Link() {
 }
 
 export const runtime = 'experimental-edge';
-export const revalidate = 60 * 60 * 12;
+export const revalidate = 43200; // 12 hours
 
 export const metadata = {
   title: 'nzws.me'

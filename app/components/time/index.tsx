@@ -1,14 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+export default function Time({ time }: { time: string }) {
+  const d = new Date(time);
 
-export function Time({ time }: { time: string }) {
-  const [localeString, setLocaleString] = useState('');
-
-  useEffect(() => {
-    const d = new Date(time);
-    setLocaleString(d.toLocaleString());
-  }, [time]);
-
-  return <time dateTime={time}>{localeString}</time>;
+  return <time dateTime={d.toISOString()}>{d.toLocaleString()}</time>;
 }
