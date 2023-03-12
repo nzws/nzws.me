@@ -20,6 +20,7 @@
   left: 0;
   right: 0;
   animation: cmdk-fade-in 200ms ease forwards;
+  z-index: 1001;
 
   [cmdk-input] {
     border: none;

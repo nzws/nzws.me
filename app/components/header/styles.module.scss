@@ -1,0 +1,18 @@
+@import '~/styles/shared.scss';
+
+.container {
+  background: $backgroundSecondary;
+  padding: 12px;
+
+  @include media('<=tablet') {
+    flex-direction: column;
+  }
+}
+
+.icon {
+  border-radius: 100%;
+}
+
+.title {
+  font-size: 24px;
+}

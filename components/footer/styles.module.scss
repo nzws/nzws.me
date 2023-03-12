@@ -1,0 +1,21 @@
+@import '~/styles/shared';
+
+.line {
+  border-top: 1px solid $border;
+}
+
+.container {
+  margin: 32px 0;
+}
+
+.links {
+  @include shared_container;
+
+  > a {
+    font-size: 14px;
+    color: $secondaryText;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import RemoveMarkdown from 'remove-markdown';
-import { ArticleFinder } from '~/lib/article-finder';
+import { ArticleFinderService } from '~/lib/article-finder-service';
 import { CacheService } from '~/lib/cache-service';
 import { ArticleType } from '~/utils/constants';
 import { ArticleDetails, ArticleSearchExport } from '~/utils/type';
 
 const items = Object.values(ArticleType).map(type =>
   new CacheService<ArticleDetails[]>('article-list', type).sync(() =>
-    new ArticleFinder(type).getAll()
+    new ArticleFinderService(type).getAll()
   )
 );
 

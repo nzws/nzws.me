@@ -71,6 +71,7 @@
 .createdAt {
   font-size: 18px;
   color: $secondaryText;
+  flex-shrink: 0;
 }
 
 .description {

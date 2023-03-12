@@ -4,7 +4,7 @@ import { ArticleType } from '~/utils/constants';
 import { ArticleDetails } from '~/utils/type';
 import { ArticleServiceV2 } from './article-service-v2';
 
-export class ArticleFinder {
+export class ArticleFinderService {
   private directory: string;
 
   constructor(private type: ArticleType) {

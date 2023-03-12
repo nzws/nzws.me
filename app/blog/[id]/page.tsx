@@ -48,12 +48,11 @@ export default async function Page({ params: { id } }: { params: Params }) {
       </div>
 
       <HStack
-        gap="8px"
+        gap="16px"
         justifyContent="space-between"
-        alignItems="center"
         className={styles.meta_container}
       >
-        <HStack gap="12px" alignItems="center" className={styles.tags}>
+        <HStack gap="12px" alignItems="center" className={styles.tags} wrap>
           {article.tags.map(tag => (
             <div key={tag} className={styles.tag}>
               #{tag}
