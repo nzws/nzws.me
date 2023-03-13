@@ -9,6 +9,6 @@ jobs:
       - uses: nzws/blog-at-issue-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          filepath: 'blog-data/posts/{title}.md'
+          filepath: 'contents/blog/{title}.mdx'
           label: 'blog' # Optional
           use-prettier: 'format' # Optional
