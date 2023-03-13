@@ -1,10 +1,5 @@
 @import '~/styles/shared.scss';
 
-// todo
-.container {
-  color: #fff;
-}
-
 .header {
   position: relative;
 
@@ -50,6 +45,10 @@
 
 .meta_container {
   @include shared_container;
+
+  @include media('<=tablet') {
+    flex-direction: column;
+  }
 
   .tags {
     max-width: 100%;

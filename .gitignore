@@ -155,3 +155,5 @@ dist
 !.yarn/versions
 
 .nzws-cache
+
+.DS_Store

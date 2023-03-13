@@ -55,6 +55,13 @@
   font-family: var(--font-mincho);
 }
 
+.meta_container {
+  @include media('<=tablet') {
+    gap: 8px !important;
+    flex-direction: column !important;
+  }
+}
+
 .tags {
   max-width: 100%;
 

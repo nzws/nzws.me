@@ -25,7 +25,7 @@ export default async function Page({ params: { id } }: { params: Params }) {
   const __html = getHtml(article.markdown);
 
   return (
-    <VStack gap="28px" className={styles.container}>
+    <VStack gap="28px">
       <div className={styles.header}>
         {article.coverImage && (
           <Image

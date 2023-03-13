@@ -45,7 +45,11 @@ export const Item: FC<Props> = ({
       <VStack gap="8px">
         <h1 className={styles.title}>{title}</h1>
 
-        <HStack gap="16px" justifyContent="space-between">
+        <HStack
+          gap="16px"
+          justifyContent="space-between"
+          className={styles.meta_container}
+        >
           <HStack gap="12px" alignItems="center" className={styles.tags} wrap>
             {tags.map(tag => (
               <div key={tag} className={styles.tag}>
