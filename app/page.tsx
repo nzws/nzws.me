@@ -3,10 +3,10 @@ import { cache } from 'react';
 import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
 import { VStack } from '~/components/stack';
-import { markdownProcessor } from '~/lib/markdown-processor';
 import { PageNumber } from '~/utils/constants';
 import { Header } from './components/header';
 import styles from './styles.module.scss';
+import { MDXLoader } from '~/components/mdx-loader';
 
 const Time = dynamic(() => import('./components/time'), {
   ssr: false
@@ -25,10 +25,6 @@ const getReadme = cache(async () => {
   };
 });
 
-function getHtml(markdown: string) {
-  return markdownProcessor.processSync(markdown).toString();
-}
-
 export default async function Page() {
   const { text, fetchedAt } = await getReadme();
 
@@ -44,12 +40,9 @@ export default async function Page() {
       <VStack gap="24px" className={styles.main}>
         <Header />
 
-        <div
-          dangerouslySetInnerHTML={{
-            __html: getHtml(text)
-          }}
-          className={styles.body}
-        />
+        <div className={styles.body}>
+          <MDXLoader content={text} />
+        </div>
 
         <div className={styles.footer}>
           Fetched <Link /> at {fetchedAt ? <Time time={fetchedAt} /> : '?'}
@@ -69,7 +62,6 @@ function Link() {
   );
 }
 
-export const runtime = 'experimental-edge';
 export const revalidate = 43200; // 12 hours
 
 export const metadata = {

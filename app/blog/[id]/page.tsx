@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { HStack, VStack } from '~/components/stack';
-import { markdownProcessor } from '~/lib/markdown-processor';
 import { ArticleType, dateOptions } from '~/utils/constants';
 import styles from './styles.module.scss';
 import { getArticle, getArticleSlugs } from '~/lib/file-io';
 import { Image } from '~/components/image';
 import Script from 'next/script';
-
-function getHtml(markdown: string) {
-  return markdownProcessor.processSync(markdown).toString();
-}
+import { MDXLoader } from '~/components/mdx-loader';
 
 type Params = {
   id: string;
@@ -21,8 +17,6 @@ export default async function Page({ params: { id } }: { params: Params }) {
   if (!article) {
     return notFound();
   }
-
-  const __html = getHtml(article.markdown);
 
   return (
     <VStack gap="28px">
@@ -65,12 +59,9 @@ export default async function Page({ params: { id } }: { params: Params }) {
         </div>
       </HStack>
 
-      <div
-        dangerouslySetInnerHTML={{
-          __html
-        }}
-        className={styles.body}
-      />
+      <div className={styles.body}>
+        <MDXLoader content={article.markdown} />
+      </div>
 
       {article.scripts?.map((script, key) => (
         <Script
