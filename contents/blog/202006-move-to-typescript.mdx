@@ -10,11 +10,12 @@ tags:
   - NextJS
 scripts:
   - don-nzws-me
+coverImage: https://i.imgur.com/WI9Fgvw.png
 ---
 
-![](https://i.imgur.com/WI9Fgvw.png)
-
-<div style="text-align: center;font-size: 1rem">
+<div style={{
+  textAlign: 'center'
+}}>
 
 _たのしい　たのしい　型の世界の始まりだよ　たのしいね_
 
@@ -39,7 +40,7 @@ nextjs は標準で ts をサポートしているので( https://nextjs.org/doc
 
 **問題なのが、** tsconfig.json を自分で書き換えた場合、必ず一度マシン上でビルドしてみて tsconfig が書き換わらないことを確認してください。nextjs は nextjs でサポートしていない tsconfig を検出するとしれっとデフォルトの設定に書き換えるようで、3 時間くらい CI で Prettier がコケてわからんわからん言ってたらこんな事に気が付きました。勝手に書き換えるよりもエラーでコケてほしかった...
 
-<iframe src="https://don.nzws.me/@nzws/104382325741083702/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="100%" allowfullscreen="allowfullscreen"></iframe>
+<MastodonEmbed url="https://don.nzws.me/@nzws/104382325741083702" />
 
 ![](https://i.imgur.com/sy9ud8z.png)
 

@@ -42,7 +42,7 @@ export class ArticleServiceV2 {
   async getRawData() {
     try {
       const filepath = path.resolve(process.cwd(), `contents/${this.type}`);
-      const raw = await readFile(`${filepath}/${this.slug}.md`, 'utf8');
+      const raw = await readFile(`${filepath}/${this.slug}.mdx`, 'utf8');
 
       const frontMatter = matter(raw);
       const metaData = frontMatter.data as {

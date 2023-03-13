@@ -79,6 +79,10 @@ Next.js の Middleware は KnzkLive でローカライズごとのパス変更�
 今回はインタラクティブな検索 API で Edge Runtime を活用していますが高速で問題なく動いてくれているので良い感じです。
 （ファイルアクセスなどは Edge でできないので普通に Node.js のサーバーレス関数で API を動かしています）
 
+<ImageWithNote src="/static/blog/202303-nextjs-13/vercel-edge-function-logs.png">
+  Vercel にて Edge Function のリアルタイムログの様子
+</ImageWithNote>
+
 ## rm -rf nzws.me/pages && mkdir nzws.me/app
 
 そもそも [App Router 自体はベータ版](https://beta.nextjs.org/docs/app-directory-roadmap)なのでオプトインですし、有効にしたとしても段階的に移行できるように `pages/` と共存して動かす事が可能だそうです。
@@ -93,6 +97,10 @@ JavaScript 上で `module.scss` ファイルをインポートするとクラス
 
 結局色々やろうとするとクライアントコンポーネントにする必要があり（そのためサーバーコンポーネントの利点を感じられなかった）、
 ドキュメントに記載されている分には CSS-in-JS 周りのサポートもいい感じにしていくそうなので、正直どうでも良かったかもしれません。
+
+<ImageWithNote src="/static/blog/202303-nextjs-13/repository-directory.png">
+  散乱するディレクトリの様子（死）
+</ImageWithNote>
 
 ## サーバー上での情報取得 (Fetching)
 
@@ -141,16 +149,27 @@ fetch では fetch API 上にオプションとして再検証タイミングや
 
 nzws.me では簡易的なナビゲーションや記事検索フォームとして活用しています。
 若干躓いた点としては、cmdk 上の input で Enter を叩くと IME のバッファ中であっても選択中のアイテムの選択コマンドが発火してしまうという [CJK 環境が考慮されてないあるあるな問題](<https://heistak.github.io/your-code-displays-japanese-wrong/otherthings.html#:~:text=Messaging%20Apps%3A%20Do%20not%20directly%20hook%20to%20the%20Enter%20key%20to%20submit%20messages%20(by%20default)>)が発生しましたが、
-keyDown 時に `e.isComposing` を見てバッファ中であればイベントを防止するようにしました。(WIP GH URL)
+[keyDown 時に `e.isComposing` を見てバッファ中であればイベントを防止する](https://github.com/nzws/nzws.me/blob/771d60e59f2afc934b533640a54057fa43fe82e4/components/navigation/components/command/index.tsx#L32-L38)ようにしました。
 
 記事検索自体は裏側の Node.js API でファイルアクセスし全文を取得し、Node.js API と通信した Edge API 上で全文をキャッシュしつつ絞り込んで最終的にクライアントに返しているので、
 爆速だしクライアントも軽くていい感じに動かせています。
 
+<ImageWithNote src="/static/blog/202303-nextjs-13/example-usage-cmdk.png">
+  cmdk の使用例
+</ImageWithNote>
+
 ## マークダウンデータの読み込み
 
 このブログは基本マークダウンで管理し Node.js 上で解析してデータ渡して React 上に読み込ませていますが、
-そのプロセス自体は以前と変化無いです。いつも通り unified/remark/rehype のエコシステムに乗っかっています。
-unified 最強。（ただもしかしたら気まぐれでそのうち MDX に変えるかもしれない…）
+~~そのプロセス自体は以前と変化無いです。いつも通り unified/remark/rehype のエコシステムに乗っかっています。unified 最強。（ただもしかしたら気まぐれでそのうち MDX に変えるかもしれない…）~~  
+MDX の誘惑に負けて MDX に載せ替えました（[hashicorp/next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)）グッバイ unified...
+
+next-mdx-remote はバックエンドで [MDX (Markdown+JSX)](https://mdxjs.com/) の文字列をシリアライズさせてフロントエンドのコンポーネントに突っ込むと特に面倒な事をしなくてもマークダウンが描画でき、
+かつ MDX の利点でカスタムの React コンポーネントを追加したり標準のタグを簡単にカスタマイズしたりできます。  
+特に Next.js だとマークダウンに書いた画像タグをそのまま `next/image` に差し込むようにカスタムできるので便利です。
+
+実は以前別のプロジェクトでこれ自体は使ったことあるのですが、今回 App Router で試そうと思ったところ不安定版としてサポートされており、なおかつ App Router 自体がシンプルになったので
+mdx-remote のコンポーネントの操作もシンプルになっていました。(Edge Runtime では動きませんでした。残念)
 
 ## Satori で SEO 系の画像を出力する
 
@@ -167,7 +186,20 @@ OGP で使う画像を加工したり、画像アセットが無いときに雑�
 
 こういう事やってると、もはやよくわからない謎に PHP のランタイムが爆速な国内のレンタルサーバーに PHP 置いとけば（つまり WordPress）楽なのでは…？
 みたいな気持ちに若干なったりしますが、趣味のウェブサイトの最適化は完全にロマンな分野ですよね。
-まあ、商用システムになってくるといい感じにスケーリングとか CDN 配信とかセキュリティ…とか色々考えると現代のベストプラクティスかとは思いますが。。
+まあ、商用システムになってくるといい感じにスケーリングとか CDN 配信とかセキュリティ…とか色々考えると現代のベストプラクティスかとは思いますが。。  
+ちなみに今回使った `next-mdx-remote` の README にこう書かれていました。
+
+<blockquote style={{ fontSize: '1rem', lineHeight: '160%' }}>
+
+**これでどうやってブログを作ればいいのか？**  
+開発者向けツールの使用例の 99％は、不必要に複雑な個人ブログの構築であることがデータで示されています。冗談です。しかし、真面目な話、個人または中小企業でブログを構築しようとしているのであれば、通常の html と css を使用することを検討してください。シンプルなブログを作るのに、重いフルスタックの javascript フレームワークを使う必要はありません。数年後にアップデートをするために戻ってきたとき、依存するものすべてに 10 回の破壊的なリリースがなかったら、後で自分に感謝することになるでしょう。
+
+(DeepL で翻訳: [How Can I Build A Blog With This?](https://github.com/hashicorp/next-mdx-remote#how-can-i-build-a-blog-with-this))
+
+</blockquote>
+
+<p />
+<p />
 
 あと春休み中は (Pure な方の) React エンジニャとしてお仕事をしつつ隙間の休日とかでこれ作ってましたが、
 3 月ももう終わってしまい学校もそろそろ始まりそうです。特に今年は三年次なので就活とか色々考えると胃が痛いです。疲れた（まだ始まってないけど）

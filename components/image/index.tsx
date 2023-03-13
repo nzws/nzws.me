@@ -8,10 +8,12 @@ function SuspenseComponent() {
 }
 
 type Props = {
-  src: string;
+  src?: string;
 } & Omit<React.ComponentProps<typeof NextImage>, 'src' | 'width' | 'height'>;
 
 async function RealComponent({ src, ...props }: Props) {
+  if (!src) return null;
+
   const metadata = await getImageMetadata(src);
 
   return (
@@ -35,3 +37,5 @@ export function Image(props: Props) {
     </Suspense>
   );
 }
+
+export type { Props as ImageProps };
