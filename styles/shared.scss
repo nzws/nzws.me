@@ -1,0 +1,134 @@
+@import '~include-media/dist/_include-media.scss';
+@import './theme.scss';
+
+@mixin shared_container {
+  width: 1024px;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.mincho {
+  font-family: var(--font-mincho);
+}
+
+@mixin markdown_layouts {
+  h1,
+  h2 {
+    margin: 24px 0 10px;
+  }
+
+  h3,
+  h4 {
+    margin: 12px 0 5px;
+  }
+
+  video,
+  img {
+    max-height: 800px;
+  }
+
+  img {
+    object-fit: contain;
+  }
+
+  p {
+    padding-top: 4px;
+    padding-bottom: 10px;
+  }
+
+  img {
+    padding: 10px 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+
+    li::before {
+      content: '−';
+      color: $border;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      margin-right: 8px;
+    }
+  }
+
+  li {
+    padding: 3px 0;
+  }
+
+  img,
+  iframe {
+    margin: 0 auto;
+  }
+
+  img,
+  video,
+  iframe,
+  .twitter-tweet,
+  table {
+    display: block;
+    max-width: 100%;
+  }
+
+  iframe,
+  .twitter-tweet,
+  pre,
+  table {
+    margin: 10px auto;
+  }
+
+  blockquote {
+    margin: 10px 0;
+    padding: 4px 10px;
+    border-left: 5px solid $border;
+    color: darken($primaryText, 10%);
+  }
+
+  pre,
+  code,
+  blockquote {
+    background: rgba(lighten($backgroundPrimary, 10%), 60%);
+  }
+
+  code {
+    padding: 2px 4px;
+    word-break: break-all;
+  }
+
+  pre > code {
+    padding: 0;
+    background: none;
+  }
+
+  pre {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  hr {
+    border-color: $border;
+    margin: 10px 0;
+  }
+
+  ul > li > ul {
+    margin-left: 1rem;
+    padding: 0;
+  }
+
+  table {
+    overflow-x: auto;
+    border-collapse: collapse;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    th,
+    td {
+      min-width: 100px;
+      padding: 8px 12px;
+      border: 1px solid $border;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+[cmdk-overlay] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  animation: cmdk-fade-in 200ms ease forwards;
+  z-index: 1000;
+}
+
+@keyframes cmdk-fade-in {
+  from {
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0);
+  }
+  to {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+  }
+}

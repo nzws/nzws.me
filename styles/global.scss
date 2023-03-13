@@ -1,0 +1,51 @@
+@import 'theme';
+
+body {
+  color: $primaryText;
+  background: $backgroundPrimary;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+a {
+  text-decoration: underline;
+  word-break: break-all;
+  color: $primaryText;
+}
+
+.mincho {
+  font-family: var(--font-mincho);
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  scrollbar-color: lighten($border, 10%) $backgroundPrimary;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $border;
+  border: none;
+}

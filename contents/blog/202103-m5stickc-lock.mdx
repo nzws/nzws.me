@@ -1,0 +1,132 @@
+---
+title: '3000円くらいのスマートロックもどきを作る'
+category:
+  - 雑記
+tags:
+  - IoT
+  - M5StickC
+date: '2021-03-18'
+commentId: '105908790552481946'
+coverImage: https://user-images.githubusercontent.com/14953122/111572197-839b7600-87eb-11eb-831b-424b24c9b1aa.png
+---
+
+どうもこんにちは、ねじわさです。
+家のスマートホームのコア部分であるラズパイの更新掛けてたら archive.raspberrypi.org が 20KB/s しか出なくてカーネルのダウンロードに 6 時間かかるやでって言われてキレ散らかしながらこの記事を書いてます。
+
+ところで、みなさん IoT やってますか。いんたーねっつおぶしんぐすです。僕にはよくわかりません。がスマートホームは好きです。  
+とはいえ、家族が使う既存の家電をがちゃがちゃやるのは色々と面倒なので、自分の部屋の家電を隅から隅までスマホで操作できるようにしたり、みたいな事をやっています。
+
+## 餌食
+
+今回新たな餌食となるものは自室の鍵です。
+普段そこまで使うものでもないですが、
+まあなんか題材として面白そうというのとセールで謎に買った m5stick が余ってるのでここらへん組み合わせて超安価&雑スマートロックを作ってみました。
+
+## 食材
+
+今回使用した食材はこちらです。
+
+- Raspberry Pi (5000 円くらい？忘れた/別枠なので 3000 円の中にはカウントしてない): Homebridge を使用して、Homekit/Google Home と連携を取る中央部分
+- M5StickC (2000 円くらい): モーターを回してくれるやつ
+- サーボモーター (SG92R, 500 円くらい？): 家に落ちてた
+- ジャンパワイヤー: 家に落ちてた
+- [タミヤ ユニバーサルアームセット 70143](https://www.yodobashi.com/product/100000001001083273/): サムターン回し部分の細かいパーツ作成
+- 適当なニッパー
+- 適当な強力両面テープ
+- 適当な M5StickC の充電方法（充電ケーブルとかモバイルバッテリーとか）
+
+Homebridge については[以前も書きましたが](/blog/202011-homebridge)、Apple Homekit と TypeScript 製サーバーで色々なスマートホーム機器を非公式に連携させるものですが、
+私は普段 Android スマートフォンを使用しているため[homebridge-gsh](https://npm.im/homebridge-gsh)を使用して Google Home に繋いで使用しています。
+
+## サムターン部分
+
+こういうものの一番の悩みが既存の物との接続部分で、
+3D プリンターとかあれば楽勝なのかもしれませんが持ってないし技術も無いのでどうしようかな～～と思っていた所、
+似たような物の先駆者がいらっしゃったので参考にさせて頂きました（ユニバーサルアームセットを購入しました）: [Raspberry Pi で開発したプロトタイプを実装する](https://qiita.com/undo0530/items/a444fa9e10bc060334ad)
+
+## 通信の設計とか
+
+M5StickC の方が更新作業とかめんどいので基本 M5StickC のファームウェアは触らない様な設計にする事を心がけました。  
+また、後述する M5Flow で最初から使用できる点とパフォーマンス的にも無駄が無さそうな点から、
+双方向通信のプロトコルには MQTT を使用しています。  
+データとしてはとてもシンプルで、
+
+- Homebridge 側
+  - Pub `update`: メッセージとして角度を送信する。
+  - Sub `toggle`: 解錠/施錠を更新して角度を Pub update で送り返す。
+- M5StickC 側
+  - Pub `toggle`: メインボタンをクリックしたら送信し、Homebridge 上の解錠/施錠をひっくり返して角度を送り返してもらう。
+  - Sub `update`: メッセージに入った角度を元にモーターを回す。
+
+とするように Homebridge 側で施錠/解錠時の角度や現在のステータスを持つようにしました。
+
+## コーディング
+
+### M5StickC 側
+
+Python はわからないので、M5Flow で適当に描きました。
+
+![image](https://user-images.githubusercontent.com/14953122/111572197-839b7600-87eb-11eb-831b-424b24c9b1aa.png)
+
+### Homebridge 側
+
+TypeScript はわかるので、VSCode で適当に書きました。
+
+![download (1)](https://user-images.githubusercontent.com/14953122/111568748-a5452f00-87e4-11eb-94b8-d668b33c5773.png)
+
+ソースは [nzws/homebridge-mqtt-smartlock](https://github.com/nzws/homebridge-mqtt-smartlock) にあります。
+
+なんか当初思っていた 5000 兆倍はシンプルです。
+
+## プラスチックを組み立てる
+
+サムターン部分は前述した記事を参考にさせて頂き、こんな感じに作りました。
+端っこで出っ張っている部分は強力両面テープでドアに貼り付けるイメージです。
+
+![PXL_20210317_124108870](https://user-images.githubusercontent.com/14953122/111568807-c574ee00-87e4-11eb-88b1-74ed2e75e443.jpg)
+
+![PXL_20210317_124114913](https://user-images.githubusercontent.com/14953122/111568814-c86fde80-87e4-11eb-9da5-ed5a8724f00c.jpg)
+
+ほとんどネジで固定していて、サムターン部分に輪ゴム（ネジで固定できなかったため）、ドアとの接続部分と M5Stick のプラスチック部分には両面テープを使用しました。  
+M5Stick はこのようにプラスチックを貼り付けているだけで、本体側のネジの出っ張りを使用してはめ込んでいるだけなので、ケーブルを外すだけでメンテナンスができるようにしました。
+
+![PXL_20210318_002131774](https://user-images.githubusercontent.com/14953122/111568831-ce65bf80-87e4-11eb-90b6-d926305808e6.jpg)
+
+## 設置
+
+貼り付け場所に少し手間取りましたが、接続部分の方向を固定しなかったこともありいい感じに設置できました。
+
+![PXL_20210318_004738764](https://user-images.githubusercontent.com/14953122/111568847-d6256400-87e4-11eb-8024-c1f03ae971c8.jpg)
+
+また、M5Stick 自体はバッテリーが搭載されていますが、通常でも数時間しか持たず、
+サーボモーターを使用すると恐らくそこまで持たないと思われるので、下にモバイルバッテリーをぶら下げるようにしてみました。こちらも結構いい感じです。
+
+![PXL_20210317_131331355](https://user-images.githubusercontent.com/14953122/111568858-db82ae80-87e4-11eb-8fd8-8fd622de6927.jpg)
+
+## 動かしてみる
+
+<video controls muted>
+  <source
+    src="https://user-images.githubusercontent.com/14953122/111568869-e1788f80-87e4-11eb-85d2-0dbd7b523b2e.mp4"
+    type="video/mp4"
+  />
+</video>
+
+すごいあっさり動いてしまって若干びびりました。
+
+一つ想定外だったのが、前述の通り私は普段 Homebridge 経由で Google Home を使用するのですが、
+どうやら鍵の施錠/解錠は Google Home アプリからはまだできない様で、毎回音声入力は面倒なのでどうしようかなとなってしまいました。
+
+![Screenshot_20210318-020341](https://user-images.githubusercontent.com/14953122/111568882-e9d0ca80-87e4-11eb-8ec6-9774800e992a.jpg)
+
+そこで、[homebridge-alexa](https://github.com/NorthernMan54/homebridge-alexa) を使用して Alexa を連携させてみた所、
+Alexa は普通にアプリから解錠できたので Home アプリが対応するまではこちらを使用することにしました。
+
+![Screenshot_20210318-020448](https://user-images.githubusercontent.com/14953122/111568892-f1906f00-87e4-11eb-8830-7c07ff7e064d.jpg)
+
+Alexa は初めて使いましたが使い勝手は普通に良かったです。
+
+## さいごに
+
+と、このように M5Stick はまじで IoT において用途無限大だと思っているので、いくつか持っておいて損は無いと思います。
+みんな買いましょう: [M5StickC - スイッチサイエンス](https://www.switch-science.com/catalog/5517/)

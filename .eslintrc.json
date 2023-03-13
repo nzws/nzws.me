@@ -11,9 +11,6 @@
     "prettier"
   ],
   "parserOptions": {
-    "project": ["./tsconfig.json", "./web/tsconfig.json"]
-  },
-  "rules": {
-    "@next/next/no-img-element": "off"
+    "project": ["./tsconfig.json"]
   }
 }

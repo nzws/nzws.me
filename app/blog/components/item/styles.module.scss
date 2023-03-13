@@ -1,0 +1,87 @@
+@import '~/styles/shared';
+
+.container_link {
+  display: block;
+  text-decoration: none;
+  color: $primaryText;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  column-gap: 18px;
+
+  @mixin is_vertical {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 12px;
+  }
+
+  &[data-is-first] {
+    @include is_vertical;
+  }
+
+  @include media('<=tablet') {
+    @include is_vertical;
+  }
+}
+
+.cover {
+  width: 100%;
+  border-radius: 16px;
+  background-color: $backgroundSecondary;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: -100%;
+    bottom: -100%;
+    left: -100%;
+    right: -100%;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+  }
+}
+
+.cover_image {
+  object-fit: contain;
+}
+
+.title {
+  font-size: 32px;
+  font-family: var(--font-mincho);
+}
+
+.meta_container {
+  @include media('<=tablet') {
+    gap: 8px !important;
+    flex-direction: column !important;
+  }
+}
+
+.tags {
+  max-width: 100%;
+
+  .tag {
+    font-size: 18px;
+    color: $secondaryText;
+
+    :first-child {
+      font-weight: bold;
+    }
+  }
+}
+
+.createdAt {
+  font-size: 18px;
+  color: $secondaryText;
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 18px;
+  font-family: var(--font-mincho);
+}

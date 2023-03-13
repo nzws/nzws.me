@@ -1,0 +1,11 @@
+@import '~/styles/shared';
+
+.container {
+  height: 100vwh;
+  height: 100vh;
+  user-select: none;
+}
+
+.text {
+  color: $secondaryText;
+}

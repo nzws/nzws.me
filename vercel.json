@@ -1,9 +1,4 @@
 {
-  "version": 2,
-  "name": "nzws.me",
-  "scope": "nzws",
-  "alias": ["nzws.me"],
-  "regions": ["hnd1"],
-  "public": false,
-  "github": { "silent": true }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "YARN_CACHE_FOLDER=.vercel/cache/yarn yarn install"
 }

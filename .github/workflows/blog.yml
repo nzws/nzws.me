@@ -5,10 +5,10 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: nzws/blog-at-issue-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          filepath: 'blog-data/posts/{title}.md'
+          filepath: 'contents/blog/{title}.mdx'
           label: 'blog' # Optional
           use-prettier: 'format' # Optional

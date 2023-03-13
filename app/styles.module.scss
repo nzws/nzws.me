@@ -1,0 +1,28 @@
+@import '~/styles/shared.scss';
+
+.container {
+  height: 100vh;
+  height: 100vwh;
+}
+
+.main {
+  @include shared_container;
+  color: $primaryText;
+}
+
+.body {
+  @include markdown_layouts;
+
+  border: 0.5px solid $border;
+  border-radius: 12px;
+  padding: 12px 24px;
+}
+
+.footer {
+  color: $secondaryText;
+  margin-left: auto;
+
+  a {
+    color: $secondaryText;
+  }
+}

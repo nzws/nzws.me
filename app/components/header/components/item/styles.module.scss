@@ -1,0 +1,14 @@
+@import '~/styles/shared.scss';
+
+.item {
+  font-size: 14px;
+
+  .label {
+    font-weight: 300;
+  }
+
+  .value {
+    margin-left: 4px;
+    font-weight: 600;
+  }
+}
