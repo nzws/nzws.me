@@ -779,6 +779,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tabler/icons-react@npm:2.10.0":
+  version: 2.10.0
+  resolution: "@tabler/icons-react@npm:2.10.0"
+  dependencies:
+    "@tabler/icons": 2.10.0
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 117cedece934036af93c62d36586fe108a7a4dd6e17a66d00ffc8710a404d72d6b62a9292c38d5c1ce65269e446cb709e0d5eebee55f9301a23e837a817f2bf7
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:2.10.0":
+  version: 2.10.0
+  resolution: "@tabler/icons@npm:2.10.0"
+  checksum: 97f3293b426be4f34cc45bac42266893193dd695f34fd52c8158b62fc64286149a61be15642e4fe34dcb74c38252bd22fbe16bca97374364d4c694cfbb0f12f5
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -4806,6 +4825,7 @@ __metadata:
     "@next/bundle-analyzer": 13.2.3
     "@next/eslint-plugin-next": 13.2.3
     "@nzws/prettier-config": 1.0.1
+    "@tabler/icons-react": 2.10.0
     "@tsconfig/next": 1.0.5
     "@types/node": 18.14.4
     "@types/react": 18.0.28
