@@ -2,11 +2,13 @@ import dynamic from 'next/dynamic';
 import { cache } from 'react';
 import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
-import { VStack } from '~/components/stack';
+import { HStack, VStack } from '~/components/stack';
 import { PageNumber } from '~/utils/constants';
 import { Header } from './components/header';
 import styles from './styles.module.scss';
 import { MDXLoader } from '~/components/mdx-loader';
+import Link from 'next/link';
+import { Star } from 'react-feather';
 
 const Time = dynamic(() => import('./components/time'), {
   ssr: false
@@ -44,9 +46,20 @@ export default async function Page() {
           <MDXLoader content={text} />
         </div>
 
-        <div className={styles.footer}>
-          Fetched <Link /> at {fetchedAt ? <Time time={fetchedAt} /> : '?'}
-        </div>
+        <HStack
+          gap="8px"
+          justifyContent="space-between"
+          className={styles.footer}
+        >
+          <div>
+            <SupportersLink />
+          </div>
+
+          <div>
+            Fetched <ReadmeLink /> at{' '}
+            {fetchedAt ? <Time time={fetchedAt} /> : '?'}
+          </div>
+        </HStack>
       </VStack>
 
       <Footer />
@@ -54,7 +67,16 @@ export default async function Page() {
   );
 }
 
-function Link() {
+function SupportersLink() {
+  return (
+    <Link href="/blog/supporters" className={styles.supporters_link}>
+      <Star size={16} />
+      Supporters
+    </Link>
+  );
+}
+
+function ReadmeLink() {
   return (
     <a href="https://github.com/nzws/nzws" target="_blank" rel="noreferrer">
       nzws/nzws

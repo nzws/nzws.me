@@ -20,9 +20,18 @@
 
 .footer {
   color: $secondaryText;
-  margin-left: auto;
 
   a {
     color: $secondaryText;
+  }
+
+  .supporters_link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @include media('<=tablet') {
+    flex-direction: column;
   }
 }
