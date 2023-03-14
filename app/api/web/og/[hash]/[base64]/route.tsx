@@ -5,6 +5,7 @@ import { signature } from '~/lib/crypto/browser';
 import { decode } from '~/lib/encoder';
 import type { OGImageData } from '~/utils/type';
 import { ArticleTemplate } from './components/article-template';
+import { fontResolver } from './font-resolver';
 
 export const runtime = 'experimental-edge';
 
@@ -18,11 +19,6 @@ const ibm_plex_sans_jp_url =
 const genei_latemin_p_url =
   'https://static-cdn.nzws.me/nzws.me-GenEiLateMinP_v2.ttf';
 
-const ibm_plex_sans = fetch(ibm_plex_sans_jp_url).then(res =>
-  res.arrayBuffer()
-);
-const genei_latemin = fetch(genei_latemin_p_url).then(res => res.arrayBuffer());
-
 type Params = {
   hash: string;
   base64: string;
@@ -34,6 +30,7 @@ export async function GET(
 ) {
   const query = new URLSearchParams(request.nextUrl.search.substring(1));
   const { hash, base64 } = params;
+
   const correctHash = await signature(base64);
   if (hash !== correctHash) {
     return NextResponse.json(
@@ -56,26 +53,21 @@ export async function GET(
     );
   }
 
-  const [IBMPlexSans, GenEiLatemin] = await Promise.all([
-    ibm_plex_sans,
-    genei_latemin
-  ]);
-
   const options: ImageResponseOptions = {
     width,
     height,
-    fonts: [
+    fonts: await fontResolver([
       {
         name: 'GenEiLateMinP_v2',
-        data: GenEiLatemin,
+        url: genei_latemin_p_url,
         style: 'normal'
       },
       {
         name: 'IBM_Plex_Sans_JP',
-        data: IBMPlexSans,
+        url: ibm_plex_sans_jp_url,
         style: 'normal'
       }
-    ]
+    ])
   };
 
   if (data.type === 'article') {
