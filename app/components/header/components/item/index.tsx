@@ -20,7 +20,7 @@ export function HeaderItem({ icon: Icon, label, value, href }: ItemProps) {
         <a
           href={href}
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer me"
           className={styles.value}
         >
           {value}
