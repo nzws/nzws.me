@@ -20,6 +20,9 @@ export const BASE_URL =
     ? `https://${DEPLOYMENT_DOMAIN}`
     : `http://${DEPLOYMENT_DOMAIN}`;
 
+export const PUBLIC_URL =
+  process.env.NEXT_PUBLIC_VERCEL_ENV === 'production' ? 'https://nzws.me' : '';
+
 export const dateOptions = {
   weekday: 'long',
   year: 'numeric',

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { HStack, VStack } from '~/components/stack';
-import { ArticleType, dateOptions } from '~/utils/constants';
+import { ArticleType, dateOptions, PUBLIC_URL } from '~/utils/constants';
 import styles from './styles.module.scss';
 import { getArticle, getArticleSlugs } from '~/lib/file-io';
 import { Image } from '~/components/image';
@@ -106,17 +106,18 @@ export async function generateMetadata({
     description,
     openGraph: {
       title: `${article.title} - Blog - nzws.me`,
+      url: PUBLIC_URL + '/blog/' + article.slug,
       description,
       images: [
         {
-          url: imageUrl
+          url: PUBLIC_URL + imageUrl
         }
       ]
     },
     twitter: {
       card: 'summary_large_image',
       creator: '@nzws_me',
-      images: [imageUrl]
+      images: [PUBLIC_URL + imageUrl]
     }
   };
 }
