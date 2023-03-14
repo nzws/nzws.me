@@ -79,7 +79,10 @@ Next.js の Middleware は KnzkLive でローカライズごとのパス変更�
 今回はインタラクティブな検索 API で Edge Runtime を活用していますが高速で問題なく動いてくれているので良い感じです。
 （ファイルアクセスなどは Edge でできないので普通に Node.js のサーバーレス関数で API を動かしています）
 
-<ImageWithNote src="/static/blog/202303-nextjs-13/vercel-edge-function-logs.png">
+<ImageWithNote
+  src="/static/blog/202303-nextjs-13/vercel-edge-function-logs.png"
+  alt="Vercel にて Edge Function のリアルタイムログの様子"
+>
   Vercel にて Edge Function のリアルタイムログの様子
 </ImageWithNote>
 
@@ -98,7 +101,10 @@ JavaScript 上で `module.scss` ファイルをインポートするとクラス
 結局色々やろうとするとクライアントコンポーネントにする必要があり（そのためサーバーコンポーネントの利点を感じられなかった）、
 ドキュメントに記載されている分には CSS-in-JS 周りのサポートもいい感じにしていくそうなので、正直どうでも良かったかもしれません。
 
-<ImageWithNote src="/static/blog/202303-nextjs-13/repository-directory.png">
+<ImageWithNote
+  src="/static/blog/202303-nextjs-13/repository-directory.png"
+  alt="散乱するディレクトリの様子（死）"
+>
   散乱するディレクトリの様子（死）
 </ImageWithNote>
 
@@ -154,7 +160,10 @@ nzws.me では簡易的なナビゲーションや記事検索フォームとし
 記事検索自体は裏側の Node.js API でファイルアクセスし全文を取得し、Node.js API と通信した Edge API 上で全文をキャッシュしつつ絞り込んで最終的にクライアントに返しているので、
 爆速だしクライアントも軽くていい感じに動かせています。
 
-<ImageWithNote src="/static/blog/202303-nextjs-13/example-usage-cmdk.png">
+<ImageWithNote
+  src="/static/blog/202303-nextjs-13/example-usage-cmdk.png"
+  alt="cmdk の使用例"
+>
   cmdk の使用例
 </ImageWithNote>
 
