@@ -106,7 +106,7 @@ export async function generateMetadata({
     description,
     openGraph: {
       title: `${article.title} - Blog - nzws.me`,
-      url: PUBLIC_URL + '/blog/' + article.slug,
+      url: PUBLIC_URL ? PUBLIC_URL + '/blog/' + article.slug : undefined,
       description,
       images: [
         {
