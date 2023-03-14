@@ -51,14 +51,16 @@ export async function GET(
     );
   }
 
+  console.time('font fetch');
   const [IBMPlexSans, GenEiLatemin] = await Promise.all([
     fetch(ibm_plex_sans_jp_url, { cache: 'force-cache' }).then(res =>
       res.arrayBuffer()
     ),
-    fetch(ibm_plex_sans_jp_url, { cache: 'force-cache' }).then(res =>
+    fetch(genei_latemin_p_url, { cache: 'force-cache' }).then(res =>
       res.arrayBuffer()
     )
   ]);
+  console.timeEnd('font fetch');
 
   const options: ImageResponseOptions = {
     width,
