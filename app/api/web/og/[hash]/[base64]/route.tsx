@@ -18,11 +18,6 @@ const ibm_plex_sans_jp_url =
 const genei_latemin_p_url =
   'https://static-cdn.nzws.me/nzws.me-GenEiLateMinP_v2.ttf';
 
-const ibm_plex_sans = fetch(ibm_plex_sans_jp_url).then(res =>
-  res.arrayBuffer()
-);
-const genei_latemin = fetch(genei_latemin_p_url).then(res => res.arrayBuffer());
-
 type Params = {
   hash: string;
   base64: string;
@@ -57,8 +52,12 @@ export async function GET(
   }
 
   const [IBMPlexSans, GenEiLatemin] = await Promise.all([
-    ibm_plex_sans,
-    genei_latemin
+    fetch(ibm_plex_sans_jp_url, { cache: 'force-cache' }).then(res =>
+      res.arrayBuffer()
+    ),
+    fetch(ibm_plex_sans_jp_url, { cache: 'force-cache' }).then(res =>
+      res.arrayBuffer()
+    )
   ]);
 
   const options: ImageResponseOptions = {
