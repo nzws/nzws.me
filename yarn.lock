@@ -354,10 +354,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@msgpack/msgpack@npm:3.0.0-beta1":
-  version: 3.0.0-beta1
-  resolution: "@msgpack/msgpack@npm:3.0.0-beta1"
-  checksum: aef6f1ff1a624ed149538d039d11a27607da813a97dd8aa977a7a6400878ccd95203e1d00219d08c0ac4facb97d24bf530fe03ce0b986970c6f4edb2d81b2d13
+"@msgpack/msgpack@npm:3.0.0-beta2":
+  version: 3.0.0-beta2
+  resolution: "@msgpack/msgpack@npm:3.0.0-beta2"
+  checksum: d86e5d48146051952d6bea35a6cf733a401cf65ad5614d79689aa48c7076021737ca2c782978dd1b6c0c9c45888b246e379e45ae906179e3a0e8ef4ee6f221c1
   languageName: node
   linkType: hard
 
@@ -4883,7 +4883,7 @@ __metadata:
   resolution: "nzws.me@workspace:."
   dependencies:
     "@icons-pack/react-simple-icons": 7.1.0
-    "@msgpack/msgpack": 3.0.0-beta1
+    "@msgpack/msgpack": 3.0.0-beta2
     "@next/bundle-analyzer": 13.2.4
     "@next/eslint-plugin-next": 13.2.4
     "@nzws/prettier-config": 1.0.1
