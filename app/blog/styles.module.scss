@@ -4,3 +4,7 @@
   @include shared_container;
   padding: 20px 12px;
 }
+
+.layout_container {
+  @include dynamic_viewport_height;
+}

@@ -1,6 +1,11 @@
 @import '~include-media/dist/_include-media.scss';
 @import './theme.scss';
 
+@mixin dynamic_viewport_height {
+  height: 100vh;
+  height: 100dvh;
+}
+
 @mixin shared_container {
   width: 1024px;
   margin: 0 auto;
