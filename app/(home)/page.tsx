@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { cache } from 'react';
 import { Footer } from '~/components/footer';
+import { Background } from './components/background';
 import { Navigation } from '~/components/navigation';
 import { HStack, VStack } from '~/components/stack';
 import { PageNumber } from '~/utils/constants';
@@ -37,6 +38,7 @@ export default async function Page() {
       justifyContent="space-between"
       alignItems="center"
     >
+      <Background />
       <Navigation currentPage={PageNumber.About} />
 
       <VStack gap="24px" className={styles.main}>

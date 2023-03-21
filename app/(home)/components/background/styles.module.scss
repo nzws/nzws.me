@@ -1,0 +1,27 @@
+@import '~/styles/shared.scss';
+
+@mixin item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  width: 100%;
+  height: 24%;
+  overflow: hidden;
+}
+
+.background {
+  @include item;
+
+  object-fit: cover;
+  margin: 0 auto;
+  filter: brightness(76%);
+}
+
+.mask {
+  @include item;
+
+  background: linear-gradient(180deg, transparent 4%, $backgroundPrimary 100%);
+}
