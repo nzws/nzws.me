@@ -1,8 +1,7 @@
 @import '~/styles/shared.scss';
 
 .container {
-  height: 100vh;
-  height: 100vwh;
+  @include dynamic_viewport_height;
 }
 
 .main {

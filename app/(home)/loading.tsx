@@ -1,29 +1,22 @@
-import { PropsWithChildren } from 'react';
 import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
 import { VStack } from '~/components/stack';
 import { PageNumber } from '~/utils/constants';
 import styles from './styles.module.scss';
 
-export default function Layout({ children }: PropsWithChildren) {
+export default function Page() {
   return (
     <VStack
+      gap="8px"
+      className={styles.container}
       justifyContent="space-between"
       alignItems="center"
-      className={styles.layout_container}
     >
-      <Navigation currentPage={PageNumber.Blog} />
+      <Navigation currentPage={PageNumber.About} />
 
-      {children}
+      <div />
 
       <Footer />
     </VStack>
   );
 }
-
-export const metadata = {
-  title: {
-    default: 'Blog - nzws.me',
-    template: '%s - Blog - nzws.me'
-  }
-};

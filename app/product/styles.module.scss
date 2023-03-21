@@ -1,8 +1,7 @@
 @import '~/styles/shared';
 
 .container {
-  height: 100vwh;
-  height: 100vh;
+  @include dynamic_viewport_height;
   user-select: none;
 }
 

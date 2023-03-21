@@ -43,6 +43,10 @@
   }
 }
 
+.container {
+  width: 100%;
+}
+
 .meta_container {
   @include shared_container;
 

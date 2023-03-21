@@ -19,7 +19,7 @@ export default async function Page({ params: { id } }: { params: Params }) {
   }
 
   return (
-    <VStack gap="28px">
+    <VStack gap="28px" className={styles.container}>
       <div className={styles.header}>
         {article.coverImage && (
           <Image
