@@ -6,7 +6,7 @@ export default function Layout({ children }: PropsWithChildren) {
 
 export const metadata = {
   title: {
-    default: 'Products - nzws.me',
+    default: 'Products',
     template: '%s - Products - nzws.me'
   }
 };

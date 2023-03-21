@@ -23,7 +23,7 @@ export default function Layout({ children }: PropsWithChildren) {
 
 export const metadata = {
   title: {
-    default: 'Blog - nzws.me',
+    default: 'Blog',
     template: '%s - Blog - nzws.me'
   }
 };
