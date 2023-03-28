@@ -1529,14 +1529,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/og@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@vercel/og@npm:0.4.0"
+"@vercel/og@npm:0.4.2":
+  version: 0.4.2
+  resolution: "@vercel/og@npm:0.4.2"
   dependencies:
     "@resvg/resvg-wasm": 2.4.1
-    satori: 0.4.1
-    yoga-wasm-web: 0.3.0
-  checksum: 83e0fa8408648be617046d7e2eb53139c79f8cc4d39b2723e870d5d865b5de42cc07917b686f7b6093f9219970529f89a71e492314043a4099fe532e10b55881
+    satori: 0.4.4
+    yoga-wasm-web: 0.3.3
+  checksum: 958d0856f4e1aa469948eff2fcdb88ad92d729893c6795047a47b924e258037256f42d1defe945782be8f2e4a4bfa6d92a5a97cc1dec6c869ac62883b4ae97e6
   languageName: node
   linkType: hard
 
@@ -5355,7 +5355,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 5.56.0
     "@typescript-eslint/parser": 5.56.0
     "@vercel/analytics": 0.1.11
-    "@vercel/og": 0.4.0
+    "@vercel/og": 0.4.2
     cmdk: 0.2.0
     csstype: 3.1.1
     eslint: 8.36.0
@@ -6151,9 +6151,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"satori@npm:0.4.1":
-  version: 0.4.1
-  resolution: "satori@npm:0.4.1"
+"satori@npm:0.4.4":
+  version: 0.4.4
+  resolution: "satori@npm:0.4.4"
   dependencies:
     "@shuding/opentype.js": 1.4.0-beta.0
     css-background-parser: ^0.1.0
@@ -6162,8 +6162,8 @@ __metadata:
     emoji-regex: ^10.2.1
     linebreak: ^1.1.0
     postcss-value-parser: ^4.2.0
-    yoga-wasm-web: ^0.3.1
-  checksum: b077d95ed5c39c1630ab0bd5be3af72b098660a296f879cd8fea2a437a5a37f2ea94a33e4dc74380b721c6e04e4c3d81c71aa14234d43e22fa67f2f33bb7fb89
+    yoga-wasm-web: ^0.3.3
+  checksum: 749f3afd10e21d40a720d24186042f741072e8f7ed567541672da35302eac63f31e53da4f7d6db7da87e82dbb79146ac03fc9d29b5fd1ec7b199bd5d4701cb57
   languageName: node
   linkType: hard
 
@@ -7217,17 +7217,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yoga-wasm-web@npm:0.3.0":
-  version: 0.3.0
-  resolution: "yoga-wasm-web@npm:0.3.0"
-  checksum: 5d3ea343e06e694cf498e2c496c30aa3ad9d3f7dce9a8554e73649a53d01312165fdfb3d1efa0ef234adc1ef23cd80c2e1a9a271a2701a11250d48df447fa0da
-  languageName: node
-  linkType: hard
-
-"yoga-wasm-web@npm:^0.3.1":
-  version: 0.3.2
-  resolution: "yoga-wasm-web@npm:0.3.2"
-  checksum: 3f00606968eb7ea38c8affd6b43239d6ac4cd53e705dc61e61b3da53bf76728fb8e80f93de7ce42fc89893374340f2ae8799d485ff001320cde8a9502a7900c6
+"yoga-wasm-web@npm:0.3.3, yoga-wasm-web@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "yoga-wasm-web@npm:0.3.3"
+  checksum: ff65192a832975ff531a1b6eae160c2da859c250feaa58b6389b684f9b48f53fda849a7ea49d12d241198309e671e6bd230a44e7155af9573d7843ac48831c98
   languageName: node
   linkType: hard
 
