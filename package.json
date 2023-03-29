@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "prettier --check --cache . && next lint",
+    "lint": "prettier --check --cache . && next lint && tsc --noEmit",
     "format": "prettier --write --cache .",
     "build": "next build",
     "dev": "rm -rf .nzws-cache && next",
