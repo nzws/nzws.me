@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { cache } from 'react';
 import { Footer } from '~/components/footer';
 import { Background } from './components/background';
@@ -10,10 +9,7 @@ import styles from './styles.module.scss';
 import { MDXLoader } from '~/components/mdx-loader';
 import Link from 'next/link';
 import { Star } from 'react-feather';
-
-const Time = dynamic(() => import('./components/time'), {
-  ssr: false
-});
+import { Time } from './components/time';
 
 const README_URL =
   'https://raw.githubusercontent.com/nzws/nzws/master/README.md';
