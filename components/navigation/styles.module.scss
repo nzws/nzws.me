@@ -26,7 +26,7 @@ $linkHeight: 64px;
 
 .links {
   @include media('<=tablet') {
-    display: none;
+    display: none !important;
   }
 }
 
