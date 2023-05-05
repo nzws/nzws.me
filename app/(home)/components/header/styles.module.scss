@@ -5,8 +5,8 @@
   padding: 12px;
 
   @include media('<=tablet') {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column !important;
+    align-items: center !important;
   }
 }
 
@@ -16,7 +16,7 @@
 
 .title_container {
   @include media('<=tablet') {
-    justify-content: center;
+    justify-content: center !important;
   }
 
   .title {
@@ -31,6 +31,6 @@
 
 .items {
   @include media('<=tablet') {
-    justify-content: center;
+    justify-content: center !important;
   }
 }

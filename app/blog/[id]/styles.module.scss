@@ -51,7 +51,7 @@
   @include shared_container;
 
   @include media('<=tablet') {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 
   .tags {
@@ -87,7 +87,7 @@
   word-break: break-word;
 
   @include media('<=tablet') {
-    font-size: 18px;
-    line-height: 180%;
+    font-size: 18px !important;
+    line-height: 180% !important;
   }
 }

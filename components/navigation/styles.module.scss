@@ -14,7 +14,7 @@ $linkHeight: 64px;
   height: $linkHeight;
 
   @include media('<=tablet') {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 

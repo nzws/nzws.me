@@ -31,6 +31,6 @@
   }
 
   @include media('<=tablet') {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 }
