@@ -6,15 +6,10 @@ import { decode } from '~/lib/encoder';
 import type { OGImageData } from '~/utils/type';
 import { ArticleTemplate } from './components/article-template';
 import { readFile } from 'fs/promises';
-import path from 'path';
+import { genEiLateMinP, ibmPlexSansJPBold } from '~/assets/fonts';
 
-const ibmPlexSansJP = readFile(
-  path.resolve(process.cwd(), `assets/IBMPlexSansJP-Bold.ttf`)
-);
-
-const genEiLatemin = readFile(
-  path.resolve(process.cwd(), `assets/GenEiLateMinP_v2.ttf`)
-);
+const ibmPlexSansJP = readFile(ibmPlexSansJPBold);
+const genEiLatemin = readFile(genEiLateMinP);
 
 type Params = {
   hash: string;
