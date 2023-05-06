@@ -1,20 +1,22 @@
 import { ImageResponse } from '@vercel/og';
 import type { ImageResponseOptions } from '@vercel/og/dist/types';
 import { NextRequest, NextResponse } from 'next/server';
-import { signature } from '~/lib/crypto/node';
+import { signature } from '~/lib/crypto/browser';
 import { decode } from '~/lib/encoder';
 import type { OGImageData } from '~/utils/type';
 import { ArticleTemplate } from './components/article-template';
-import { readFile } from 'fs/promises';
-import path from 'path';
 
-const ibmPlexSansJP = readFile(
-  path.resolve(process.cwd(), `assets/IBMPlexSansJP-Bold.ttf`)
-);
+export const runtime = 'experimental-edge';
 
-const genEiLatemin = readFile(
-  path.resolve(process.cwd(), `assets/GenEiLateMinP_v2.ttf`)
-);
+// IBM Plex Sans JP: Open Font License
+// https://fonts.google.com/specimen/IBM+Plex+Sans+JP
+const ibm_plex_sans_jp_url =
+  'https://static-cdn.nzws.me/nzws.me-IBMPlexSansJP-Bold.ttf';
+
+// GenEi Late Min P: SIL Open Font License 1.1
+// https://okoneya.jp/font/genei-latin.html
+const genei_latemin_p_url =
+  'https://static-cdn.nzws.me/nzws.me-GenEiLateMinP_v2.ttf';
 
 type Params = {
   hash: string;
@@ -49,8 +51,16 @@ export async function GET(
     );
   }
 
-  const IBMPlexSans = await ibmPlexSansJP;
-  const GenEiLatemin = await genEiLatemin;
+  console.time('font fetch');
+  const [IBMPlexSans, GenEiLatemin] = await Promise.all([
+    fetch(ibm_plex_sans_jp_url, { cache: 'force-cache' }).then(res =>
+      res.arrayBuffer()
+    ),
+    fetch(genei_latemin_p_url, { cache: 'force-cache' }).then(res =>
+      res.arrayBuffer()
+    )
+  ]);
+  console.timeEnd('font fetch');
 
   const options: ImageResponseOptions = {
     width,

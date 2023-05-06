@@ -24,7 +24,7 @@ This website is built with [App Router](https://beta.nextjs.org) and all page co
   - /blog/[slug] - Build on normal build step
 - [/product](https://nzws.me/product) - Static (WIP)
 - /api - Serverless Functions
-  - /api/og/[hash]/[base64] - Generate Open Graph image (using [Satori](https://github.com/vercel/satori))
+  - /api/og/[hash]/[base64] - Generate Open Graph image (using [Edge Functions](https://edge-runtime.vercel.sh/) + [Satori](https://github.com/vercel/satori))
   - /api/search - Search blog posts (using Edge Functions)
   - /api/internal/search-raw - Returns all blog data for the Edge API, Not used directly from the web client.
 - [/visualize](https://nzws.me/visualize) - [next-route-visualizer](https://github.com/DiiiaZoTe/next-route-visualizer)
