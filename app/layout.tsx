@@ -10,10 +10,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ja" className={coreStyleClass}>
       <body>
-        {/* Workaround for CSS Module's FOUC (needs 1 space) */}
-        {/* ref: https://zenn.dev/catnose99/articles/3c106c81cbfdec */}
-        <script> </script>
-
         {children}
 
         <Analytics />
