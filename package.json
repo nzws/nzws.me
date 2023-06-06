@@ -36,7 +36,7 @@
   "dependencies": {
     "@icons-pack/react-simple-icons": "7.2.0",
     "@msgpack/msgpack": "3.0.0-beta2",
-    "@tabler/icons-react": "2.17.0",
+    "@tabler/icons-react": "2.22.0",
     "@vercel/analytics": "1.0.1",
     "@vercel/og": "0.5.4",
     "cmdk": "0.2.0",
