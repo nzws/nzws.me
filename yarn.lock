@@ -1265,10 +1265,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.16.5":
-  version: 18.16.5
-  resolution: "@types/node@npm:18.16.5"
-  checksum: b6df96a76a7655cd944794197cf63f5269e5034041bc355f4f243cb3f185ad3e1948011b6f0ac66c22434e50bc53a20ec3a9d95ad284f0e3819813d309d1650b
+"@types/node@npm:18.16.18":
+  version: 18.16.18
+  resolution: "@types/node@npm:18.16.18"
+  checksum: d32d8a0a04cd3f5ecb361bcb42f3a07623881ac90d680e06bf626defb3c663a94860d11690babe607cfe67265eceeb8a59ba5fe40c0e49f5a1b01e0088640469
   languageName: node
   linkType: hard
 
@@ -5367,7 +5367,7 @@ __metadata:
     "@nzws/prettier-config": 2.0.0
     "@tabler/icons-react": 2.17.0
     "@tsconfig/next": 1.0.5
-    "@types/node": 18.16.5
+    "@types/node": 18.16.18
     "@types/react": 18.2.6
     "@types/react-dom": 18.2.4
     "@types/remove-markdown": 0.3.1
