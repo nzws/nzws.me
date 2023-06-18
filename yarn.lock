@@ -266,12 +266,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@icons-pack/react-simple-icons@npm:7.2.0":
-  version: 7.2.0
-  resolution: "@icons-pack/react-simple-icons@npm:7.2.0"
+"@icons-pack/react-simple-icons@npm:8.0.1":
+  version: 8.0.1
+  resolution: "@icons-pack/react-simple-icons@npm:8.0.1"
   peerDependencies:
     react: ^16.13 || ^17 || ^18
-  checksum: 925b6a0651d6fa9eb97de2a245f7c260c0c84f6f7d9db36c0540b62c6c86d1a9cda9d8425958eb4f0cf6484baec978be8be20182b4498266ba33fd8a1eb5ff6a
+  checksum: 0651e316cccf2a81ae01d38c219b852f698a221e07f2eab3f25d46f035fc2cbe70224953b739ec123cde32e7a4e94c4688f16cf89e0e6134855b8ddc58dc380f
   languageName: node
   linkType: hard
 
@@ -5360,7 +5360,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "nzws.me@workspace:."
   dependencies:
-    "@icons-pack/react-simple-icons": 7.2.0
+    "@icons-pack/react-simple-icons": 8.0.1
     "@msgpack/msgpack": 3.0.0-beta2
     "@next/bundle-analyzer": 13.4.1
     "@next/eslint-plugin-next": 13.4.1
