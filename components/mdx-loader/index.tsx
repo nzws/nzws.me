@@ -11,7 +11,6 @@ const mdxOptions: SerializeOptions = {
 
 export function MDXLoader({ content }: { content: string }) {
   return (
-    // @ts-expect-error Async Server Component
     <MDXRemote
       source={content}
       components={mdxComponents}
