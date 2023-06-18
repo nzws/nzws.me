@@ -32,7 +32,6 @@ export function Image(props: Props) {
   // todo: https://beta.nextjs.org/docs/configuring/typescript#async-server-component-typescript-error
   return (
     <Suspense fallback={<SuspenseComponent />}>
-      {/* @ts-expect-error Async Server Component */}
       <RealComponent {...props} />
     </Suspense>
   );
