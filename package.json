@@ -57,7 +57,7 @@
     "sanitize-filename": "1.6.3",
     "server-only": "0.0.1",
     "sharp": "0.32.1",
-    "styled-components": "5.3.11",
+    "styled-components": "6.0.7",
     "universal-base64url": "1.1.0"
   },
   "prettier": "@nzws/prettier-config",
