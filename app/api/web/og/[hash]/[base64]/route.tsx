@@ -1,9 +1,10 @@
 import { ImageResponse } from '@vercel/og';
-import type { ImageResponseOptions } from '@vercel/og/dist/types';
 import { NextRequest, NextResponse } from 'next/server';
+
 import { signature } from '~/lib/crypto/browser';
 import { decode } from '~/lib/encoder';
 import type { OGImageData } from '~/utils/type';
+
 import { ArticleTemplate } from './components/article-template';
 
 export const runtime = 'experimental-edge';
@@ -62,25 +63,23 @@ export async function GET(
   ]);
   console.timeEnd('font fetch');
 
-  const options: ImageResponseOptions = {
-    width,
-    height,
-    fonts: [
-      {
-        name: 'GenEiLateMinP_v2',
-        data: GenEiLatemin,
-        style: 'normal'
-      },
-      {
-        name: 'IBM_Plex_Sans_JP',
-        data: IBMPlexSans,
-        style: 'normal'
-      }
-    ]
-  };
-
   if (data.type === 'article') {
-    return new ImageResponse(<ArticleTemplate title={data.title} />, options);
+    return new ImageResponse(<ArticleTemplate title={data.title} />, {
+      width,
+      height,
+      fonts: [
+        {
+          name: 'GenEiLateMinP_v2',
+          data: GenEiLatemin,
+          style: 'normal'
+        },
+        {
+          name: 'IBM_Plex_Sans_JP',
+          data: IBMPlexSans,
+          style: 'normal'
+        }
+      ]
+    });
   } else {
     return NextResponse.json(
       {

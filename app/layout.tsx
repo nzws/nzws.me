@@ -1,8 +1,10 @@
 import 'ress/dist/ress.min.css';
 import '~/styles/global.scss';
-import { PropsWithChildren } from 'react';
+
 import { Analytics } from '@vercel/analytics/react';
-import { Sans, Mincho } from '~/styles/font';
+import { PropsWithChildren } from 'react';
+
+import { Mincho, Sans } from '~/styles/font';
 
 const coreStyleClass = [Sans.variable, Mincho.variable].join(' ');
 

@@ -1,6 +1,6 @@
-import sanitize from 'sanitize-filename';
 import { mkdir, readFile, writeFile } from 'fs/promises';
 import path from 'path';
+import sanitize from 'sanitize-filename';
 
 const cacheDir = path.resolve(process.cwd(), '.nzws-cache');
 

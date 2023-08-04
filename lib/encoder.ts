@@ -1,10 +1,10 @@
 import {
-  encode as encodeMsgpack,
-  decode as decodeMsgpack
+  decode as decodeMsgpack,
+  encode as encodeMsgpack
 } from '@msgpack/msgpack';
 import {
-  encode as encodeBase64,
-  decode as decodeBase64
+  decode as decodeBase64,
+  encode as encodeBase64
 } from 'universal-base64url';
 
 export const binaryToString = (data: Uint8Array) => {

@@ -1,12 +1,14 @@
-import Image from 'next/image';
-import { Globe, MapPin, User } from 'react-feather';
 import {
   IconBrandDiscord,
   IconBrandGithub,
   IconBrandMastodon
 } from '@tabler/icons-react';
-import { HeaderItem, ItemProps } from './components/item';
+import Image from 'next/image';
+import { Globe, MapPin, User } from 'react-feather';
+
 import { HStack, VStack } from '~/components/stack';
+
+import { HeaderItem, ItemProps } from './components/item';
 import styles from './styles.module.scss';
 
 const profile: ItemProps[] = [

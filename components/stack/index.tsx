@@ -1,5 +1,6 @@
-import { FC, HTMLAttributes, PropsWithChildren } from 'react';
 import type { Property } from 'csstype';
+import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+
 import styles from './styles.module.scss';
 
 export interface StackProps {

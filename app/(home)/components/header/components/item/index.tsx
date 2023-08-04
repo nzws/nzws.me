@@ -1,6 +1,8 @@
-import { Icon as FeatherIcon } from 'react-feather';
 import { Icon as TablerIcon } from '@tabler/icons-react';
+import { Icon as FeatherIcon } from 'react-feather';
+
 import { HStack } from '~/components/stack';
+
 import styles from './styles.module.scss';
 
 export type ItemProps = {

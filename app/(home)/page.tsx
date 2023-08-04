@@ -1,15 +1,17 @@
+import Link from 'next/link';
 import { cache } from 'react';
+import { Star } from 'react-feather';
+
 import { Footer } from '~/components/footer';
-import { Background } from './components/background';
+import { MDXLoader } from '~/components/mdx-loader';
 import { Navigation } from '~/components/navigation';
 import { HStack, VStack } from '~/components/stack';
 import { PageNumber } from '~/utils/constants';
+
+import { Background } from './components/background';
 import { Header } from './components/header';
-import styles from './styles.module.scss';
-import { MDXLoader } from '~/components/mdx-loader';
-import Link from 'next/link';
-import { Star } from 'react-feather';
 import { Time } from './components/time';
+import styles from './styles.module.scss';
 
 const README_URL =
   'https://raw.githubusercontent.com/nzws/nzws/master/README.md';

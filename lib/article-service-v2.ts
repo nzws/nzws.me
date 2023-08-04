@@ -2,15 +2,20 @@ import { readFile } from 'fs/promises';
 import matter from 'gray-matter';
 import path from 'path';
 import RemoveMarkdown from 'remove-markdown';
+
 import { ArticleType } from '~/utils/constants';
 import { ArticleDetails, OGImageDataArticle } from '~/utils/type';
+
 import { signature } from './crypto/node';
 import { encode } from './encoder';
 
 const newLineRegex = /\n/gi;
 
 export class ArticleServiceV2 {
-  constructor(private type: ArticleType, private slug: string) {}
+  constructor(
+    private type: ArticleType,
+    private slug: string
+  ) {}
 
   async getArticle(): Promise<ArticleDetails | undefined> {
     const data = await this.getRawData();

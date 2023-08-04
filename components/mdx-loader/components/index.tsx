@@ -1,5 +1,7 @@
 import { MDXRemoteProps } from 'next-mdx-remote/rsc';
+
 import { Image } from '~/components/image';
+
 import { ImageWithNote } from './image-with-note';
 import { Link } from './link';
 import { MastodonEmbed } from './mastodon-embed';

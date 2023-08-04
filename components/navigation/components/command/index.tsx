@@ -1,7 +1,9 @@
 'use client';
 
 import './global.scss';
+
 import { Command } from 'cmdk';
+import { useRouter } from 'next/navigation';
 import {
   FC,
   Fragment,
@@ -12,9 +14,10 @@ import {
   useRef,
   useState
 } from 'react';
-import styles from './styles.module.scss';
+
 import { ArticleSearch } from '~/utils/type';
-import { useRouter } from 'next/navigation';
+
+import styles from './styles.module.scss';
 
 type Props = {
   isOpened: boolean;

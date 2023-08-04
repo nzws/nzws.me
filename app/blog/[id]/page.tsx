@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { HStack, VStack } from '~/components/stack';
-import { ArticleType, dateOptions, PUBLIC_URL } from '~/utils/constants';
-import styles from './styles.module.scss';
-import { getArticle, getArticleSlugs } from '~/lib/file-io';
-import { Image } from '~/components/image';
 import Script from 'next/script';
+
+import { Image } from '~/components/image';
 import { MDXLoader } from '~/components/mdx-loader';
+import { HStack, VStack } from '~/components/stack';
+import { getArticle, getArticleSlugs } from '~/lib/file-io';
+import { ArticleType, dateOptions, PUBLIC_URL } from '~/utils/constants';
+
+import styles from './styles.module.scss';
 
 type Params = {
   id: string;

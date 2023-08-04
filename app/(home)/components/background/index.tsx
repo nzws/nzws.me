@@ -1,7 +1,8 @@
 import Image from 'next/image';
+import { Fragment } from 'react';
+
 import image from './assets/header.jpg';
 import styles from './styles.module.scss';
-import { Fragment } from 'react';
 
 export function Background() {
   return (

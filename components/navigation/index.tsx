@@ -1,14 +1,16 @@
 'use client';
 
-import { FC, Fragment, useCallback, useState } from 'react';
 import NextLink from 'next/link';
+import { FC, Fragment, useCallback, useState } from 'react';
 import { Command } from 'react-feather';
-import styles from './styles.module.scss';
-import { useCmdk } from './hooks/use-cmdk';
-import { CommandMenu } from './components/command';
-import { PageNumber } from '~/utils/constants';
-import { Link } from './components/link';
+
 import { HStack } from '~/components/stack';
+import { PageNumber } from '~/utils/constants';
+
+import { CommandMenu } from './components/command';
+import { Link } from './components/link';
+import { useCmdk } from './hooks/use-cmdk';
+import styles from './styles.module.scss';
 
 type Props = {
   currentPage?: PageNumber;

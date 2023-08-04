@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { FC } from 'react';
+
 import { Image } from '~/components/image';
 import { HStack, VStack } from '~/components/stack';
 import { dateOptions } from '~/utils/constants';
+
 import styles from './styles.module.scss';
 
 type Props = {

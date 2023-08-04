@@ -1,6 +1,8 @@
 import 'server-only';
+
 import NextImage from 'next/image';
 import { Suspense } from 'react';
+
 import { getImageMetadata } from '~/lib/file-io';
 
 function SuspenseComponent() {

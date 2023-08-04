@@ -1,8 +1,10 @@
 import { PropsWithChildren } from 'react';
+
 import { Footer } from '~/components/footer';
 import { Navigation } from '~/components/navigation';
 import { VStack } from '~/components/stack';
 import { PageNumber } from '~/utils/constants';
+
 import styles from './styles.module.scss';
 
 export default function Layout({ children }: PropsWithChildren) {

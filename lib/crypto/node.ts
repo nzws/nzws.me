@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+
 import { binaryToString } from '../encoder';
 import { secret } from './secret';
 

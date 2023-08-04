@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+
 import { Brand } from './brand';
 
 type Props = {
