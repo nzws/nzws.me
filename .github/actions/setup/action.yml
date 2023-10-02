@@ -12,6 +12,7 @@ runs:
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node-version }}
+
     - uses: oven-sh/setup-bun@v1
 
     - name: Cache bun deps
@@ -21,4 +22,5 @@ runs:
         key: ${{ runner.os }}-node${{ inputs.node-version }}-bun-${{ hashFiles('**/bun.lock') }}
 
     - name: Install deps
+      shell: bash
       run: bun install --frozen-lockfile
