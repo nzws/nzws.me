@@ -19,7 +19,7 @@ runs:
       uses: actions/cache@v3
       with:
         path: ~/.bun/install/cache
-        key: ${{ runner.os }}-node${{ inputs.node-version }}-bun-${{ hashFiles('**/bun.lock') }}
+        key: ${{ runner.os }}-node${{ inputs.node-version }}-bun-${{ hashFiles('**/bun.lockb') }}
 
     - name: Install deps
       shell: bash
