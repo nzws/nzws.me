@@ -11,20 +11,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [18.x, lts/*, latest]
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup
+        uses: ./.github/actions/setup
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-
-      - name: Install deps
-        run: yarn --immutable
 
       - name: Build files
-        run: yarn build
+        run: bun run build
 
       - name: Run linter
-        run: yarn lint
+        run: bun run lint
