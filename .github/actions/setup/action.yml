@@ -24,3 +24,7 @@ runs:
     - name: Install deps
       shell: bash
       run: bun install --frozen-lockfile
+
+    - name: Install sharp
+      shell: bash
+      run: cd node_modules/sharp && bun install
