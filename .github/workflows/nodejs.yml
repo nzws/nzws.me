@@ -14,6 +14,7 @@ jobs:
         node-version: [18.x, lts/*, latest]
 
     steps:
+      - uses: actions/checkout@v3
       - name: Setup
         uses: ./.github/actions/setup
         with:
