@@ -44,7 +44,7 @@
     "react-dom": "18.2.0",
     "react-feather": "2.0.10",
     "reactflow": "11.7.4",
-    "remark-gfm": "3.0.1",
+    "remark-gfm": "4.0.0",
     "remove-markdown": "0.5.0",
     "ress": "5.0.2",
     "sanitize-filename": "1.6.3",
