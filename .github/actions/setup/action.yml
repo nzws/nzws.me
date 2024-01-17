@@ -16,7 +16,7 @@ runs:
     - uses: oven-sh/setup-bun@v1
 
     - name: Cache bun deps
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.bun/install/cache
         key: ${{ runner.os }}-node${{ inputs.node-version }}-bun-${{ hashFiles('**/bun.lockb') }}
