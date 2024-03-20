@@ -13,7 +13,7 @@
     "analyze": "ANALYZE=true next build"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "13.4.12",
+    "@next/bundle-analyzer": "14.1.4",
     "@nzws/eslint-config": "2.2.0",
     "@nzws/prettier-config": "2.0.0",
     "@tsconfig/next": "2.0.0",
