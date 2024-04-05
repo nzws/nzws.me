@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import Script from 'next/script';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Script from "next/script";
 
-import { Image } from '~/components/image';
-import { MDXLoader } from '~/components/mdx-loader';
-import { HStack, VStack } from '~/components/stack';
-import { getArticle, getArticleSlugs } from '~/lib/file-io';
-import { ArticleType, dateOptions, PUBLIC_URL } from '~/utils/constants';
+import { Image } from "~/components/image";
+import { MDXLoader } from "~/components/mdx-loader";
+import { HStack, VStack } from "~/components/stack";
+import { getArticle, getArticleSlugs } from "~/lib/file-io";
+import { ArticleType, dateOptions, PUBLIC_URL } from "~/utils/constants";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type Params = {
   id: string;
@@ -34,8 +34,8 @@ export default async function Page({ params: { id } }: { params: Params }) {
         <div
           className={[
             styles.title_container,
-            article.coverImage && styles.title_container_floating
-          ].join(' ')}
+            article.coverImage && styles.title_container_floating,
+          ].join(" ")}
         >
           <div className={styles.title}>{article.title}</div>
         </div>
@@ -49,7 +49,7 @@ export default async function Page({ params: { id } }: { params: Params }) {
         className={styles.meta_container}
       >
         <HStack gap="12px" alignItems="center" className={styles.tags} wrap>
-          {article.tags.map(tag => (
+          {article.tags.map((tag) => (
             <div key={tag} className={styles.tag}>
               #{tag}
             </div>
@@ -77,27 +77,27 @@ export default async function Page({ params: { id } }: { params: Params }) {
 }
 
 const scriptUrls: Record<string, string> = {
-  twitter: 'https://platform.twitter.com/widgets.js',
-  'don-nzws-me': 'https://don.nzws.me/embed.js'
+  twitter: "https://platform.twitter.com/widgets.js",
+  "don-nzws-me": "https://don.nzws.me/embed.js",
 };
 
 export async function generateStaticParams() {
   const data = await getArticleSlugs(ArticleType.Blog);
 
-  return data.map(article => ({
-    id: article
+  return data.map((article) => ({
+    id: article,
   }));
 }
 
 export async function generateMetadata({
-  params
+  params,
 }: {
   params: Params;
 }): Promise<Metadata> {
   const article = await getArticle(ArticleType.Blog, params.id);
   if (!article) {
     return {
-      title: 'Blog - nzws.me'
+      title: "Blog - nzws.me",
     };
   }
 
@@ -108,18 +108,18 @@ export async function generateMetadata({
     description,
     openGraph: {
       title: `${article.title} - Blog - nzws.me`,
-      url: PUBLIC_URL ? PUBLIC_URL + '/blog/' + article.slug : undefined,
+      url: PUBLIC_URL ? PUBLIC_URL + "/blog/" + article.slug : undefined,
       description,
       images: [
         {
-          url: PUBLIC_URL + imageUrl
-        }
-      ]
+          url: PUBLIC_URL + imageUrl,
+        },
+      ],
     },
     twitter: {
-      card: 'summary_large_image',
-      creator: '@nzws_me',
-      images: [PUBLIC_URL + imageUrl]
-    }
+      card: "summary_large_image",
+      creator: "@nzws_me",
+      images: [PUBLIC_URL + imageUrl],
+    },
   };
 }

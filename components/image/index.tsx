@@ -1,9 +1,9 @@
-import 'server-only';
+import "server-only";
 
-import NextImage from 'next/image';
-import { Suspense } from 'react';
+import NextImage from "next/image";
+import { Suspense } from "react";
 
-import { getImageMetadata } from '~/lib/file-io';
+import { getImageMetadata } from "~/lib/file-io";
 
 function SuspenseComponent() {
   return <div />;
@@ -11,7 +11,7 @@ function SuspenseComponent() {
 
 type Props = {
   src?: string;
-} & Omit<React.ComponentProps<typeof NextImage>, 'src' | 'width' | 'height'>;
+} & Omit<React.ComponentProps<typeof NextImage>, "src" | "width" | "height">;
 
 async function RealComponent({ src, ...props }: Props) {
   if (!src) return null;

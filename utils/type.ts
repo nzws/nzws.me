@@ -13,7 +13,7 @@ export interface ArticleDetails {
   isHidden: boolean;
 }
 
-export type ArticleList = Omit<ArticleDetails, 'markdown'>[];
+export type ArticleList = Omit<ArticleDetails, "markdown">[];
 
 export interface ImageDetails {
   src: string;
@@ -35,7 +35,7 @@ export interface ArticleSearch {
 }
 
 export interface OGImageDataArticle {
-  type: 'article';
+  type: "article";
   title: string;
 }
 

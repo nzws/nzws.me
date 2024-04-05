@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
 export default function Layout({ children }: PropsWithChildren) {
   return children;
@@ -6,7 +6,7 @@ export default function Layout({ children }: PropsWithChildren) {
 
 export const metadata = {
   title: {
-    default: 'Products',
-    template: '%s - Products - nzws.me'
-  }
+    default: "Products",
+    template: "%s - Products - nzws.me",
+  },
 };

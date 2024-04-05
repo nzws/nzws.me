@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import { Fragment } from 'react';
+import Image from "next/image";
+import { Fragment } from "react";
 
-import image from './assets/2024spring.jpg';
-import styles from './styles.module.scss';
+import image from "./assets/2024spring.jpg";
+import styles from "./styles.module.scss";
 
 export function Background() {
   return (

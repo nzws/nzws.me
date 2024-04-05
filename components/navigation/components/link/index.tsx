@@ -1,7 +1,7 @@
-import NextLink from 'next/link';
-import { FC, PropsWithChildren } from 'react';
+import NextLink from "next/link";
+import { FC, PropsWithChildren } from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type Props = {
   href: string;
@@ -15,7 +15,7 @@ export const Link: FC<PropsWithChildren<Props>> = ({
   onHover,
   onUnHover,
   active,
-  children
+  children,
 }) => (
   <NextLink
     href={href}

@@ -1,7 +1,7 @@
-import type { Property } from 'csstype';
-import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+import type { Property } from "csstype";
+import { FC, HTMLAttributes, PropsWithChildren } from "react";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export interface StackProps {
   alignItems?: Property.AlignItems;
@@ -27,10 +27,10 @@ const _Stack: FC<Props> = ({
     style={{
       alignItems,
       justifyContent,
-      flexWrap: typeof wrap === 'boolean' ? (wrap ? 'wrap' : 'nowrap') : wrap,
+      flexWrap: typeof wrap === "boolean" ? (wrap ? "wrap" : "nowrap") : wrap,
       width,
       gap,
-      ...style
+      ...style,
     }}
     {...props}
   >
@@ -39,19 +39,19 @@ const _Stack: FC<Props> = ({
 );
 
 export const HStack: FC<Props> = ({ className, children, ...props }) => (
-  <_Stack className={`${styles.h_stack} ${className || ''}`} {...props}>
+  <_Stack className={`${styles.h_stack} ${className || ""}`} {...props}>
     {children}
   </_Stack>
 );
 
 export const VStack: FC<Props> = ({ className, children, ...props }) => (
-  <_Stack className={`${styles.v_stack} ${className || ''}`} {...props}>
+  <_Stack className={`${styles.v_stack} ${className || ""}`} {...props}>
     {children}
   </_Stack>
 );
 
-export const Stack: FC<Props & { direction: 'vertical' | 'horizontal' }> = ({
+export const Stack: FC<Props & { direction: "vertical" | "horizontal" }> = ({
   direction,
   ...props
 }) =>
-  direction === 'vertical' ? <VStack {...props} /> : <HStack {...props} />;
+  direction === "vertical" ? <VStack {...props} /> : <HStack {...props} />;

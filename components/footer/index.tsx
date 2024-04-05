@@ -1,7 +1,7 @@
-import { GitHub } from 'react-feather';
+import { GitHub } from "react-feather";
 
-import { HStack, VStack } from '../stack';
-import styles from './styles.module.scss';
+import { HStack, VStack } from "../stack";
+import styles from "./styles.module.scss";
 
 export function Footer() {
   return (

@@ -11,10 +11,10 @@ export function YouTube({ youtubeId, skip }: Props) {
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowFullScreen
       style={{
-        width: '100%',
-        maxWidth: '100%',
-        border: 'none',
-        height: '500px'
+        width: "100%",
+        maxWidth: "100%",
+        border: "none",
+        height: "500px",
       }}
     />
   );
