@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
 
-import image from './assets/2023summer.jpg';
+import image from './assets/2024spring.jpg';
 import styles from './styles.module.scss';
 
 export function Background() {
