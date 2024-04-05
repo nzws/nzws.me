@@ -1,5 +1,6 @@
 import "server-only";
 
+import path from "path";
 import { getPlaiceholder } from "plaiceholder";
 import { cache } from "react";
 
@@ -22,7 +23,9 @@ export const getAllArticles = cache(async (type: ArticleType) =>
 );
 
 export const getImageMetadata = cache(async (url: string) => {
-  const response = await getPlaiceholder(url, {
+  const isLocal = url.startsWith("/");
+  const normalizedUrl = isLocal ? path.resolve(process.cwd(), url) : url;
+  const response = await getPlaiceholder(normalizedUrl, {
     removeAlpha: false,
   });
 
