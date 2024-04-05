@@ -5,7 +5,7 @@ import Script from "next/script";
 import { Image } from "~/components/image";
 import { MDXLoader } from "~/components/mdx-loader";
 import { HStack, VStack } from "~/components/stack";
-import { getArticle, getArticleSlugs } from "~/lib/file-io";
+import { getArticle } from "~/lib/file-io";
 import { ArticleType, dateOptions, PUBLIC_URL } from "~/utils/constants";
 
 import styles from "./styles.module.scss";
@@ -80,14 +80,6 @@ const scriptUrls: Record<string, string> = {
   twitter: "https://platform.twitter.com/widgets.js",
   "don-nzws-me": "https://don.nzws.me/embed.js",
 };
-
-export async function generateStaticParams() {
-  const data = await getArticleSlugs(ArticleType.Blog);
-
-  return data.map((article) => ({
-    id: article,
-  }));
-}
 
 export async function generateMetadata({
   params,
