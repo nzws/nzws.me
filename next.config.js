@@ -1,5 +1,3 @@
-// @ts-check
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 });
@@ -8,9 +6,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  **/
 const nextConfig = {
-  experimental: {
-    appDir: true
-  },
   reactStrictMode: true,
   images: {
     remotePatterns: [
