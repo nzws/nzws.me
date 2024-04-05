@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { BASE_URL } from "~/utils/constants";
 import { ArticleSearchExport } from "~/utils/type";
 
-export const runtime = "experimental-edge";
+export const runtime = "edge";
 
 const rawData = fetch(`${BASE_URL}/api/internal/search-raw`).then((response) =>
   response.json(),

@@ -7,7 +7,7 @@ import type { OGImageData } from "~/utils/type";
 
 import { ArticleTemplate } from "./components/article-template";
 
-export const runtime = "experimental-edge";
+export const runtime = "edge";
 
 // IBM Plex Sans JP: Open Font License
 // https://fonts.google.com/specimen/IBM+Plex+Sans+JP
