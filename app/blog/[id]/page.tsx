@@ -28,6 +28,7 @@ export default async function Page({ params: { id } }: { params: Params }) {
             src={article.coverImage}
             alt={article.title}
             className={styles.cover_image}
+            priority
           />
         )}
 
