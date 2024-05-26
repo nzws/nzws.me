@@ -1,9 +1,9 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
-import { Image, ImageProps } from '~/components/image';
-import { VStack } from '~/components/stack';
+import { Image, ImageProps } from "~/components/image";
+import { VStack } from "~/components/stack";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type Props = ImageProps;
 

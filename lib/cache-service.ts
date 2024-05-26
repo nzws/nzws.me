@@ -1,8 +1,8 @@
-import { mkdir, readFile, writeFile } from 'fs/promises';
-import path from 'path';
-import sanitize from 'sanitize-filename';
+import { mkdir, readFile, writeFile } from "fs/promises";
+import path from "path";
+import sanitize from "sanitize-filename";
 
-const cacheDir = path.resolve(process.cwd(), '.nzws-cache');
+const cacheDir = path.resolve(process.cwd(), ".nzws-cache");
 
 export class CacheService<T> {
   private readonly fileDir: string;
@@ -32,13 +32,13 @@ export class CacheService<T> {
     }
 
     try {
-      const data = await readFile(this.filePath, 'utf-8');
+      const data = await readFile(this.filePath, "utf-8");
       const parsed = JSON.parse(data) as T;
 
       this.cacheData = parsed;
       return parsed;
     } catch (error) {
-      console.warn('cache miss', this.filePath);
+      console.warn("cache miss", this.filePath);
       return undefined;
     }
   }

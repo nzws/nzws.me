@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { FC } from 'react';
+import Link from "next/link";
+import { FC } from "react";
 
-import { Image } from '~/components/image';
-import { HStack, VStack } from '~/components/stack';
-import { dateOptions } from '~/utils/constants';
+import { Image } from "~/components/image";
+import { HStack, VStack } from "~/components/stack";
+import { dateOptions } from "~/utils/constants";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type Props = {
   slug: string;
@@ -24,7 +24,7 @@ export const Item: FC<Props> = ({
   date,
   coverImage,
   fallbackCoverImage,
-  isFirst
+  isFirst,
 }) => (
   <Link href={`/blog/${slug}`} className={styles.container_link}>
     <div className={styles.container} data-is-first={isFirst || undefined}>
@@ -53,7 +53,7 @@ export const Item: FC<Props> = ({
           className={styles.meta_container}
         >
           <HStack gap="12px" alignItems="center" className={styles.tags} wrap>
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <div key={tag} className={styles.tag}>
                 #{tag}
               </div>

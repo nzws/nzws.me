@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import NextLink from 'next/link';
-import { FC, Fragment, useCallback, useState } from 'react';
-import { Command } from 'react-feather';
+import NextLink from "next/link";
+import { FC, Fragment, useCallback, useState } from "react";
+import { Command } from "react-feather";
 
-import { HStack } from '~/components/stack';
-import { PageNumber } from '~/utils/constants';
+import { HStack } from "~/components/stack";
+import { PageNumber } from "~/utils/constants";
 
-import { CommandMenu } from './components/command';
-import { Link } from './components/link';
-import { useCmdk } from './hooks/use-cmdk';
-import styles from './styles.module.scss';
+import { CommandMenu } from "./components/command";
+import { Link } from "./components/link";
+import { useCmdk } from "./hooks/use-cmdk";
+import styles from "./styles.module.scss";
 
 type Props = {
   currentPage?: PageNumber;
@@ -44,8 +44,8 @@ export const Navigation: FC<Props> = ({ currentPage }) => {
             style={{
               transform:
                 focusing === undefined
-                  ? 'scaleX(0)'
-                  : `scaleX(1) translateX(${120 * focusing}px)`
+                  ? "scaleX(0)"
+                  : `scaleX(1) translateX(${120 * focusing}px)`,
             }}
           />
 
@@ -87,7 +87,7 @@ export const Navigation: FC<Props> = ({ currentPage }) => {
         <div className={styles.right}>
           <button
             className={styles.command_button}
-            onClick={() => setIsCmdOpened(prev => !prev)}
+            onClick={() => setIsCmdOpened((prev) => !prev)}
             aria-label="Command"
           >
             <Command size={22} />

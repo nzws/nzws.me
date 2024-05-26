@@ -1,52 +1,52 @@
 import {
   IconBrandDiscord,
   IconBrandGithub,
-  IconBrandMastodon
-} from '@tabler/icons-react';
-import Image from 'next/image';
-import { Globe, MapPin, User } from 'react-feather';
+  IconBrandMastodon,
+} from "@tabler/icons-react";
+import Image from "next/image";
+import { Globe, MapPin, User } from "react-feather";
 
-import { HStack, VStack } from '~/components/stack';
+import { HStack, VStack } from "~/components/stack";
 
-import { HeaderItem, ItemProps } from './components/item';
-import styles from './styles.module.scss';
+import { HeaderItem, ItemProps } from "./components/item";
+import styles from "./styles.module.scss";
 
 const profile: ItemProps[] = [
   {
     icon: User,
-    label: 'Pronouns',
-    value: 'he/him'
+    label: "Pronouns",
+    value: "he/him",
   },
   {
     icon: MapPin,
-    label: 'Location',
-    value: 'Japan'
+    label: "Location",
+    value: "Japan",
   },
   {
     icon: Globe,
-    label: 'Accept-Language',
-    value: 'ja-JP, typescript'
-  }
+    label: "Accept-Language",
+    value: "ja-JP, typescript",
+  },
 ];
 
 const links: ItemProps[] = [
   {
     icon: IconBrandMastodon,
-    label: 'Mastodon',
-    value: 'nzws@don.nzws.me',
-    href: 'https://don.nzws.me/@nzws'
+    label: "Mastodon",
+    value: "nzws@don.nzws.me",
+    href: "https://don.nzws.me/@nzws",
   },
   {
     icon: IconBrandGithub,
-    label: 'GitHub',
-    value: '@nzws',
-    href: 'https://github.com/nzws'
+    label: "GitHub",
+    value: "@nzws",
+    href: "https://github.com/nzws",
   },
   {
     icon: IconBrandDiscord,
-    label: 'Discord',
-    value: 'nzws#0001'
-  }
+    label: "Discord",
+    value: "nzws#0001",
+  },
 ];
 
 export function Header() {

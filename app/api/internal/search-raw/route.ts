@@ -1,23 +1,23 @@
-import { NextResponse } from 'next/server';
-import RemoveMarkdown from 'remove-markdown';
+import { NextResponse } from "next/server";
+import RemoveMarkdown from "remove-markdown";
 
-import { ArticleFinderService } from '~/lib/article-finder-service';
-import { CacheService } from '~/lib/cache-service';
-import { ArticleType } from '~/utils/constants';
-import { ArticleDetails, ArticleSearchExport } from '~/utils/type';
+import { ArticleFinderService } from "~/lib/article-finder-service";
+import { CacheService } from "~/lib/cache-service";
+import { ArticleType } from "~/utils/constants";
+import { ArticleDetails, ArticleSearchExport } from "~/utils/type";
 
-const items = Object.values(ArticleType).map(type =>
-  new CacheService<ArticleDetails[]>('article-list', type).sync(() =>
-    new ArticleFinderService(type).getAll()
-  )
+const items = Object.values(ArticleType).map((type) =>
+  new CacheService<ArticleDetails[]>("article-list", type).sync(() =>
+    new ArticleFinderService(type).getAll(),
+  ),
 );
 
 export async function GET() {
   const data = (await Promise.all(items))
-    .flatMap(item => item)
-    .filter(item => !item.isHidden);
+    .flatMap((item) => item)
+    .filter((item) => !item.isHidden);
 
-  const flatted: ArticleSearchExport[] = data.map(item => ({
+  const flatted: ArticleSearchExport[] = data.map((item) => ({
     title: item.title,
     url: `/${item.type}/${item.slug}`,
     keywords: [
@@ -25,10 +25,10 @@ export async function GET() {
       item.title,
       item.description,
       ...item.tags,
-      RemoveMarkdown(item.markdown)
+      RemoveMarkdown(item.markdown),
     ]
-      .join(',')
-      .toLowerCase()
+      .join(",")
+      .toLowerCase(),
   }));
 
   return NextResponse.json(flatted);

@@ -1,20 +1,25 @@
-import 'ress/dist/ress.min.css';
-import '~/styles/global.scss';
+import "ress/dist/ress.min.css";
+import "~/styles/global.scss";
+import "react-loading-skeleton/dist/skeleton.css";
 
-import { Analytics } from '@vercel/analytics/react';
-import { PropsWithChildren } from 'react';
+import { Analytics } from "@vercel/analytics/react";
+import { PropsWithChildren } from "react";
 
-import { Mincho, Sans } from '~/styles/font';
+import { Mincho, Sans } from "~/styles/font";
 
-const coreStyleClass = [Sans.variable, Mincho.variable].join(' ');
+import { RootProvider } from "./provider";
+
+const coreStyleClass = [Sans.variable, Mincho.variable].join(" ");
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ja" className={coreStyleClass}>
       <body>
-        {children}
+        <RootProvider>
+          {children}
 
-        <Analytics />
+          <Analytics />
+        </RootProvider>
       </body>
     </html>
   );
@@ -22,13 +27,13 @@ export default function RootLayout({ children }: PropsWithChildren) {
 
 export const metadata = {
   title: {
-    default: 'nzws.me',
-    template: '%s - nzws.me'
+    default: "nzws.me",
+    template: "%s - nzws.me",
   },
   other: {
-    'Hatena::Bookmark': 'nocomment'
+    "Hatena::Bookmark": "nocomment",
   },
   icons: {
-    icon: 'https://github.com/nzwsme.png'
-  }
+    icon: "https://github.com/nzwsme.png",
+  },
 };

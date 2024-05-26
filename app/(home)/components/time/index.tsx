@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 export function Time({ time }: { time: string }) {
   const d = new Date(time);

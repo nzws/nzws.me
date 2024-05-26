@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import './global.scss';
+import "./global.scss";
 
-import { Command } from 'cmdk';
-import { useRouter } from 'next/navigation';
+import { Command } from "cmdk";
+import { useRouter } from "next/navigation";
 import {
   FC,
   Fragment,
@@ -12,12 +12,12 @@ import {
   useDeferredValue,
   useEffect,
   useRef,
-  useState
-} from 'react';
+  useState,
+} from "react";
 
-import { ArticleSearch } from '~/utils/type';
+import { ArticleSearch } from "~/utils/type";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 type Props = {
   isOpened: boolean;
@@ -27,7 +27,7 @@ type Props = {
 export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
   const searchLogsRef = useRef<Record<string, ArticleSearch[]>>({});
   const router = useRouter();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
   const [isLoading, setLoading] = useState(false);
   const [searchResult, setSearchResult] = useState<ArticleSearch[]>([]);
@@ -35,7 +35,7 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
   const handleKeyDown = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     // IME 環境でエンターキーがそのまま CMDK の onSelect を発火してしまうので、
     // 全角入力中は弾く
-    if (e.key === 'Enter' && e.nativeEvent.isComposing) {
+    if (e.key === "Enter" && e.nativeEvent.isComposing) {
       e.preventDefault();
     }
   }, []);
@@ -45,7 +45,7 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
       void router.push(url);
       setIsOpened(false);
     },
-    [router, setIsOpened]
+    [router, setIsOpened],
   );
 
   useEffect(() => {
@@ -60,10 +60,10 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
     const abort = new AbortController();
 
     void fetch(`/api/web/search?q=${deferredSearch}`, {
-      signal: abort.signal
+      signal: abort.signal,
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         const data = res as ArticleSearch[];
         setSearchResult(data);
         searchLogsRef.current[deferredSearch] = data;
@@ -110,25 +110,25 @@ export const CommandMenu: FC<Props> = ({ isOpened, setIsOpened }) => {
         ) : (
           <Fragment>
             <Command.Group heading="ナビゲーション">
-              <Command.Item onSelect={() => handleSelect('/')}>
+              <Command.Item onSelect={() => handleSelect("/")}>
                 About
               </Command.Item>
-              <Command.Item onSelect={() => handleSelect('/blog')}>
+              <Command.Item onSelect={() => handleSelect("/blog")}>
                 Blog
               </Command.Item>
-              <Command.Item onSelect={() => handleSelect('/product')}>
+              <Command.Item onSelect={() => handleSelect("/product")}>
                 Products
               </Command.Item>
             </Command.Group>
 
             <Command.Group heading="ソーシャルリンク">
               <Command.Item
-                onSelect={() => handleSelect('https://don.nzws.me/@nzws')}
+                onSelect={() => handleSelect("https://don.nzws.me/@nzws")}
               >
                 Mastodon
               </Command.Item>
               <Command.Item
-                onSelect={() => handleSelect('https://github.com/nzws')}
+                onSelect={() => handleSelect("https://github.com/nzws")}
               >
                 GitHub
               </Command.Item>

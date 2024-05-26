@@ -1,12 +1,12 @@
-import NextLink from 'next/link';
-import { HTMLAttributes } from 'react';
+import NextLink from "next/link";
+import { HTMLAttributes } from "react";
 
 type Props = HTMLAttributes<HTMLAnchorElement> & {
   href?: string;
 };
 
 export function Link({ href, children, ...props }: Props) {
-  const isInternalLink = href?.startsWith('/');
+  const isInternalLink = href?.startsWith("/");
 
   if (!href) {
     return <>{children}</>;

@@ -1,20 +1,20 @@
-import { readFile } from 'fs/promises';
-import matter from 'gray-matter';
-import path from 'path';
-import RemoveMarkdown from 'remove-markdown';
+import { readFile } from "fs/promises";
+import matter from "gray-matter";
+import path from "path";
+import RemoveMarkdown from "remove-markdown";
 
-import { ArticleType } from '~/utils/constants';
-import { ArticleDetails, OGImageDataArticle } from '~/utils/type';
+import { ArticleType } from "~/utils/constants";
+import { ArticleDetails, OGImageDataArticle } from "~/utils/type";
 
-import { signature } from './crypto/node';
-import { encode } from './encoder';
+import { signature } from "./crypto/node";
+import { encode } from "./encoder";
 
 const newLineRegex = /\n/gi;
 
 export class ArticleServiceV2 {
   constructor(
     private type: ArticleType,
-    private slug: string
+    private slug: string,
   ) {}
 
   async getArticle(): Promise<ArticleDetails | undefined> {
@@ -24,8 +24,8 @@ export class ArticleServiceV2 {
     }
 
     const fallbackCoverImage = await this.getFallbackCoverImageUrl({
-      type: 'article',
-      title: data.title
+      type: "article",
+      title: data.title,
     });
 
     return {
@@ -40,14 +40,14 @@ export class ArticleServiceV2 {
       fallbackCoverImage: fallbackCoverImage,
       markdown: data.markdown,
       type: data.type,
-      isHidden: data.isHidden
+      isHidden: data.isHidden,
     };
   }
 
   async getRawData() {
     try {
       const filepath = path.resolve(process.cwd(), `contents/${this.type}`);
-      const raw = await readFile(`${filepath}/${this.slug}.mdx`, 'utf8');
+      const raw = await readFile(`${filepath}/${this.slug}.mdx`, "utf8");
 
       const frontMatter = matter(raw);
       const metaData = frontMatter.data as {
@@ -74,7 +74,7 @@ export class ArticleServiceV2 {
         isHidden: metaData.isHidden || false,
         markdown: frontMatter.content,
         coverImage: metaData.coverImage,
-        type: this.type
+        type: this.type,
       };
     } catch (e) {
       // maybe not found
@@ -84,13 +84,13 @@ export class ArticleServiceV2 {
   }
 
   private generateDescription(content: string, length?: number) {
-    const text = RemoveMarkdown(content).replace(newLineRegex, ' ');
+    const text = RemoveMarkdown(content).replace(newLineRegex, " ");
 
     const trimmed = text.trim();
     if (!length || trimmed.length < length) {
       return trimmed;
     } else {
-      return trimmed.slice(0, length).trim() + '...';
+      return trimmed.slice(0, length).trim() + "...";
     }
   }
 

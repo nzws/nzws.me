@@ -1,9 +1,9 @@
-import { Footer } from '~/components/footer';
-import { Navigation } from '~/components/navigation';
-import { VStack } from '~/components/stack';
-import { PageNumber } from '~/utils/constants';
+import { Footer } from "~/components/footer";
+import { Navigation } from "~/components/navigation";
+import { VStack } from "~/components/stack";
+import { PageNumber } from "~/utils/constants";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export default function Page() {
   return (

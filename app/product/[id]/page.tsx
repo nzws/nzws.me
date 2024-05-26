@@ -3,6 +3,6 @@ export default function Page() {
 }
 
 export const metadata = {
-  title: 'nzws.me',
-  description: 'nzws.me'
+  title: "nzws.me",
+  description: "nzws.me",
 };

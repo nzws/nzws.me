@@ -1,13 +1,13 @@
-import { VStack } from '~/components/stack';
-import { getAllArticles } from '~/lib/file-io';
-import { ArticleType } from '~/utils/constants';
+import { VStack } from "~/components/stack";
+import { getAllArticles } from "~/lib/file-io";
+import { ArticleType } from "~/utils/constants";
 
-import { Item } from './components/item';
-import styles from './styles.module.scss';
+import { Item } from "./components/item";
+import styles from "./styles.module.scss";
 
 export default async function Page() {
   const articles = (await getAllArticles(ArticleType.Blog)).filter(
-    x => !x.isHidden
+    (x) => !x.isHidden,
   );
 
   return (

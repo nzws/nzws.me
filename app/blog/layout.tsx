@@ -1,11 +1,11 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
-import { Footer } from '~/components/footer';
-import { Navigation } from '~/components/navigation';
-import { VStack } from '~/components/stack';
-import { PageNumber } from '~/utils/constants';
+import { Footer } from "~/components/footer";
+import { Navigation } from "~/components/navigation";
+import { VStack } from "~/components/stack";
+import { PageNumber } from "~/utils/constants";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
@@ -25,7 +25,7 @@ export default function Layout({ children }: PropsWithChildren) {
 
 export const metadata = {
   title: {
-    default: 'Blog',
-    template: '%s - Blog - nzws.me'
-  }
+    default: "Blog",
+    template: "%s - Blog - nzws.me",
+  },
 };
