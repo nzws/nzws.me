@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.7.3",
-    "@next/bundle-analyzer": "14.2.3",
+    "@next/bundle-analyzer": "15.0.1",
     "@nzws/eslint-config": "2.2.0",
     "@nzws/prettier-config": "2.0.0",
     "@tsconfig/next": "2.0.3",
