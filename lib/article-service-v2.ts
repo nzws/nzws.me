@@ -1,10 +1,10 @@
-import { readFile } from "fs/promises";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import matter from "gray-matter";
-import path from "path";
 import RemoveMarkdown from "remove-markdown";
 
-import { ArticleType } from "~/utils/constants";
-import { ArticleDetails, OGImageDataArticle } from "~/utils/type";
+import type { ArticleType } from "~/utils/constants";
+import type { ArticleDetails, OGImageDataArticle } from "~/utils/type";
 
 import { signature } from "./crypto/node";
 import { encode } from "./encoder";
@@ -89,9 +89,8 @@ export class ArticleServiceV2 {
     const trimmed = text.trim();
     if (!length || trimmed.length < length) {
       return trimmed;
-    } else {
-      return trimmed.slice(0, length).trim() + "...";
     }
+    return `${trimmed.slice(0, length).trim()}...`;
   }
 
   private async getFallbackCoverImageUrl(data: OGImageDataArticle) {

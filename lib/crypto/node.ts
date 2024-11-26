@@ -1,4 +1,4 @@
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 import { binaryToString } from "../encoder";
 import { secret } from "./secret";
@@ -12,10 +12,6 @@ const key = crypto.webcrypto.subtle.importKey(
 );
 
 export const signature = async (data: string): Promise<string> =>
-  (
-    crypto.webcrypto.subtle.sign(
-      "HMAC",
-      await key,
-      new TextEncoder().encode(data),
-    ) as Promise<Uint8Array>
-  ).then(binaryToString);
+  crypto.webcrypto.subtle
+    .sign("HMAC", await key, new TextEncoder().encode(data))
+    .then(binaryToString);

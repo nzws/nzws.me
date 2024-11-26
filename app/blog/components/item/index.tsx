@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 
 import { Image } from "~/components/image";
 import { HStack, VStack } from "~/components/stack";

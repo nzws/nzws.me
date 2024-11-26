@@ -1,4 +1,4 @@
-import { Shippori_Mincho, IBM_Plex_Sans_JP } from "next/font/google";
+import { IBM_Plex_Sans_JP, Shippori_Mincho } from "next/font/google";
 
 export const Sans = IBM_Plex_Sans_JP({
   weight: ["400", "600"],

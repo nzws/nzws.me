@@ -7,7 +7,7 @@ import {
   encode as encodeBase64,
 } from "universal-base64url";
 
-export const binaryToString = (data: Uint8Array) => {
+export const binaryToString = (data: ArrayBuffer | Uint8Array) => {
   const arr = new Uint8Array(data);
   const result = [];
   for (let i = 0; i < arr.length; i++) {
@@ -20,7 +20,7 @@ export const binaryToString = (data: Uint8Array) => {
 export const stringToBinary = (data: string) => {
   const arr = new Uint8Array(data.length / 2);
   for (let i = 0; i < arr.length; i++) {
-    arr[i] = parseInt(data.slice(i * 2, i * 2 + 2), 16);
+    arr[i] = Number.parseInt(data.slice(i * 2, i * 2 + 2), 16);
   }
 
   return arr;

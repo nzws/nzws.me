@@ -3,7 +3,7 @@ import "~/styles/global.scss";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { Analytics } from "@vercel/analytics/react";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 import { Mincho, Sans } from "~/styles/font";
 

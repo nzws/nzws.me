@@ -1,8 +1,8 @@
-import { readdir } from "fs/promises";
-import path from "path";
+import { readdir } from "node:fs/promises";
+import path from "node:path";
 
-import { ArticleType } from "~/utils/constants";
-import { ArticleDetails } from "~/utils/type";
+import type { ArticleType } from "~/utils/constants";
+import type { ArticleDetails } from "~/utils/type";
 
 import { ArticleServiceV2 } from "./article-service-v2";
 

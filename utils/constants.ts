@@ -1,7 +1,7 @@
 export enum PageNumber {
-  About,
-  Blog,
-  Products,
+  About = 0,
+  Blog = 1,
+  Products = 2,
 }
 
 export enum ArticleType {

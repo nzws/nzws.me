@@ -5,9 +5,9 @@ import "./global.scss";
 import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
 import {
-  FC,
+  type FC,
   Fragment,
-  KeyboardEvent,
+  type KeyboardEvent,
   useCallback,
   useDeferredValue,
   useEffect,
@@ -15,7 +15,7 @@ import {
   useState,
 } from "react";
 
-import { ArticleSearch } from "~/utils/type";
+import type { ArticleSearch } from "~/utils/type";
 
 import styles from "./styles.module.scss";
 

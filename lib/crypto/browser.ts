@@ -10,10 +10,6 @@ const key = crypto.subtle.importKey(
 );
 
 export const signature = async (data: string): Promise<string> =>
-  (
-    crypto.subtle.sign(
-      "HMAC",
-      await key,
-      new TextEncoder().encode(data),
-    ) as Promise<Uint8Array>
-  ).then(binaryToString);
+  crypto.subtle
+    .sign("HMAC", await key, new TextEncoder().encode(data))
+    .then(binaryToString);

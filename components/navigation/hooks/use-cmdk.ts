@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { type Dispatch, type SetStateAction, useEffect } from "react";
 
 type Action = Dispatch<SetStateAction<boolean>>;
 

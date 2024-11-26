@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
 
 type Props = HTMLAttributes<HTMLAnchorElement> & {
   href?: string;

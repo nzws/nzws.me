@@ -29,7 +29,7 @@ async function RealComponent({ src, ...props }: Props) {
   });
   if (!metadata) {
     // @ts-expect-error: fallback
-    // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+    // biome-ignore lint/a11y/useAltText: <explanation>
     return <img src={src} {...props} />;
   }
 

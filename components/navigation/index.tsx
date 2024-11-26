@@ -1,7 +1,7 @@
 "use client";
 
 import NextLink from "next/link";
-import { FC, Fragment, useCallback, useState } from "react";
+import { type FC, Fragment, useCallback, useState } from "react";
 import { Command } from "react-feather";
 
 import { HStack } from "~/components/stack";
@@ -89,6 +89,7 @@ export const Navigation: FC<Props> = ({ currentPage }) => {
             className={styles.command_button}
             onClick={() => setIsCmdOpened((prev) => !prev)}
             aria-label="Command"
+            type="button"
           >
             <Command size={22} />
           </button>

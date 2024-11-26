@@ -8,7 +8,7 @@ import { Globe, MapPin, User } from "react-feather";
 
 import { HStack, VStack } from "~/components/stack";
 
-import { HeaderItem, ItemProps } from "./components/item";
+import { HeaderItem, type ItemProps } from "./components/item";
 import styles from "./styles.module.scss";
 
 const profile: ItemProps[] = [
@@ -45,7 +45,7 @@ const links: ItemProps[] = [
   {
     icon: IconBrandDiscord,
     label: "Discord",
-    value: "nzws#0001",
+    value: "nzws",
   },
 ];
 
@@ -73,13 +73,13 @@ export function Header() {
 
         <HStack gap="12px" alignItems="center" wrap className={styles.items}>
           {profile.map((props, index) => (
-            <HeaderItem key={index} {...props} />
+            <HeaderItem key={props.href ?? index} {...props} />
           ))}
         </HStack>
 
         <HStack gap="12px" alignItems="center" wrap className={styles.items}>
           {links.map((props, index) => (
-            <HeaderItem key={index} {...props} />
+            <HeaderItem key={props.href ?? index} {...props} />
           ))}
         </HStack>
       </VStack>

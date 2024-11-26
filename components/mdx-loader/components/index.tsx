@@ -1,4 +1,4 @@
-import { MDXRemoteProps } from "next-mdx-remote/rsc";
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 
 import { Image } from "~/components/image";
 

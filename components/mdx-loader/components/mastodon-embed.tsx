@@ -13,6 +13,7 @@ export function MastodonEmbed({ url }: Props) {
         border: "none",
       }}
       allowFullScreen
+      title="Mastodon embed"
     />
   );
 }

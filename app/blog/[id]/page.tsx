@@ -6,7 +6,7 @@ import { Image } from "~/components/image";
 import { MDXLoader } from "~/components/mdx-loader";
 import { HStack, VStack } from "~/components/stack";
 import { getArticle } from "~/lib/file-io";
-import { ArticleType, dateOptions, PUBLIC_URL } from "~/utils/constants";
+import { ArticleType, PUBLIC_URL, dateOptions } from "~/utils/constants";
 
 import styles from "./styles.module.scss";
 
@@ -66,9 +66,9 @@ export default async function Page({ params: { id } }: { params: Params }) {
         <MDXLoader content={article.markdown} />
       </div>
 
-      {article.scripts?.map((script, key) => (
+      {article.scripts?.map((script) => (
         <Script
-          key={key}
+          key={scriptUrls[script] || script}
           src={scriptUrls[script] || script}
           strategy="lazyOnload"
         />
@@ -101,7 +101,7 @@ export async function generateMetadata({
     description,
     openGraph: {
       title: `${article.title} - Blog - nzws.me`,
-      url: PUBLIC_URL ? PUBLIC_URL + "/blog/" + article.slug : undefined,
+      url: PUBLIC_URL ? `${PUBLIC_URL}/blog/${article.slug}` : undefined,
       description,
       images: [
         {

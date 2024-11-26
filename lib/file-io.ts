@@ -1,11 +1,11 @@
 import "server-only";
 
-import path from "path";
+import path from "node:path";
 import { getPlaiceholder } from "plaiceholder";
 import { cache } from "react";
 
-import { ArticleType } from "~/utils/constants";
-import { ImageDetails } from "~/utils/type";
+import type { ArticleType } from "~/utils/constants";
+import type { ImageDetails } from "~/utils/type";
 
 import { ArticleFinderService } from "./article-finder-service";
 import { ArticleServiceV2 } from "./article-service-v2";

@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import styles from "./styles.module.scss";
 

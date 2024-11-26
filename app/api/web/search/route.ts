@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { BASE_URL } from "~/utils/constants";
-import { ArticleSearchExport } from "~/utils/type";
+import type { ArticleSearchExport } from "~/utils/type";
 
 export const runtime = "edge";
 

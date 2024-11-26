@@ -1,6 +1,5 @@
-import { PropsWithChildren } from "react";
-
-import { Image, ImageProps } from "~/components/image";
+import type { PropsWithChildren } from "react";
+import { Image, type ImageProps } from "~/components/image";
 import { VStack } from "~/components/stack";
 
 import styles from "./styles.module.scss";
@@ -13,7 +12,6 @@ export function ImageWithNote({
 }: PropsWithChildren<Props>) {
   return (
     <VStack>
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
       <Image {...props} />
 
       <div className={styles.note}>{children}</div>

@@ -1,5 +1,5 @@
 import { ImageResponse } from "@vercel/og";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { signature } from "~/lib/crypto/browser";
 import { decode } from "~/lib/encoder";
@@ -80,12 +80,11 @@ export async function GET(
         },
       ],
     });
-  } else {
-    return NextResponse.json(
-      {
-        error: "Invalid type",
-      },
-      { status: 400 },
-    );
   }
+  return NextResponse.json(
+    {
+      error: "Invalid type",
+    },
+    { status: 400 },
+  );
 }
