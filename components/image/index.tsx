@@ -28,8 +28,8 @@ async function RealComponent({ src, ...props }: Props) {
     return null;
   });
   if (!metadata) {
-    // @ts-expect-error: fallback
-    // biome-ignore lint/a11y/useAltText: <explanation>
+    // biome-ignore lint/a11y/useAltText: no metadata available
+    // biome-ignore lint/performance/noImgElement: no metadata available
     return <img src={src} {...props} />;
   }
 

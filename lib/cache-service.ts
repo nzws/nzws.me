@@ -37,7 +37,7 @@ export class CacheService<T> {
 
       this.cacheData = parsed;
       return parsed;
-    } catch (error) {
+    } catch (_error) {
       console.warn("cache miss", this.filePath);
       return undefined;
     }

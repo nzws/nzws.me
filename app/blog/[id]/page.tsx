@@ -6,7 +6,7 @@ import { Image } from "~/components/image";
 import { MDXLoader } from "~/components/mdx-loader";
 import { HStack, VStack } from "~/components/stack";
 import { getArticle } from "~/lib/file-io";
-import { ArticleType, PUBLIC_URL, dateOptions } from "~/utils/constants";
+import { ArticleType, dateOptions, PUBLIC_URL } from "~/utils/constants";
 
 import styles from "./styles.module.scss";
 
@@ -14,7 +14,11 @@ type Params = {
   id: string;
 };
 
-export default async function Page({ params: { id } }: { params: Params }) {
+export default async function Page(props: { params: Promise<Params> }) {
+  const params = await props.params;
+
+  const { id } = params;
+
   const article = await getArticle(ArticleType.Blog, id);
   if (!article) {
     return notFound();
@@ -82,11 +86,10 @@ const scriptUrls: Record<string, string> = {
   "don-nzws-me": "https://don.nzws.me/embed.js",
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Params;
+export async function generateMetadata(props: {
+  params: Promise<Params>;
 }): Promise<Metadata> {
+  const params = await props.params;
   const article = await getArticle(ArticleType.Blog, params.id);
   if (!article) {
     return {

@@ -57,7 +57,7 @@ export const Navigation: FC<Props> = ({ currentPage }) => {
               currentPage === PageNumber.About || focusing === PageNumber.About
             }
           >
-            About
+            Home
           </Link>
 
           <Link

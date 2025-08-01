@@ -26,8 +26,9 @@ type Params = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Params },
+  props: { params: Promise<Params> },
 ) {
+  const params = await props.params;
   const query = new URLSearchParams(request.nextUrl.search.substring(1));
   const { hash, base64 } = params;
   const correctHash = await signature(base64);

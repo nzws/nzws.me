@@ -32,8 +32,7 @@ export const Item: FC<Props> = ({
         {coverImage ? (
           <Image src={coverImage} alt={title} className={styles.cover_image} />
         ) : (
-          // next/image がバグる
-          // eslint-disable-next-line @next/next/no-img-element
+          // biome-ignore lint/performance/noImgElement: next/image がバグる
           <img
             src={`${fallbackCoverImage}?width=960&height=540`}
             width={960}
