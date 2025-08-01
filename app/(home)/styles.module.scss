@@ -3,7 +3,7 @@
 .container {
   @include dynamic_viewport_height;
 
-  background-image: url('http://static-cdn.nzws.me/osage-summer.jpg');
+  background-image: url('https://static-cdn.nzws.me/osage-summer.jpg');
   background-size: cover;
   background-position: 50% 10%;
   background-repeat: no-repeat;
