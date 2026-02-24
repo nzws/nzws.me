@@ -33,7 +33,7 @@
     "gray-matter": "4.0.3",
     "include-media": "2.0.0",
     "next": "15.4.8",
-    "next-mdx-remote": "5.0.0",
+    "next-mdx-remote": "6.0.0",
     "next-route-visualizer": "1.1.3",
     "plaiceholder": "2.5.0",
     "polished": "4.3.1",
