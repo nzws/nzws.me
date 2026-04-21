@@ -4,11 +4,7 @@ import { GitHub, Star } from "react-feather";
 import { HStack, VStack } from "../stack";
 import styles from "./styles.module.scss";
 
-interface Props {
-  showCredit?: boolean;
-}
-
-export function Footer({ showCredit }: Props) {
+export function Footer() {
   return (
     <VStack gap="24px" className={styles.container}>
       <div className={styles.line} />
@@ -38,20 +34,6 @@ export function Footer({ showCredit }: Props) {
         </Link>
 
         <div className={styles.spacer} />
-
-        {showCredit && (
-          <div className={styles.item}>
-            Illust by
-            <a
-              href="https://twitter.com/Elili_sousac"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.item}
-            >
-              @Elili_sousac
-            </a>
-          </div>
-        )}
       </HStack>
     </VStack>
   );
