@@ -47,7 +47,7 @@
     "ress": "5.0.2",
     "sanitize-filename": "1.6.4",
     "server-only": "0.0.1",
-    "sharp": "0.34.5",
+    "sharp": "0.35.0",
     "universal-base64url": "1.1.0"
   },
   "prettier": "@nzws/prettier-config"
